@@ -1,0 +1,1008 @@
+@charset "utf-8";
+
+/* #################################################################### */
+/*  Allgmeines  */
+/* #################################################################### */
+body    {
+    margin: 0;
+    padding: 0;
+    font-size: 100.01%;
+    font-family: Verdana, Arial, sans-serif;
+    color: #F4E365;
+    background-color:#000000;
+/*    text-align:center;*/
+}
+
+
+h1, h2, h3, h4, h5, h6, p, form {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+}
+
+.clearMe {
+    clear: both;
+    line-height:0px;
+}
+
+form {
+    display:inline;
+}
+
+.verweis {
+    cursor: pointer;
+    display:block;
+}
+/* #################################################################### */
+/*  Seitenstruktur  */
+/* #################################################################### */
+
+#main {
+    width: 924px;
+    height: 608px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg.jpg);
+    margin:0px auto;
+    text-align:left;
+    position:relative;
+}
+#main_choose {
+    width: 924px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg.jpg);
+    margin: 0px auto;
+    text-align:left;
+    position:relative;
+    padding-top:50px;
+}
+#main_616 {
+    width: 924px;
+    height: 608px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg.jpg);
+    margin:0px auto;
+    text-align:left;
+    position:relative;
+}
+
+#infofirst {
+    width: 924px;
+    margin:0px auto;
+    text-align:left;
+    position:relative;
+    z-index:2;
+
+}
+
+#footerfirst {
+    width: 924px;
+    margin:0px auto;
+    text-align:left;
+    position:relative;
+}
+
+#partner {
+    vertical-align:top;
+    height:77px;
+}
+.branding {
+    margin-left:530px;
+    margin-top:30px;
+    margin-top:10px;
+}
+
+#infobar {
+    height:17px;
+    margin-left:30px;
+}
+
+#left {
+    float:left;
+    width:300px;
+    height:505px;
+}
+
+#right {
+    float:left;
+    width:624px;
+    height:505px;
+}
+
+#footer {
+
+}
+
+/* #################################################################### */
+/*  Main - Left  */
+/* #################################################################### */
+
+#div_register {
+    width:254px;
+    height:76px;
+    position:absolute;
+    left:15px;
+    top:132px;
+}
+
+#div_login {
+    width:254px;
+    height:76px;
+    position:absolute;
+    left:15px;
+    top:246px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg_login.png);
+}
+#div_login_openID {
+    width:254px;
+    height:76px;
+    position:absolute;
+    left:15px;
+    top:246px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg_login.png);
+}
+#login_openID_cont {
+    margin: 15px 0 0 25px;
+}
+#login {
+    float:left;
+    width:72px;
+    height:22px;
+    margin-left:13px;
+    line-height:22px;
+    text-align:center;
+}
+#pw_forgotten {
+    float:left;
+    width:160px;
+    height:22px;
+    line-height:22px;
+}
+* html #pw_forgotten {
+    float:left;
+    width:155px;
+    height:22px;
+    line-height:22px;
+}
+
+#label_user {
+     float:left;
+     width:84px;
+     margin-top:2px;
+    margin-left:28px;
+}
+.textfeld_user {
+    float:left;
+    margin-top:2px;
+    padding:2px 3px 0 3px;
+    width:100px;
+    height:15px;
+    border:1px solid #929292;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg_text.jpg);
+}
+*+html .textfeld_user {
+    width:101px;
+}
+
+#label_password {
+     float:left;
+     width:84px;
+     margin-top:4px;
+     margin-left:20px;
+}
+.textfeld_pass {
+    float:left;
+    margin-top:4px;
+    width:106px;
+    height:15px;
+    border:1px solid #929292;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg_text.jpg);
+}
+*+html .textfeld_pass {
+    width:104px;
+}
+.textfeld_openID {
+    float:left;
+    margin-top:4px;
+    width:175px;
+    height:15px;
+    border:1px solid #929292;
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg_text.jpg?__cv=6a9e8685d5cc1fe22f860a93462adc00);
+}
+
+#but_register {
+    float:left;
+    width:116px;
+    height:21px;
+    text-align:center;
+    line-height:21px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_reg_0.png?__cv=9567dee58d5d2101ac633fbcd586df00);
+}
+#but_openID {
+    margin-top:3px;
+    float:left;
+    width:116px;
+    height:21px;
+    text-align:center;
+    line-height:21px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_std_0.png?__cv=195132ceda55ed011dabf313dfd26200);
+}
+#but_back {
+    float:left;
+    width:116px;
+    height:21px;
+    text-align:center;
+    line-height:21px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_std_0.png?__cv=195132ceda55ed011dabf313dfd26200);
+}
+
+#loginbar{
+    position: absolute;
+    left: 0px;
+    top: 82px;
+}
+#but_login {
+    float:left;
+    width:116px;
+    height:21px;
+    margin-left:1px;
+    text-align:center;
+    border:0px;
+    background:none;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_log_0.png?__cv=4a6d929ba5e600bf4c73d1d344684a00);
+    cursor:pointer;
+}
+input#submit { /* den Submit-Button */
+  float: none;
+  width: auto;width:118px;
+    height:21px;
+}
+
+#langbar{
+    position: absolute;
+    left: 0px;
+    top: 141px;
+}
+#but_lang {
+    width:233px;
+    height:21px;
+    line-height:21px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_lang_0.png?__cv=3774b1275c704c4a1e51d7f5e22cf000);
+    background-repeat: no-repeat;
+}
+
+#but_lang_back {
+    width:116px;
+    height:21px;
+    line-height:21px;
+    margin-top:27px;
+    margin-left:50px;
+    text-align:center;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_reg_0.png?__cv=9567dee58d5d2101ac633fbcd586df00);
+}
+
+#choose_lang {
+     padding-left:10px;
+     width:330px;
+     float:left;
+     background-color: black; opacity: 0.7; filter: alpha(opacity=70);
+}
+
+.select_lang {
+    /*border:1px solid red;*/
+    width:90px;
+    height:13px;
+    float:left;
+    background-repeat: no-repeat;
+    background-position: 0px -5px;
+    margin-bottom: 2px;
+    padding-left: 20px;
+}
+.select_lang_left {
+    /*border:1px solid red;*/
+    width:105px;
+    float:left;
+    background-repeat: no-repeat;
+    background-position: 90px -5px;
+    margin-bottom:3px;
+}
+
+.select_lang_right {
+    /*border:1px solid green;*/
+    width:105px;
+    float:right;
+    background-repeat: no-repeat;
+    background-position: 90px -5px;
+    margin-bottom:3px;
+}
+.select_lang_single {
+    margin-left:65px;
+    width:130px;
+    background-repeat: no-repeat;
+    background-position: 112px -5px;
+    margin-bottom:3px;
+}
+/* #################################################################### */
+/*  Main - Right  */
+/* #################################################################### */
+
+/* #################################################################### */
+/*  Side-Bar  */
+/* #################################################################### */
+#online {
+    float:left;
+    line-height:17px;
+}
+#register {
+    float:left;
+    margin-left:25px;
+    line-height:17px;
+}
+
+/* #################################################################### */
+/*  Footer  */
+/* #################################################################### */
+#footer_text {
+    position:absolute;
+    left:0px;
+    top:630px;
+	width: 924px;
+	margin: 0px auto;
+	text-align:left;
+    color: #2f3235;
+}
+#footer_text_aid_473 {
+    position:absolute;
+    left:0px;
+    top:675px;
+    width: 924px;
+    margin: 0px auto;
+    text-align:left;
+    color: #2f3235;
+}
+
+
+.footer_left {
+    float:left;
+    /* old width:390px;*/
+    /*width:500px;*/
+    margin-top:15px;
+    /*margin-bottom:10px;*/
+    text-align: left;
+}
+
+.footer_center {
+    float:left;
+    width:104px;
+    margin-top:5px;
+    /*margin-bottom:10px;*/
+    text-align:center;
+}
+
+.footer_right {
+    float:right;
+    /*width:400px;*/
+    margin-top:15px;
+    /*margin-bottom:10px;*/
+    text-align: right;
+}
+
+
+#loginErrorBoxHead {
+    text-align:right;
+    background-image: url(http://localhost/do_es/do_img/global/error/bg_error_head.png?__cv=a54c7ad5eaa468ed965a3c971f471e00);
+    height: 77px;
+}
+#loginErrorBoxContent {
+    background-image: url(http://localhost/do_es/do_img/global/error/bg_error_icon.png?__cv=286a97adfbaff8cfdb90b8121e17b800);
+    background-repeat: no-repeat;
+    background-position: 35px 10px;
+    width: 350px;
+    text-align: left;
+    padding-left: 150px;;
+}
+#loginErrorBoxFooter {
+    background-image: url(http://localhost/do_es/do_img/global/error/bg_error_foot.png?__cv=31da9a787bb2ffd9bc4932b15752ca00);
+    height: 76px;
+}
+
+/* #################################################################### */
+/* Teaser  */
+/* #################################################################### */
+
+#teaser_nav_top {
+    width:448px;
+    position: absolute;
+    left:455px;
+    top:225px;
+}
+
+#but_screenshots {
+    float:right;
+}
+#but_details {
+    float:right;
+}
+#but_trailer {
+    float:left;
+}
+#but_gewinne {
+    float:left;
+}
+
+#teaser_nav_bottom {
+    width:448px;
+    text-align:right;
+    position: absolute;
+    left:455px;
+    top:437px;
+}
+
+#but_infos {
+    float:right;
+}
+#but_ingame {
+    float:left;
+}
+/*#but_screenshots a, #but_trailer a, #but_gewinne a, #but_infos a, #but_ingame a {    display:block;cursor:pointer;}*/
+
+.mm_box_std {
+    width:127px;
+    height:21px;
+    line-height:21px;
+    text-align:center;
+}
+.mm_box_std a {
+    display:block;
+    cursor:pointer;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_0.png?__cv=622daf8f03218acb7a2423bfb5ef0f00);
+}
+.mm_box_std a:link {
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_0.png?__cv=622daf8f03218acb7a2423bfb5ef0f00);
+}
+.mm_box_std a:active {
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_0.png?__cv=622daf8f03218acb7a2423bfb5ef0f00);
+}
+.mm_box_std a:hover {
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_1.png?__cv=34d42ab957c835c339a9d232b51b3600);
+}
+
+.mm_box_active {
+    width:127px;
+    height:21px;
+    line-height:21px;
+    text-align:center;
+}
+.mm_box_active a {
+    display:block;
+    cursor:pointer;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_2.png?__cv=92cddee908b1bb360266735c83d8c900);
+}
+.mm_box_active a:link {
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_2.png?__cv=92cddee908b1bb360266735c83d8c900);
+}
+.mm_box_active a:active {
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_2.png?__cv=92cddee908b1bb360266735c83d8c900);
+}
+.mm_box_active a:hover {
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_box_std_1.png?__cv=34d42ab957c835c339a9d232b51b3600);
+}
+
+
+#box {
+    position: absolute;
+    width:438px;
+    height:172px;
+    left:455px;
+    top:248px;
+    padding:12px 0 0 10px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/rahmen_teaser.png?__cv=a5b4193017e244e3a92a70403a58ce00);
+}
+
+#div_screenshots {
+    position:absolute;
+    left:10px;
+    top:12px;
+}
+#div_trailer {
+    position:absolute;
+    left:10px;
+    top:12px;
+}
+#div_gewinne {
+    position:absolute;
+    width:426px;
+    height: 160px;
+    left:10px;
+    top:12px;
+}
+#div_infos {
+    position:absolute;
+    left:465px;
+    top:260px;
+}
+
+#div_ingame {
+    position:absolute;
+    left:10px;
+    top:12px;
+}
+
+#prizes {
+    margin:38px 20px 0 155px;
+    height:95px;
+    overflow: auto;
+}
+#infos {
+    padding:8px 30px 0 10px;
+    width: 386px; height: 152px; background-color: black; opacity: 0.5; filter: alpha(opacity=50);
+    overflow:auto;
+}
+
+#screen_arrow_left {
+    position:absolute;
+    left:-22px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/arrow_left_0.png?__cv=62a31ec817bfbaae10ee898b262c7700);
+}
+#screen_arrow_right {
+    position:absolute;
+    left:415px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/arrow_right_0.png?__cv=dfc306b882ccfdac65e71e3c818eae00);
+}
+#screen_arrow_left, #screen_arrow_right {
+    width: 32px;
+    height:35px;
+    top:60px;
+    z-index:2;
+}
+#screen_arrow_left a, #screen_arrow_right a {
+    width: 32px;
+    height:35px;
+}
+
+#teaserfirst {
+    width: 924px;
+    margin:0px auto;
+    text-align:left;
+    position:relative;
+    z-index:1;
+}
+#teasertext {
+    position:absolute;
+    left:500px;
+    top:480px;
+    width: 400px;
+    margin: 0px auto;
+    text-align:left;
+}
+
+#teasertext li {
+    list-style-type:disc;
+    margin-left:30px;
+}
+
+#chooseInstanceFooter {
+     text-align:center;
+     margin: 5px 10px 0px 10px;
+}
+
+/* Instanzauswahl*/
+.selectInstance_hl_language {
+    float:left;
+    width:95px;
+    text-align:left;
+    height:20px;
+    line-height:20px;
+    text-align:left;
+}
+.selectInstance_hl_server {
+    float:left;
+    width:95px;
+    text-align:left;
+    height:20px;
+    line-height:20px;
+    text-align:left;
+}
+.selectInstance_hl_status {
+    float:left;
+    width:85px;
+    text-align:left;
+    height:20px;
+    line-height:20px;
+    text-align:left;
+}
+.selectInstance_hl_trenner {
+    width:460px;
+    height:1px;
+    font-size:1px;
+    margin:3px 3px 3px 0;
+    margin-left:20px;
+    background-image: url(http://localhost/do_es/do_img/global/intro/trenner.png?__cv=7d9147d7cad40eec0f77dee9a43bce00);
+    background-position: top;
+}
+
+#rahmen {
+     margin-left:20px;
+     width:480px;
+     height:375px;
+     text-align:left;
+     vertical-align:top;
+     overflow:auto;
+}
+
+.termsOfUseSubmit {
+    width:117px;
+    height:21px;
+    margin:auto;
+    background-image: url(http://localhost/do_es/do_img/global/intro/but_spielen_1.png?__cv=6ea94f732fd9b706f2815426004d1200);
+    text-align:center;
+    line-height:21px;
+    border:none;
+    color: #AFC9D3;
+    font-size: 10px;
+}
+.termsOfUseText {
+
+}
+.termsOfUseCheckbox {
+    margin:20px 0 30px 0;
+}
+
+/* #################################################################### */
+/*  Login Form  */
+/* #################################################################### */
+
+#loginForm_default_container,
+#loginForm_openId_container
+{
+    z-index: 1;
+}
+
+#loginForm_default_container {
+    position: absolut;
+    top: 246px;
+    left: 15px;
+    background: transparent;
+}
+
+#loginForm_openId_hideOpenId_handle
+{
+    cursor: pointer;
+}
+
+.loginForm_default_input,
+.loginForm_openId_input
+{
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg_text.jpg);
+    border: 1px solid #929292;
+    float: left;
+    height: 15px;
+    margin-top: 2px;
+    padding: 2px 3px 0;
+    width: 100px;
+    color: #FFFFFF;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 10px;
+}
+
+#loginForm_default_input_username
+{
+    position: absolute;
+    left: 112px;
+    top: 22px;
+}
+
+#loginForm_default_input_password
+{
+    position: absolute;
+    left: 104px;
+    top: 45px;
+}
+
+#loginForm_default a,
+#loginForm_default a:visited,
+#loginForm_default label,
+#loginForm_openId_container label
+{
+    color: #AFC9D3;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 10px;
+    line-height: 22px;
+    text-decoration: none;
+}
+
+#loginForm_default_label_username_container
+{
+    position: absolute;
+    top: 19px;
+    left: 28px;
+    white-space: nowrap;
+}
+
+#loginForm_default_label_password_container
+{
+    position: absolute;
+    top: 42px;
+    left: 20px;
+    white-space: nowrap;
+}
+
+#loginForm_default_link_forgot_password_container
+{
+    position: absolute;
+    top: 0px;
+    left: 85px;
+    white-space: nowrap;
+}
+
+#loginForm_default_loginButton_container
+{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 82px;
+    left: 117px;
+}
+
+#loginForm_default_loginButton
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_log_0.png?__cv=4a6d929ba5e600bf4c73d1d344684a00) repeat scroll 0 0;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 21px;
+    width: 116px;
+    color: #AFC9D3;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+    line-height:21px;
+    text-align:center;
+    padding-bottom: 1px;
+}
+
+#loginForm_default_loginButton:hover
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_log_1.png?__cv=4249adcfbc63d2a1c7df14894695f000) repeat scroll 0 0;
+}
+
+
+#loginForm_default_signupButton_container
+{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 82px;
+    left: 0px;
+}
+
+#loginForm_default_signupButton
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_reg_0.png?__cv=9567dee58d5d2101ac633fbcd586df00) repeat scroll 0 0;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 21px;
+    width: 116px;
+    color: #AFC9D3;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+    line-height:21px;
+    text-align:center;
+    padding-bottom: 1px;
+}
+
+#loginForm_default_signupButton:hover
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_reg_1.png?__cv=d5f8084d8f80c0531254db4ed9da2f00) repeat scroll 0 0;
+}
+
+#loginForm_default_container .openidButton
+{
+    position: absolute;
+    left: 0px;
+    top: 110px;
+}
+
+#loginForm_default_facebookConnect_container
+{
+    margin: 0px;
+    position: absolute;
+    left: 80px;
+    top: 110px;
+}
+
+#loginForm_openId_container
+{
+    background-image: url(http://localhost/do_es/do_img/global/intro/bg_login.png?__cv=84f90affd25e1d9e0048eb755ff68500);
+    height: 56px;
+    left: 15px;
+    position: absolute;
+    top: 246px;
+    width: 233px
+}
+
+#loginForm_openId_loginButton_container
+{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 82px;
+    left: 117px;
+}
+
+#loginForm_openId_loginButton
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_log_0.png?__cv=4a6d929ba5e600bf4c73d1d344684a00) repeat scroll 0 0;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 21px;
+    width: 116px;
+    color: #AFC9D3;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+    line-height:21px;
+    text-align:center;
+    padding-bottom: 1px;
+}
+
+#loginForm_openId_loginButton:hover
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_log_1.png?__cv=4249adcfbc63d2a1c7df14894695f000) repeat scroll 0 0;
+}
+
+#loginForm_openId_hideOpenId_handle
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_reg_0.png?__cv=9567dee58d5d2101ac633fbcd586df00) no-repeat scroll 0 0;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 21px;
+    width: 116px;
+    color: #AFC9D3;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+    line-height:21px;
+    text-align:center;
+    padding-bottom: 1px;
+
+    position: absolute;
+    left: 0px;
+    top: 82px;
+}
+
+#loginForm_openId_hideOpenId_handle:hover
+{
+    background: url(http://localhost/do_es/do_img/global/intro/but_reg_1.png?__cv=d5f8084d8f80c0531254db4ed9da2f00) repeat scroll 0 0;
+}
+
+#loginForm_openId_label_openIdUrl_container
+{
+    position: absolute;
+    top: 10px;
+    left: 25px;
+}
+
+#loginForm_openId_input_openIdUrl_container
+{
+    position: absolute;
+    top: 29px;
+    left: 25px;
+}
+
+#loginForm_openId_input_openIdUrl
+{
+    width: 175px;
+}
+
+/* #################################################################### */
+/*  Schriften  */
+/* #################################################################### */
+
+#loginErrorBoxContent a {text-decoration: underline;}
+
+.fliessfooter             {    font-size:10px;font-family: Verdana, Arial, sans-serif; color: #63737a;}
+.fliessfooter b           {    font-weight:bold;}
+.fliessfooter a           {    color: #63737a;text-decoration:none;}
+.fliessfooter a:link      {    color: #63737a;}
+.fliessfooter a:visited   {    color: #63737a;}
+.fliessfooter a:hover     {    color: #63737a;}
+
+.fliess             {    font-size:10px;font-family: Verdana, Arial, sans-serif; color: #FFFFFF;}
+.fliess b           {    font-weight:bold;}
+.fliess a           {    color: #FFFFFF;text-decoration:none;}
+.fliess a:link      {    color: #FFFFFF;}
+.fliess a:visited   {    color: #FFFFFF;}
+.fliess a:hover     {    color: #FFFFFF;}
+
+.headline             {    font-size:13px;font-family: Verdana, Arial, sans-serif; color: #afc9d3;}
+.headline b           {    font-weight:bold;}
+.headline a           {    color: #afc9d3;text-decoration:none;}
+.headline a:link      {    color: #afc9d3;}
+.headline a:visited   {    color: #afc9d3;}
+.headline a:hover     {    color: #afc9d3;}
+
+
+
+/* #################################################################### */
+/*  Facebook  */
+/* #################################################################### */
+#gl_facebook_like {
+    position: absolute;
+    top: 450px;
+    left: 17px;
+    background-color: black; opacity: 0.7; filter: alpha(opacity=70);
+}
+
+
+/* #################################################################### */
+/*  SEO-Stuff  */
+/* #################################################################### */
+#infotext, #infotext h1 {
+    color: #333333;
+    font-size: 10px;
+    font-weight: normal;
+}
+#infotext {
+    top: 700px;
+    width: 924px;
+    margin: 0 auto 20px auto;
+    position: absolute;
+    text-align: justify;
+}
+#infotext_link {
+    text-align: center;
+    margin-bottom: 10px;
+}
+#infotext a { color: #333333;}
+#infotext a:link { color: #333333;}
+#infotext a:visited { color: #333333;}
+#infotext a:hover { color: #333333;}
+
+
+.socialBarExtern a {
+    display: block;
+}
+.socialBarExtern .facebook, .socialBarExtern .twitter, .socialBarExtern .youtube {
+    width: 20px;
+    height: 22px;
+    float: right;
+    position: relative;
+    margin-left: 4px;
+}
+.socialBarExtern .followUsOn {
+    position: relative;
+    color: #ffffff;
+    font-size: 10px;
+    font-family: Verdana, Arial, sans-serif;
+    float: right;
+    line-height: 22px;
+}
+.socialBarExtern .facebook {background: url(http://localhost/do_es/do_img/global/social/facebook.png?__cv=d83caf7be7498e61fbdfb52b61966800);}
+.socialBarExtern .facebook:hover {background-position: -22px 0;}
+.socialBarExtern .twitter {background: url(http://localhost/do_es/do_img/global/social/twitter.png?__cv=4bf2c255170d4a001453e94979b6fe00);}
+.socialBarExtern .twitter:hover {background-position: -22px 0;}
+.socialBarExtern .youtube { background: url(http://localhost/do_es/do_img/global/social/youtube.png?__cv=c48da75f70a41292e589b227bf826f00);}
+.socialBarExtern .youtube:hover { background-position: -22px 0;}
+
+#sevimBox {
+	position: relative;
+	top: 30px;
+	margin: 0 auto;
+    width: 888px;
+    height: 10px;
+    text-align: justify;
+    font-size: 10px;
+    color: #333;
+}
+#sevimBox h1 {
+    color: #333;
+    font-size: 10px;
+    font-weight: normal;
+}
+#sevimBox a {
+	color: #333;
+}

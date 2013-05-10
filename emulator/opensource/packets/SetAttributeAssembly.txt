@@ -1,0 +1,969 @@
+package net.bigpoint.darkorbit.net
+{
+    import com.bigpoint.utils.*;
+    import flash.external.*;
+    import flash.utils.*;
+    import mx.utils.*;
+    import net.bigpoint.darkorbit.*;
+    import net.bigpoint.darkorbit.audio.*;
+    import net.bigpoint.darkorbit.data.*;
+    import net.bigpoint.darkorbit.data.vo.*;
+    import net.bigpoint.darkorbit.fireworks.*;
+    import net.bigpoint.darkorbit.gui.*;
+    import net.bigpoint.darkorbit.gui.container.*;
+    import net.bigpoint.darkorbit.gui.elements.*;
+    import net.bigpoint.darkorbit.gui.windows.*;
+    import net.bigpoint.darkorbit.map.*;
+    import net.bigpoint.darkorbit.menu.*;
+    import net.bigpoint.darkorbit.pattern.*;
+    import net.bigpoint.darkorbit.settings.*;
+    import net.bigpoint.darkorbit.ship.*;
+    import net.bigpoint.darkorbit.ship.effects.*;
+
+    public class SetAttributeAssembly extends BaseAssembly
+    {
+        private var map:Map;
+        private var hero:Ship;
+        private var cpuDict:Dictionary;
+        private var delegateDict:Dictionary;
+        private var settingsAssembly:SettingsAssembly;
+        private var cooldownClassToButtonIDs:Dictionary;
+        private var main:Main;
+        private var effectsManager:EffectsManager;
+        private static var instance:SetAttributeAssembly;
+
+        public function SetAttributeAssembly(param1:Function)
+        {
+            this.effectsManager = EffectsManager.getInstance();
+            if (param1 !== hidden)
+            {
+                throw new Error("SetAttributeAssembly is a Singleton and can only be accessed through SetAttributeAssembly.getInstance()");
+            }
+            this.main = _main;
+            this.initDelegateDict();
+            this.initDicts();
+            this.settingsAssembly = SettingsAssembly.getInstance();
+            return;
+        }// end function
+
+        private function initDicts() : void
+        {
+            this.cpuDict = new Dictionary();
+            this.cpuDict[3] = CPUItem.TYPE_DRONE_REPAIR;
+            this.cpuDict[4] = CPUItem.TYPE_RADAR;
+            this.cpuDict[5] = CPUItem.TYPE_JUMP;
+            this.cpuDict[6] = CPUItem.TYPE_AMMOBUY;
+            this.cpuDict[7] = CPUItem.TYPE_ROBOT;
+            this.cpuDict[8] = CPUItem.TYPE_HM7;
+            this.cpuDict[10] = CPUItem.TYPE_SMARTBOMB;
+            this.cpuDict[11] = CPUItem.TYPE_INSTASHIELD;
+            this.cpuDict[12] = CPUItem.TYPE_MINETURBO;
+            this.cpuDict[13] = CPUItem.TYPE_AIM;
+            this.cpuDict[14] = CPUItem.TYPE_AROL;
+            this.cpuDict[15] = CPUItem.TYPE_CLOAK;
+            this.cpuDict[16] = CPUItem.TYPE_RLLB;
+            this.cpuDict[17] = CPUItem.TYPE_ROCKETBUY;
+            this.cpuDict[18] = CPUItem.TYPE_ADVANCED_JUMP;
+            this.cooldownClassToButtonIDs = new Dictionary();
+            this.cooldownClassToButtonIDs[ServerCommands.MINE_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_MINE, SuperActionButton.SELECTION_MINE_EMP, SuperActionButton.SELECTION_MINE_SAB, SuperActionButton.SELECTION_MINE_DDM]);
+            this.cooldownClassToButtonIDs[ServerCommands.SMARTBOMB_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_SMARTBOMB]);
+            this.cooldownClassToButtonIDs[ServerCommands.INSTASHIELD_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_INSTASHIELD]);
+            this.cooldownClassToButtonIDs[ServerCommands.EMP_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_EMP]);
+            this.cooldownClassToButtonIDs[ServerCommands.ROCKET_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_ROCKET_R_310, SuperActionButton.SELECTION_ROCKET_PLT_2026, SuperActionButton.SELECTION_ROCKET_PLT_2021, SuperActionButton.SELECTION_ROCKET_PLT_3030]);
+            this.cooldownClassToButtonIDs[ServerCommands.RSB_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_LASER_6]);
+            this.cooldownClassToButtonIDs[ServerCommands.PLASMA_DISCONNECT_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_ROCKET_PLD_8]);
+            this.cooldownClassToButtonIDs[ServerCommands.WIZ_ROCKET] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_ROCKET_WIZ]);
+            this.cooldownClassToButtonIDs[ServerCommands.DCR_ROCKET] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_ROCKET_DCR_250]);
+            this.cooldownClassToButtonIDs[ServerCommands.ROCKETLAUNCHER] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECTION_LOAD_ROCKET_LAUNCHER]);
+            this.cooldownClassToButtonIDs[ServerCommands.TECH_SHIELD_BACK_UP] = new CooldownCommandMap(this.addTechCooldown, [ServerCommands.TECH_SHIELD_BACK_UP]);
+            this.cooldownClassToButtonIDs[ServerCommands.TECH_ENERGY_LEECH] = new CooldownCommandMap(this.addTechCooldown, [ServerCommands.TECH_ENERGY_LEECH]);
+            this.cooldownClassToButtonIDs[ServerCommands.TECH_ELECTRIC_CHAIN_IMPULSE] = new CooldownCommandMap(this.addTechCooldown, [ServerCommands.TECH_ELECTRIC_CHAIN_IMPULSE]);
+            this.cooldownClassToButtonIDs[ServerCommands.TECH_ROCKET_PROBABILITY_MAXIMIZER] = new CooldownCommandMap(this.addTechCooldown, [ServerCommands.TECH_ROCKET_PROBABILITY_MAXIMIZER]);
+            this.cooldownClassToButtonIDs[ServerCommands.TECH_BATTLE_REP_BOT] = new CooldownCommandMap(this.addTechCooldown, [ServerCommands.TECH_BATTLE_REP_BOT]);
+            this.cooldownClassToButtonIDs[ServerCommands.SKILL_SOLACE] = new CooldownCommandMap(this.addSkillDesignCooldown, [ServerCommands.SKILL_SOLACE]);
+            this.cooldownClassToButtonIDs[ServerCommands.SKILL_DIMINISHER] = new CooldownCommandMap(this.addSkillDesignCooldown, [ServerCommands.SKILL_DIMINISHER]);
+            this.cooldownClassToButtonIDs[ServerCommands.SKILL_SPECTRUM] = new CooldownCommandMap(this.addSkillDesignCooldown, [ServerCommands.SKILL_SPECTRUM]);
+            this.cooldownClassToButtonIDs[ServerCommands.SKILL_SENTINEL] = new CooldownCommandMap(this.addSkillDesignCooldown, [ServerCommands.SKILL_SENTINEL]);
+            this.cooldownClassToButtonIDs[ServerCommands.SKILL_VENOM] = new CooldownCommandMap(this.addSkillDesignCooldown, [ServerCommands.SKILL_VENOM]);
+            this.cooldownClassToButtonIDs[ServerCommands.SPEED_BUFF_COOL_DOWN] = new CooldownCommandMap(this.addSkillDesignCooldown, [ServerCommands.SPEED_BUFF_COOL_DOWN]);
+            this.cooldownClassToButtonIDs[ServerCommands.ADVANCED_JUMP_CPU_COOLDOWN] = new CooldownCommandMap(this.addCoolDown, [SuperActionButton.SELECT_CPU_JUMP_TARGET]);
+            return;
+        }// end function
+
+        public function assembleCommand(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            if (this.delegateDict[_loc_2] != null)
+            {
+                var _loc_3:* = this.delegateDict;
+                _loc_3.this.delegateDict[_loc_2](param1);
+                ;
+            }
+            return;
+        }// end function
+
+        private function initDelegateDict() : void
+        {
+            this.delegateDict = new Dictionary();
+            this.delegateDict[ServerCommands.SERVER_MSG] = this.assembleLogMessage;
+            this.delegateDict[ServerCommands.LOCALIZED_SERVER_MSG] = this.assembleLocalizedLogMessage;
+            this.delegateDict[ServerCommands.EXTRAS_INFO] = this.assembleCpuHeroInfo;
+            this.delegateDict[ServerCommands.SET_FLASH_SETTINGS] = this.assembleFlashSettings;
+            this.delegateDict[ServerCommands.SHIELD_INFO] = this.assembleShieldInfo;
+            this.delegateDict[ServerCommands.HITPOINTS_INFO] = this.assembleHitPointsInfo;
+            this.delegateDict[ServerCommands.HEAL] = this.assembleHealInfo;
+            this.delegateDict[ServerCommands.ROCKET_COOLDOWN_COMPLETED] = this.assembleRocketCooldownCompleted;
+            this.delegateDict[ServerCommands.EXPERIENCE_POINTS_UPDATE] = this.assembleExperiencePointsUpdate;
+            this.delegateDict[ServerCommands.CREDITS_UPDATE] = this.assembleCreditsUpdate;
+            this.delegateDict[ServerCommands.LEVEL_UPDATE] = this.assembleLevelUpdate;
+            this.delegateDict[ServerCommands.VELOCITY_UPDATE] = this.assembleVelocityUpdate;
+            this.delegateDict[ServerCommands.CARGO_CHANGE] = this.assembleCargoChange;
+            this.delegateDict[ServerCommands.AMMUNITION_CAPACITY_CHANGE] = this.assembleAmmunitionChange;
+            this.delegateDict[ServerCommands.UPDATE_CONFIGURATION_COUNT] = this.assembleConfigurationCountUpdate;
+            this.delegateDict[ServerCommands.INIT_UPDATE_BOOSTERS] = this.assembleInitBoostersUpdate;
+            this.delegateDict[ServerCommands.RANKED_HUNT_EVENT_UPDATE] = this.assembleInitRankedHuntEventStatsUpdate;
+            this.delegateDict[ServerCommands.SHIELD_SKILL_UPDATE] = this.assembleShieldSkillUpdate;
+            this.delegateDict[ServerCommands.REPAIR_SKILL_UPDATE] = this.assembleRepairSkillUpdate;
+            this.delegateDict[ServerCommands.FIREWORKS] = this.assembleFireworksInfo;
+            this.delegateDict[ServerCommands.SET_COOLDOWN] = this.assembleCooldown;
+            this.delegateDict[ServerCommands.COOLDOWN_COMPLETED] = this.assembleCooldownCompleted;
+            this.delegateDict[ServerCommands.CPU_INFO] = this.assembleCPUInfo;
+            this.delegateDict[ServerCommands.SET_REPAIR_DATA] = this.assembleRepairData;
+            this.delegateDict[ServerCommands.SET_SPECIAL_OFFERS_NEEDED] = this.assembleSpecialOffersData;
+            this.delegateDict[ServerCommands.SET_GS_IO_LOGGING] = this.assembleIOLogging;
+            this.delegateDict[ServerCommands.SET_DISPLAY_CROSSHAIR] = this.assembleDisplayCrosshair;
+            this.delegateDict[ServerCommands.SERVER_VERSION] = this.assembleServerVersion;
+            this.delegateDict[ServerCommands.ADVANCED_JUMP_CPU] = this.assembleAdvancedJumpCpuCommands;
+            this.delegateDict[ServerCommands.JUMP_VOUCHERS_UPDATE] = this.assembleJumpVouchersUpdate;
+            this.delegateDict[ServerCommands.BOOTY_KEYS_UPDATE] = this.assembleBootyKeysUpdate;
+            return;
+        }// end function
+
+        private function assembleAdvancedJumpCpuCommands(param1:Array) : void
+        {
+            var _loc_2:* = String(param1[3]);
+            var _loc_3:int = 0;
+            var _loc_4:int = 0;
+            switch(_loc_2)
+            {
+                case ServerCommands.ADVANCED_JUMP_CPU_INIT:
+                {
+                    this.assembleAdvancedJumpCpuInitialization(param1);
+                    break;
+                }
+                case ServerCommands.ADVANCED_JUMP_CPU_SELECTED_MAP_FEEDBACK:
+                {
+                    this.assembleAdvancedJumpCpuMapFeedback(param1);
+                    break;
+                }
+                case ServerCommands.SET_STATUS:
+                {
+                    _loc_3 = int(param1[4]);
+                    _loc_4 = int(param1[5]);
+                    this.main.getGuiManager().startCastingCostTick(_loc_3, _loc_4);
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleAdvancedJumpCpuMapFeedback(param1:Array) : void
+        {
+            var _loc_2:int = 3;
+            var _loc_3:* = param1[++_loc_2];
+            _loc_2 = ++_loc_2 + 1;
+            var _loc_4:* = param1[++_loc_2 + 1];
+            var _loc_5:* = param1[++_loc_2];
+            this.main.getGuiManager().setAvailableJump(_loc_3, _loc_4, _loc_5);
+            return;
+        }// end function
+
+        private function assembleAdvancedJumpCpuInitialization(param1:Array) : void
+        {
+            var _loc_2:String = "";
+            var _loc_3:String = "-1";
+            var _loc_4:String = "-2";
+            var _loc_5:Array = [];
+            var _loc_6:Array = [];
+            var _loc_7:Array = [];
+            var _loc_8:* = param1.slice(4, param1.length);
+            if (param1.length < 5)
+            {
+                this.main.getGuiManager().setAllSpacemapMapsBlocked();
+                return;
+            }
+            var _loc_9:int = 0;
+            while (_loc_9 < _loc_8.length)
+            {
+                
+                _loc_2 = String(_loc_8[_loc_9]);
+                if (_loc_2.split(";").length < 2)
+                {
+                    if (_loc_2 == _loc_3)
+                    {
+                        _loc_5 = this.getMapIDsList(_loc_8, _loc_9);
+                    }
+                    else if (_loc_2 == _loc_4)
+                    {
+                        _loc_6 = this.getMapIDsList(_loc_8, _loc_9);
+                    }
+                    else
+                    {
+                        _loc_7.push([_loc_2, this.getMapIDsList(_loc_8, _loc_9)]);
+                    }
+                }
+                _loc_9++;
+            }
+            this.main.getGuiManager().updateAdvancedSpacemapWindow(_loc_7, _loc_5, _loc_6);
+            return;
+        }// end function
+
+        private function getMapIDsList(param1:Array, param2:int) : Array
+        {
+            var _loc_3:* = String(param1[(param2 + 1)]).split(";");
+            _loc_3.pop();
+            return _loc_3;
+        }// end function
+
+        private function assembleIOLogging(param1:Array) : void
+        {
+            var _loc_2:* = Boolean(int(param1[3]));
+            this.main.getConnectionManager().isLoggingGameServerIO = _loc_2;
+            return;
+        }// end function
+
+        private function assembleDisplayCrosshair(param1:Array) : void
+        {
+            var _loc_2:* = Boolean(int(param1[3]));
+            if (Main.showCross && !_loc_2)
+            {
+                this.main.getGuiManager().hideCrosshair();
+            }
+            else if (!Main.showCross && _loc_2)
+            {
+                this.main.getGuiManager().showCrosshair();
+            }
+            Main.showCross = _loc_2;
+            return;
+        }// end function
+
+        private function assembleServerVersion(param1:Array) : void
+        {
+            Main.serverVersion = param1[3];
+            this.main.getGuiManager().writeToLog("Server Version: " + Main.serverVersion);
+            return;
+        }// end function
+
+        private function assembleSpecialOffersData(param1:Array) : void
+        {
+            this.main.getGuiManager().prepareSpecialOffers();
+            return;
+        }// end function
+
+        private function assembleRepairData(param1:Array) : void
+        {
+            var _loc_2:* = param1[3];
+            var _loc_3:* = StringUtil.trim(param1[4]);
+            Hero.repairInfo = new RepairInfo(_loc_2, _loc_3);
+            return;
+        }// end function
+
+        private function assembleCPUInfo(param1:Array) : void
+        {
+            var _loc_2:CPUItem = null;
+            var _loc_3:Boolean = false;
+            var _loc_4:int = 0;
+            var _loc_5:int = 0;
+            var _loc_6:int = 0;
+            var _loc_7:int = 0;
+            var _loc_8:int = 0;
+            switch(param1[3])
+            {
+                case ServerCommands.TRADE_DRONE_INFO:
+                {
+                    _loc_4 = int(param1[4]);
+                    _loc_2 = Hero.cpuItems[CPUItem.TYPE_HM7];
+                    if (_loc_2 != null)
+                    {
+                        _loc_2.amount = _loc_4;
+                    }
+                    if (_loc_4 == 0)
+                    {
+                        Hero.cpuItems[CPUItem.TYPE_HM7] = null;
+                    }
+                    break;
+                }
+                case ServerCommands.JUMP_CPU:
+                {
+                    _loc_5 = int(param1[6]);
+                    _loc_2 = Hero.cpuItems[CPUItem.TYPE_JUMP];
+                    if (_loc_2 != null)
+                    {
+                        _loc_2.amount = _loc_5;
+                    }
+                    if (_loc_5 == 0)
+                    {
+                        Hero.cpuItems[CPUItem.TYPE_JUMP] = null;
+                    }
+                    break;
+                }
+                case ServerCommands.DRONEREPAIR_CPU_INFO:
+                {
+                    _loc_6 = param1[4];
+                    _loc_2 = Hero.cpuItems[CPUItem.TYPE_DRONE_REPAIR];
+                    if (_loc_2 != null)
+                    {
+                        _loc_2.amount = _loc_6;
+                    }
+                    if (_loc_6 == 0)
+                    {
+                        Hero.cpuItems[CPUItem.TYPE_DRONE_REPAIR] = null;
+                    }
+                    break;
+                }
+                case ServerCommands.AIM_CPU_INFO:
+                {
+                    _loc_7 = int(param1[4]);
+                    _loc_3 = Boolean(int(param1[5]));
+                    _loc_2 = Hero.cpuItems[CPUItem.TYPE_AIM];
+                    if (_loc_2 != null)
+                    {
+                        _loc_2.amount = _loc_7;
+                        _loc_2.state = _loc_3;
+                    }
+                    break;
+                }
+                case ServerCommands.CLOAK_CPU_INFO:
+                {
+                    _loc_8 = int(param1[4]);
+                    _loc_2 = Hero.cpuItems[CPUItem.TYPE_CLOAK];
+                    if (_loc_2 != null)
+                    {
+                        _loc_2.amount = _loc_8;
+                    }
+                    if (_loc_8 == 0)
+                    {
+                        Hero.cpuItems[CPUItem.TYPE_CLOAK] = null;
+                    }
+                    break;
+                }
+                case ServerCommands.AUTO_ROCKET_CPU_INFO:
+                {
+                    _loc_3 = Boolean(int(param1[4]));
+                    _loc_2 = Hero.cpuItems[CPUItem.TYPE_AROL];
+                    if (_loc_2 != null)
+                    {
+                        _loc_2.state = _loc_3;
+                    }
+                    break;
+                }
+                case ServerCommands.ROCKETLAUNCHER_AUTO_CPU_INFO:
+                {
+                    _loc_3 = Boolean(int(param1[4]));
+                    _loc_2 = Hero.cpuItems[CPUItem.TYPE_RLLB];
+                    if (_loc_2 != null)
+                    {
+                        _loc_2.state = _loc_3;
+                    }
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            this.main.getGuiManager().getMenuManager().updateAllCPUButtons();
+            this.main.getGuiManager().getMenuManager().invalidateCPUButtons();
+            return;
+        }// end function
+
+        private function assembleCooldownCompleted(param1:Array) : void
+        {
+            switch(param1[3])
+            {
+                case ServerCommands.TECH_BATTLE_REP_BOT:
+                {
+                    this.killCooldownsForTechID(5);
+                    break;
+                }
+                case ServerCommands.TECH_ENERGY_LEECH:
+                {
+                    this.killCooldownsForTechID(1);
+                    break;
+                }
+                case ServerCommands.TECH_SHIELD_BACK_UP:
+                {
+                    this.killCooldownsForTechID(4);
+                    break;
+                }
+                case ServerCommands.TECH_ELECTRIC_CHAIN_IMPULSE:
+                {
+                    this.killCooldownsForTechID(2);
+                    break;
+                }
+                case ServerCommands.TECH_ROCKET_PROBABILITY_MAXIMIZER:
+                {
+                    this.killCooldownsForTechID(3);
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            return;
+        }// end function
+
+        private function killCooldownsForTechID(param1:int) : void
+        {
+            var _loc_5:ActionButton = null;
+            var _loc_2:* = this.main.getGuiManager();
+            var _loc_3:* = _loc_2.getMenuManager();
+            var _loc_4:int = 0;
+            while (_loc_4 < _loc_3.actionButtons.length)
+            {
+                
+                _loc_5 = _loc_3.actionButtons[_loc_4];
+                if (_loc_5.actionID == _loc_3.techIDToButtonID[param1])
+                {
+                    _loc_5.cooldownCompleted();
+                }
+                _loc_4++;
+            }
+            return;
+        }// end function
+
+        private function assembleCooldown(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[4]);
+            var _loc_3:* = this.cooldownClassToButtonIDs[param1[3]];
+            if (_loc_3 != null)
+            {
+                _loc_3.callMappedFunction(_loc_2);
+                ;
+            }
+            return;
+        }// end function
+
+        private function addCoolDown(param1:int, param2:int) : void
+        {
+            this.main.getGuiManager().addCoolDown(param1, param2);
+            return;
+        }// end function
+
+        private function addTechCooldown(param1:String, param2:int) : void
+        {
+            var _loc_3:TechAssembly = null;
+            if (_loc_3 == null)
+            {
+                _loc_3 = TechAssembly.getInstance();
+            }
+            _loc_3.assembleCooldownCommand(param1, param2);
+            return;
+        }// end function
+
+        private function addSkillDesignCooldown(param1:String, param2:int) : void
+        {
+            var _loc_3:SkillsAssembly = null;
+            if (_loc_3 == null)
+            {
+                _loc_3 = SkillsAssembly.getInstance();
+            }
+            _loc_3.assembleCooldownCommand(param1, param2);
+            return;
+        }// end function
+
+        private function assembleFireworksInfo(param1:Array) : void
+        {
+            switch(param1[3])
+            {
+                case ServerCommands.FIREWORKS_LEFT:
+                {
+                    Hero.fireworksAmounts[FireworksManager.FIREWORK_SMALL] = int(param1[4]);
+                    Hero.fireworksAmounts[FireworksManager.FIREWORK_MEDIUM] = int(param1[5]);
+                    Hero.fireworksAmounts[FireworksManager.FIREWORK_LARGE] = int(param1[6]);
+                    this.main.getGuiManager().getMenuManager().updateFireworkButtonAmounts();
+                    break;
+                }
+                case ServerCommands.FIREWORK_INSTALLATIONS_LEFT:
+                {
+                    Settings.fireworksLoaded = int(param1[4]);
+                    this.main.getGuiManager().getMenuManager().updateFireworkButtonAmounts();
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleRepairSkillUpdate(param1:Array) : void
+        {
+            Hero.repairSkillId = int(param1[3]);
+            return;
+        }// end function
+
+        private function assembleShieldSkillUpdate(param1:Array) : void
+        {
+            Hero.showSkinShieldRandomly = Boolean(int(param1[3]));
+            Hero.minSkinShieldTwinkle = int(param1[4]);
+            Hero.maxSkinShieldTwinkle = int(param1[5]);
+            if (this.main.screenManager.map != null)
+            {
+                this.map = this.main.screenManager.map;
+                this.hero = this.map.getShipManager().getHero();
+                if (this.hero != null && this.hero.getShield() > 0)
+                {
+                    this.hero.updateShieldTwinkle();
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleInitBoostersUpdate(param1:Array) : void
+        {
+            var _loc_2:* = param1[3];
+            var _loc_3:* = _loc_2.split("/");
+            this.main.getGuiManager().initUpdateBoosters(_loc_3);
+            return;
+        }// end function
+
+        private function assembleInitRankedHuntEventStatsUpdate(param1:Array) : void
+        {
+            var _loc_6:String = null;
+            var _loc_7:String = null;
+            var _loc_8:int = 0;
+            var _loc_9:Array = null;
+            var _loc_10:String = null;
+            var _loc_11:int = 0;
+            var _loc_12:String = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = param1[4];
+            var _loc_4:* = int(param1[5]);
+            if (Hero.rankedHuntingEventData == null)
+            {
+                Hero.rankedHuntingEventData = new RankedHuntingEventData();
+            }
+            if (Hero.rankedHuntingEventData.eventVOs == null)
+            {
+                Hero.rankedHuntingEventData.eventVOs = [];
+            }
+            var _loc_5:* = Hero.rankedHuntingEventData.eventVOs[_loc_2] as RankedHuntStatsVO;
+            if (Hero.rankedHuntingEventData.eventVOs[_loc_2] as RankedHuntStatsVO == null)
+            {
+                this.main.getConnectionManager().sendCommand(ClientCommands.REQUEST, [ServerCommands.RANKED_HUNT_EVENT_UPDATE, _loc_2]);
+                _loc_5 = new RankedHuntStatsVO();
+                Hero.rankedHuntingEventData.eventVOs[_loc_2] = _loc_5;
+            }
+            switch(_loc_3)
+            {
+                case ServerCommands.RANKED_HUNT_EVENT_STATS_CLASS_PLAYER:
+                {
+                    if (_loc_5.bountyPoints != 0)
+                    {
+                        _loc_5.bountyDelta = _loc_4 - _loc_5.bountyPoints;
+                    }
+                    _loc_5.bountyPoints = _loc_4;
+                    if (_loc_5.bountyDelta > 0)
+                    {
+                        if (_loc_5.bountyDelta == 1)
+                        {
+                            this.main.getGuiManager().writeToLog(BPLocale.getText("log_msg_npc_hunt_point_s"));
+                        }
+                        else
+                        {
+                            this.main.getGuiManager().writeToLog(BPLocale.getText("log_msg_npc_hunt_point_p").replace(/%AMOUNT%/, BPLocale.roundInteger(_loc_5.bountyDelta)));
+                        }
+                    }
+                    _loc_5.clanBountyPointsInSync = false;
+                    break;
+                }
+                case ServerCommands.RANKED_HUNT_EVENT_STATS_CLASS_CLAN:
+                {
+                    _loc_5.bountyDelta = 0;
+                    _loc_5.clanBountyPointsInSync = false;
+                    _loc_5.clanBountyPoints = _loc_4;
+                    _loc_5.clanBountyPointsInSync = true;
+                    break;
+                }
+                case ServerCommands.RANKED_HUNT_EVENT_INFO:
+                {
+                    _loc_6 = param1[5];
+                    _loc_7 = param1[6];
+                    switch(_loc_6)
+                    {
+                        case ServerCommands.RANKED_HUNT_EVENT_TARGET_MATCH_CLASS_NPC:
+                        {
+                            _loc_5 = Hero.rankedHuntingEventData.eventVOs[_loc_2] as RankedHuntStatsVO;
+                            if (_loc_5 != null)
+                            {
+                                _loc_5.targetList = [_loc_7];
+                                _loc_8 = _loc_5.targetList.length;
+                                _loc_9 = InGameCatalog.instance.npc_names;
+                                _loc_10 = "";
+                                _loc_11 = 0;
+                                while (_loc_11 < _loc_8)
+                                {
+                                    
+                                    _loc_12 = _loc_9[_loc_5.targetList[_loc_11]];
+                                    if (_loc_12 != null)
+                                    {
+                                        _loc_10 = _loc_10 + (", " + _loc_12);
+                                    }
+                                    _loc_11++;
+                                }
+                                _loc_10 = _loc_10.substring(2);
+                                _loc_5.targetVerbose = BPLocale.getText("q2_condition_KILL_NPCS").replace(/%npcs%/, _loc_10);
+                            }
+                            break;
+                        }
+                        case ServerCommands.RANKED_HUNT_EVENT_TARGET_MATCH_CLASS_PLAYER:
+                        {
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            Hero.rankedHuntingEventData.currentID = _loc_2;
+            this.main.getGuiManager().initUpdateRankedHuntStats(_loc_2);
+            return;
+        }// end function
+
+        private function assembleConfigurationCountUpdate(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            Settings.selectedConfiguration = _loc_2;
+            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_CONFIGURATION);
+            return;
+        }// end function
+
+        private function assembleAmmunitionChange(param1:Array) : void
+        {
+            Hero.maxLaserCapacity = int(param1[3]);
+            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_LASER);
+            Hero.maxRocketCapacity = int(param1[4]);
+            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_ROCKETS);
+            return;
+        }// end function
+
+        private function assembleCargoChange(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.hero = this.map.getShipManager().getHero();
+                if (this.hero != null)
+                {
+                    this.hero.setMaxCargo(_loc_2);
+                }
+            }
+            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_0, SimpleElement.TYPE_CARGO);
+            return;
+        }// end function
+
+        private function assembleVelocityUpdate(param1:Array) : void
+        {
+            var _loc_3:int = 0;
+            var _loc_2:* = int(param1[3]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.hero = this.map.getShipManager().getHero();
+                if (this.hero != null)
+                {
+                    _loc_3 = this.hero.getSpeed();
+                    this.hero.setSpeed(_loc_2);
+                    if (_loc_3 != _loc_2)
+                    {
+                        this.map.getEventManager().updateShipMovement();
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleLevelUpdate(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            this.main.getGuiManager().logLevelUpdate(_loc_2, _loc_3);
+            var _loc_4:* = new LevelUpEffect(EffectIDList.LEVEL_UP_EFFECT, new EffectPattern(EffectIDList.LEVEL_UP_EFFECT, "levelUp"));
+            this.effectsManager.addEffect(_loc_4, this.map.getShipManager().getHero(), EffectsManager.TIMEOUT_EFFECT);
+            if (ExternalInterface.available)
+            {
+                ExternalInterface.call("clientEvent", "userLevelUp");
+            }
+            return;
+        }// end function
+
+        private function assembleJumpVouchersUpdate(param1:Array) : void
+        {
+            Hero.jumpVouchersAmount = int(param1[3]);
+            var _loc_2:* = this.main.getGuiManager();
+            _loc_2.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_JUMP_VOUCHERS);
+            _loc_2.getMenuManager().updateAllCPUButtons();
+            _loc_2.getMenuManager().invalidateCPUButtons();
+            _loc_2.updateJumpPriceLabel();
+            _loc_2.updateJumpVoucherLabel();
+            return;
+        }// end function
+
+        private function assembleBootyKeysUpdate(param1:Array) : void
+        {
+            Hero.bootyKeysAmount = int(param1[3]);
+            var _loc_2:* = this.main.getGuiManager();
+            _loc_2.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_BOOTY_KEYS);
+            return;
+        }// end function
+
+        private function assembleCreditsUpdate(param1:Array) : void
+        {
+            Hero.creditsAmount = Number(param1[3]);
+            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_CREDITS);
+            Hero.uridiumAmount = parseFloat(param1[4]);
+            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_URIDIUM);
+            return;
+        }// end function
+
+        private function assembleExperiencePointsUpdate(param1:Array) : void
+        {
+            Hero.experiencePoints = int(param1[3]);
+            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_EXPERIENCE);
+            return;
+        }// end function
+
+        private function assembleRocketCooldownCompleted(param1:Array) : void
+        {
+            return;
+        }// end function
+
+        private function assembleHealInfo(param1:Array) : void
+        {
+            var _loc_8:int = 0;
+            var _loc_9:MapObject = null;
+            var _loc_2:int = 2;
+            var _loc_3:* = int(param1[++_loc_2]);
+            _loc_2 = ++_loc_2 + 1;
+            var _loc_4:* = int(param1[++_loc_2 + 1]);
+            var _loc_5:* = param1[++_loc_2];
+            _loc_2 = ++_loc_2 + 1;
+            var _loc_6:* = int(param1[++_loc_2 + 1]);
+            var _loc_7:* = int(param1[++_loc_2]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_9 = this.map.getShipManager().getShip(_loc_4);
+                if (_loc_9 != null)
+                {
+                    if (_loc_5 == ServerCommands.STATS_TYPE_SHIELD)
+                    {
+                        _loc_9.setShield(_loc_6);
+                        _loc_8 = 3;
+                    }
+                    else if (_loc_5 == ServerCommands.STATS_TYPE_HITPOINTS)
+                    {
+                        _loc_9.setHitpoints(_loc_6);
+                        _loc_8 = 2;
+                    }
+                    _loc_9.updateHitpointShieldBar(true);
+                    if (Settings.displayHitpointBubbles)
+                    {
+                        this.main.getGuiManager().showHitpointDelta(_loc_9, _loc_7, _loc_8, true);
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleHitPointsInfo(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.hero = this.map.getShipManager().getHero();
+                if (this.hero != null)
+                {
+                    if (Settings.JS_EVENT_TRACKING_ENABLED)
+                    {
+                        if (this.hero.getHitpoints() > _loc_3 / 10 && _loc_2 <= _loc_3 / 10)
+                        {
+                            if (ExternalInterface.available)
+                            {
+                                ExternalInterface.call("clientEvent", "userLowHP");
+                            }
+                        }
+                    }
+                    this.hero.setHitpoints(_loc_2);
+                    this.hero.setMaxHitpoints(_loc_3);
+                    this.hero.updateHitpointShieldBar(true);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleShieldInfo(param1:Array) : void
+        {
+            var _loc_4:Ship = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getHero();
+                if (_loc_4 != null)
+                {
+                    _loc_4.setShieldChunk(_loc_2, _loc_3, true);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleFlashSettings(param1:Array) : void
+        {
+            this.settingsAssembly.assembleSettingsChunk(param1.splice(3));
+            return;
+        }// end function
+
+        private function assembleLocalizedLogMessage(param1:Array) : void
+        {
+            var _loc_2:String = null;
+            var _loc_3:String = null;
+            var _loc_4:String = null;
+            var _loc_5:int = 0;
+            _loc_2 = param1[3];
+            param1.splice(0, 4);
+            switch(param1.length)
+            {
+                case 0:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText(_loc_2));
+                    break;
+                }
+                case 1:
+                {
+                    _loc_3 = BPLocale.getText(param1[0]);
+                    if (_loc_3.length == 0)
+                    {
+                        _loc_3 = param1[0];
+                    }
+                    this.main.getGuiManager().writeToLog(BPLocale.getText(_loc_2).replace("%!", _loc_3));
+                    break;
+                }
+                default:
+                {
+                    _loc_4 = BPLocale.getText(_loc_2);
+                    _loc_5 = 0;
+                    while (_loc_5 < param1.length)
+                    {
+                        
+                        _loc_4 = _loc_4.replace(param1[_loc_5], param1[(_loc_5 + 1)]);
+                        _loc_5++;
+                        _loc_5++;
+                    }
+                    this.main.getGuiManager().writeToLog(_loc_4);
+                    break;
+                    break;
+                }
+            }
+            if (_loc_2 == "jump_cpu_failed_attack" || _loc_2 == "jump_cpu_failed_attack2" || _loc_2 == "jump_cpu_failed_ontarget" || _loc_2 == "jump_cpu_failed_map" || _loc_2 == "jump_cpu_malfunction" || _loc_2 == "jump_cpu_failed_time" || _loc_2 == "jump_cpu_failed_attack" || _loc_2 == "jumpgate_failed_pvp_map" || _loc_2 == "jumpgate_failed_no_gate")
+            {
+                AudioManager.playSoundEffect(29);
+            }
+            return;
+        }// end function
+
+        private function assembleLogMessage(param1:Array) : void
+        {
+            var _loc_2:* = param1[3];
+            this.main.getGuiManager().writeToLog(_loc_2);
+            return;
+        }// end function
+
+        private function assembleCpuHeroInfo(param1:Array) : void
+        {
+            var _loc_2:String = null;
+            var _loc_3:MenuButton = null;
+            for (_loc_2 in this.cpuDict)
+            {
+                
+                this.processCpuHeroInfo(param1, int(_loc_2));
+            }
+            _loc_3 = this.main.getGuiManager().getMenuManager().getMainMenu().getMenuButton(3);
+            if (_loc_3.isSelected())
+            {
+                _loc_3.updateButtonsInPool();
+            }
+            _loc_3 = this.main.getGuiManager().getMenuManager().getMainMenu().getMenuButton(2);
+            if (_loc_3.isSelected())
+            {
+                _loc_3.updateButtonsInPool();
+            }
+            var _loc_4:* = this.main.getGuiManager().getMenuManager();
+            this.main.getGuiManager().getMenuManager().invalidateCPUButtons();
+            _loc_4.updateExplosiveButtonAmmounts();
+            _loc_4.getQuickMenu().updateCPUButtonsInSlotMenu();
+            _loc_4.getQuickMenu().updateQuickmenu();
+            return;
+        }// end function
+
+        private function processCpuHeroInfo(param1:Array, param2:int) : void
+        {
+            var _loc_5:CPUItem = null;
+            var _loc_6:SimpleWindow = null;
+            var _loc_3:* = int(param1[param2]);
+            var _loc_4:* = this.cpuDict[param2];
+            if (_loc_3 == 0 && _loc_4 != CPUItem.TYPE_ADVANCED_JUMP)
+            {
+                Hero.cpuItems[_loc_4] = null;
+            }
+            else
+            {
+                _loc_5 = new CPUItem(_loc_4);
+                _loc_5.level = _loc_3;
+                Hero.cpuItems[_loc_4] = _loc_5;
+                if (_loc_4 == CPUItem.TYPE_ADVANCED_JUMP)
+                {
+                    _loc_6 = this.main.getGuiManager().getWindow(SimpleWindow.WINDOW_CLASS_SPACEMAP);
+                    if (_loc_6.isMaximized())
+                    {
+                        _loc_6.minimize();
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        public static function getInstance() : SetAttributeAssembly
+        {
+            if (instance == null)
+            {
+                instance = new SetAttributeAssembly(hidden);
+            }
+            return instance;
+        }// end function
+
+        private static function hidden() : void
+        {
+            return;
+        }// end function
+
+    }
+}

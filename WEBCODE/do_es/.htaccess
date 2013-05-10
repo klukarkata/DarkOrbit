@@ -1,0 +1,18 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+ErrorDocument 400 /error.php?e=400
+ErrorDocument 401 /error.php?e=401
+ErrorDocument 403 /error.php?e=403
+ErrorDocument 404 /error.php?e=404
+ErrorDocument 500 /error.php?e=500
+## USER IP BANNING
+<Limit GET POST>
+ order allow,deny
+ #deny from 127.0.0.1
+ #deny from 127.0.0.1
+ allow from all
+</Limit>
+
+RewriteRule ^indexInternal.es$ indexInternal.php [L]
+RewriteRule ^index.es$ doLogout.php?doLogout=true [L]

@@ -1,0 +1,1539 @@
+/* Klassen, die in allen Bereichen benötigt werden*/
+#item_singleview {
+    width:368px;
+    height:391px;
+    border:1px solid white;
+}
+#item_singleview_head {
+    height:34px;
+    background-image: url(http://localhost/do_es/do_img/global/popup1_headline_bg.jpg);
+}
+#item_singleview_headline {
+    float:left;
+    padding:10px 0 0 5px;
+}
+#item_singleview_close {
+     float:right;
+}
+#item_singleview_cont {
+    vertical-align:top;
+    height:281px;
+    padding:25px 15px 0 15px;
+    background-image:url(../do_img/de/box1_kaufen_bg.jpg);
+}
+#item_singleview_cont p {
+    margin:16px 0 16px 0;
+}
+#item_singleview_foot {
+    height:47px;
+    background-image:url(../do_img/de/box1_kaufen_foot.jpg);
+    text-align:center;
+    vertical-align:top;
+    padding-top:5px;
+}
+.itemList_singleItem {
+    width:100px;
+    height:100px;
+    background-repeat:no-repeat;
+}
+.itemList_singleItem div {
+     height:104px;
+}
+.itemList_singleItem a {
+    display:block;
+    cursor: pointer;
+    cursor: hand;
+}
+.itemList_singlePrice {
+    margin-top:-18px;
+    height:18px;
+    text-align:center;
+    width:100px;
+}
+.item_hover {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_hover_104x104.png);
+    width: 104px;
+    height: 104px;
+    display: none;
+    margin-left: -2px;
+    margin-top: -2px;
+    position: absolute;
+}
+.item_active {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_active_104x104.png);
+    width: 104px;
+    height: 104px;
+    display: none;
+    margin-left: -2px;
+    margin-top: -2px;
+    position: absolute;
+}
+#sellBox {
+     padding-bottom:3px;
+}
+.hangarButton {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_hover_104x104.png);
+    width: 200px;
+    height: 19px;
+    cursor: pointer;
+    cursor: hand;
+}
+.hangarButtonCenter {
+    margin: auto;
+}
+
+.hangarButtonLeft {
+    margin-left: 17px;
+    float: left;
+}
+.hangarButtonRight {
+    margin-right: 18px;
+    float: right;
+}
+.hangarButton img {
+    padding-top: 4px;
+}
+
+.subnavText {
+	margin-left: 20px;
+	margin-top: 4px;
+}
+
+/* Booster */
+#large_item_singleview {
+    width:482px;
+    border:1px solid white;
+}
+
+#large_item_singleview_head {
+    height:65px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/popup_middle_top_bg.jpg);
+}
+
+#large_item_singleview_cont {
+    vertical-align:top;
+    min-height:260px;
+    padding:0 25px 0 25px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/popup_middle_cont_bg.jpg);
+}
+* html #large_item_singleview_cont {
+    padding:0 15px 0 15px;
+    height:260px;
+}
+#large_item_singleview_cont p {
+    margin:0 0 5px 0;
+}
+
+#large_item_singleview_foot {
+    height:45px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/popup_middle_foot_bg.jpg);
+    text-align:center;
+    vertical-align:top;
+    padding-top:11px;
+    margin-top:-5px;
+}
+#large_item_singleview_cont table {
+    width:450px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+#large_item_singleview_cont .v_left {
+    text-align:left;
+}
+#large_item_singleview_cont .v_right {
+    text-align:right;
+}
+.boosterDescription {
+    font-size: 9px;
+}
+
+
+/* Hangar - startscreen */
+#main_overview {
+    width:481px;
+    height:388px;
+    margin:24px 0 0 96px;
+    position:relative;
+    top: 0;
+    left: 0;
+}
+#main_overview_1 {
+    position:absolute;top:80px;left:10px;
+}
+#main_overview_2 {
+     position:absolute;top:115px;left:255px;
+}
+#main_overview_3 {
+     position:absolute;top:300px;left:10px;
+}
+#main_overview_4 {
+     position:absolute;top:300px;left:230px;
+}
+
+/* Hangar - Schiffe */
+#item_singleview_cont table {
+    width:220px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+#item_singleview_cont .v_left {
+    text-align:left;
+}
+#item_singleview_cont .v_right {
+    text-align:right;
+}
+
+
+
+/* Hangar - Drohnen*/
+.noDrones {
+    padding:10px;
+}
+#name {
+    padding:3px 0;
+    font-weight:bold;
+    margin-left: 3px;
+}
+#descr {
+     padding:3px 0;
+}
+#descr_scroll {
+     padding:3px 0;
+     height: 105px;
+     overflow: hidden;
+     margin-left: 5px;
+     width: 255px;
+}
+
+#status {
+     width:218px;
+     text-align:center;
+     padding:3px 0;
+}
+
+
+
+/* ################## */
+
+#hangarContent {
+    width: 672px;
+    height: 439px;
+    float: left;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+/* overview */
+#hangarOverviewBox {
+    width: 672px;
+    height: 439px;
+    float: left;
+    /*background-image: url(http://localhost/do_es/do_img/global/hangar/backgroundOverviewBox.jpg?__cv=d8395b9f6d7d22f63c25766424af2200);*/
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#hangarOverviewBox .backgroundShip {
+    width: 481px;
+    height: 388px;
+    position: absolute;
+    left: 65px;
+    top: 26px;
+}
+#hangarOverviewBox .shipDesign1 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/1.jpg);
+}
+#hangarOverviewBox .shipDesign2 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/2.jpg);
+}
+#hangarOverviewBox .shipDesign3 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/3.jpg);
+}
+#hangarOverviewBox .shipDesign4 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/4.jpg);
+}
+#hangarOverviewBox .shipDesign5 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/5.jpg);
+}
+#hangarOverviewBox .shipDesign6 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/6.jpg);
+}
+#hangarOverviewBox .shipDesign7 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/7.jpg);
+}
+#hangarOverviewBox .shipDesign8 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/8.jpg);
+}
+#hangarOverviewBox .shipDesign9 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/9.jpg);
+}
+#hangarOverviewBox .shipDesign10 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/10.jpg);
+}
+#hangarOverviewBox .shipDesign11 {
+    background-image: url(..http://localhost/do_es/do_img/global/hangar/ships/11.jpg);
+}
+#hangarOverviewBox .shipDesign12 {
+    background-image: url(..http://localhost/do_es/do_img/global/hangar/ships/12.jpg);
+}
+#hangarOverviewBox .shipDesign13 {
+    background-image: url(..http://localhost/do_es/do_img/global/hangar/ships/13.jpg);
+}
+#hangarOverviewBox .shipDesign14 {
+    background-image: url(..http://localhost/do_es/do_img/global/hangar/ships/14.jpg);
+}
+#hangarOverviewBox .shipDesign50 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/50.jpg);
+}
+#hangarOverviewBox .shipDesign52 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/52.jpg);
+}
+#hangarOverviewBox .shipDesign53 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/53.jpg);
+}
+#hangarOverviewBox .shipDesign54 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/54.jpg);
+}
+#hangarOverviewBox .shipDesign56 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/56.jpg);
+}
+#hangarOverviewBox .shipDesign57 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/57.jpg);
+}
+#hangarOverviewBox .shipDesign58 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/58.jpg);
+}
+#hangarOverviewBox .shipDesign59 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/59.jpg);
+}
+#hangarOverviewBox .shipDesign60 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/60.jpg);
+}
+#hangarOverviewBox .shipDesign61 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/61.jpg);
+}
+#hangarOverviewBox .shipDesign62 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/62.jpg);
+}
+#hangarOverviewBox .shipDesign63 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/63.jpg);
+}
+#hangarOverviewBox .shipDesign64 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/64.jpg);
+}
+#hangarOverviewBox .shipDesign65 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/65.jpg);
+}
+#hangarOverviewBox .shipDesign66 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/66.jpg);
+}
+#hangarOverviewBox .shipDesign67 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/67.jpg);
+}
+#hangarOverviewBox .shipDesign68 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/68.jpg);
+}
+#hangarOverviewBox .shipDesign98 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/ships/98.jpg);
+}
+
+#hangarOverviewBox .backgroundShip .overview_button {
+    position: absolute;
+    top: 22px;
+    width: 106px;
+    height: 22px;
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview_button.png);
+    font-weight: bold;
+    cursor: pointer;
+}
+#hangarOverviewBox .backgroundShip #overview_button_ship {
+    left: 7px;
+}
+#hangarOverviewBox .backgroundShip #overview_button_drones {
+    left: 120px;
+}
+#hangarOverviewBox .backgroundShip .overview_button div.label {
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    cursor: pointer;
+}
+#hangarOverviewBox .backgroundShip .infoBox {
+    position: absolute;
+    left: 7px;
+    top: 46px;
+    width: 250px;
+    height: 331px;
+}
+#hangarOverviewBox .backgroundShip .infoBox_ship {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/info_ship.png);
+}
+#hangarOverviewBox .backgroundShip .infoBox_drones {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/info_drones.png);
+}
+#hangarOverviewBox .infoBox .labels .label {
+    position: absolute;
+    left: 8px;
+    font-weight: bold;
+}
+#hangarOverviewBox .infoBox .labels .label a {
+    /*color: #ffffff;
+    text-decoration: none;*/
+}
+#labelHitpoints {
+    top: 8px;
+}
+#labelMaxHitpoints {
+    top: 33px;
+}
+#labelLaser {
+    top: 57px;
+}
+#labelAmmunition {
+    top: 81px;
+}
+#labelRockets {
+    top: 105px;
+}
+#labelRepairVouchers {
+    top: 129px;
+}
+#labelSpeedGenerators {
+    top: 169px;
+}
+#labelMaxSpeed {
+    top: 193px;
+}
+#labelShieldGenerators {
+    top: 217px;
+}
+#labelDamageSpreading {
+    top: 241px;
+}
+#labelSpreadingShieldHitpoints {
+    top: 257px;
+    font-weight: normal !important;
+}
+#labelDrones {
+    top: 297px;
+}
+#labelDronesFlexIris {
+    top: 313px;
+    font-weight: normal !important;
+}
+#labelDrone1 {
+    top: 8px;
+}
+#labelDamage1 {
+    top: 24px;
+}
+#labelPoints1 {
+    top: 40px;
+}
+#labelNextLevel1 {
+    top: 56px;
+}
+#labelDrone2 {
+    top: 80px;
+}
+#labelDamage2 {
+    top: 96px;
+}
+#labelPoints2 {
+    top: 112px;
+}
+#labelNextLevel2 {
+    top: 128px;
+}
+#labelDrone3 {
+    top: 152px;
+}
+#labelDamage3 {
+    top: 168px;
+}
+#labelPoints3 {
+    top: 184px;
+}
+#labelNextLevel3 {
+    top: 200px;
+}
+#labelDrone4 {
+    top: 224px;
+}
+#labelDamage4 {
+    top: 240px;
+}
+#labelPoints4 {
+    top: 256px;
+}
+#labelNextLevel4 {
+    top: 272px;
+}
+#labelPetName {
+    top: 8px;
+}
+#labelPetLevel {
+    top: 18px;
+}
+#labelPetXp {
+    top: 18px;
+}
+#labelPetHp {
+    top: 18px;
+}
+
+
+#hangarOverviewBox .infoBox .values .label {
+    position: absolute;
+    left: 172px;
+    font-weight: bold;
+    width: 70px;
+    text-align: right;
+}
+#valueHitpoints {
+    top: 8px;
+}
+#valueMaxHitpoints {
+    top: 33px;
+}
+#valueLaser {
+    top: 57px;
+}
+#valueAmmunition {
+    top: 81px;
+}
+#valueRockets {
+    top: 105px;
+}
+#valueRepairVouchers {
+    top: 129px;
+}
+#valueSpeedGenerators {
+    top: 169px;
+}
+#valueMaxSpeed {
+    top: 193px;
+}
+#valueShieldGenerators {
+    top: 217px;
+}
+#valueDamageSpreading {
+    top: 241px;
+}
+#valueDrones {
+    top: 297px;
+}
+#valueLevel1 {
+    top: 8px;
+}
+#valueDamage1 {
+    top: 24px;
+}
+#valuePoints1 {
+    top: 40px;
+}
+#valueNextLevel1 {
+    top: 56px;
+}
+#valueLevel2 {
+    top: 80px;
+}
+#valueDamage2 {
+    top: 96px;
+}
+#valuePoints2 {
+    top: 112px;
+}
+#valueNextLevel2 {
+    top: 128px;
+}
+#valueLevel3 {
+    top: 152px;
+}
+#valueDamage3 {
+    top: 168px;
+}
+#valuePoints3 {
+    top: 184px;
+}
+#valueNextLevel3 {
+    top: 200px;
+}
+#valueLevel4 {
+    top: 224px;
+}
+#valueDamage4 {
+    top: 240px;
+}
+#valuePoints4 {
+    top: 256px;
+}
+#valueNextLevel4 {
+    top: 272px;
+}
+#valuePetName {
+    top: 8px;
+}
+#valuePetLevel {
+    top: 8px;
+}
+#valuePetXp {
+    top: 18px;
+}
+#valuePetHp {
+    top: 18px;
+}
+
+.labelNextDrones {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ships */
+#hangarItemContainer {
+    width: 672px;
+    height: 439px;
+    float: left;
+    background-image: url(http://localhost/do_es/do_img/global/hangar/backgroundItemContainer.jpg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#hangarItemContainer #itemBox {
+    position: absolute;
+    left: 66px;
+    top: 12px;
+    width: 246px;
+    height: 324px;
+    overflow: auto;
+}
+.buyableItem {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.buyableItem .price {
+    position: absolute;
+    left: 4px;
+    top: 81px;
+    width: 93px;
+    height: 17px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+#hangarItemContainer #itemInfo {
+    position: absolute;
+    left: 66px;
+    top: 12px;
+    width: 246px;
+    height: 324px;
+    display: none;
+}
+#hangarItemContainer #itemInfo .header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 246px;
+    height: 42px;
+    background-image: url(http://localhost/do_es/do_img/global/hangar/itemInfo_header.jpg);
+}
+#hangarItemContainer #itemInfo .header .headline {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+#hangarItemContainer #itemInfo .body {
+    position: absolute;
+    left: 0;
+    top: 42px;
+    width: 246px;
+    height: 262px;
+    background-image: url(http://localhost/do_es/do_img/global/hangar/itemInfo_body.jpg);
+}
+#hangarItemContainer #itemInfo .footer {
+    position: absolute;
+    left: 0;
+    top: 304px;
+    width: 246px;
+    height: 22px;
+    background-image: url(http://localhost/do_es/do_img/global/hangar/itemInfo_footer.jpg);
+}
+#hangarItemContainer #itemInfo .header .close {
+    position: absolute;
+    left: 217px;
+    top: 5px;
+    width: 23px;
+    height: 22px;
+    cursor: pointer;
+}
+#hangarItemContainer #itemInfo .body .headline {
+    position: absolute;
+    left: 10px;
+    top: 24px;
+    width: 228px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+#hangarItemContainer #itemInfo .body .description {
+    position: absolute;
+    left: 10px;
+    top: 56px;
+    width: 228px;
+    text-align: center;
+    color: #ffffff;
+}
+#hangarItemContainer #itemInfo .body table {
+    font-size: 9px;
+    color: #ffffff;
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 219px;
+}
+#hangarItemContainer #itemInfo .body .key {
+    font-weight: bold;
+    text-align: left;
+}
+#hangarItemContainer #itemInfo .body .value {
+    text-align: right;
+}
+#hangarItemContainer #itemInfo .body #itemInfoConfirmation {
+    position: absolute;
+    left: 11px;
+    top: 102px;
+    color: #ffffff;
+    font-size: 11px;
+    width: 225px;
+    text-align: center;
+}
+#hangarItemContainer #itemInfo .body #itemInfoWarning {
+    position: absolute;
+    left: 11px;
+    top: 158px;
+    color: #ffffff;
+    font-size: 9px;
+    width: 225px;
+    text-align: center;
+}
+#hangarItemContainer #itemInfo .body #itemInfoButtonBuy {
+    position: absolute;
+    left: 8px;
+    top: 239px;
+    cursor: pointer;
+}
+#hangarItemContainer #itemInfo .body #itemInfoButtonBid {
+    position: absolute;
+    left: 127px;
+    top: 239px;
+    cursor: pointer;
+}
+
+.backgroundShip .shipNotation .droneNotation {
+    position:absolute;
+    left: 271px;
+    top: 20pX;
+}
+.backgroundShip .shipNotation .shipTitle {
+    margin-top: 2px;
+    margin-left: 1px;
+}
+
+#shipNotation {
+    float: right;
+    margin: -65px 10px 0 0;
+    text-align: right;
+}
+
+#shipTitle {
+}
+
+#shipName {
+    margin-bottom: 3px;
+}
+
+#droneNotation {
+    float: right;
+    margin: -43px 10px 0 0;
+    text-align: right;
+}
+
+#droneName {
+    margin-bottom: 3px;
+}
+
+#petNotation {
+    float: right;
+    margin: -43px 10px 0 0;
+    text-align: right;
+}
+
+#petName {
+    margin-bottom: 3px;
+}
+
+#but_repair {
+    position: absolute;
+    left: 360px;
+    top: 230px;
+}
+
+#but_petRepair {
+    position: absolute;
+    left: 360px;
+    top: 77px;
+}
+
+#dock_content {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/bg_shop.jpg);
+    background-repeat: no-repeat;
+    height: 435px;
+    left: 32px;
+    position: relative;
+    top: 0;
+    width: 810px;
+}
+
+#dock_container {
+    float: left;
+    height: 397px;
+    left: 16px;
+    position: relative;
+    top: 0;
+    width: 772px;
+}
+
+.overview_image {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/bg_ship.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 22px;
+}
+
+#overview_container {
+    position: relative;
+    top: 0;
+    left: 0;
+    height:390px;
+    width: 772px;
+    float: left;
+}
+
+#overview_navigation {
+    /*width: 280px;*/
+    width: 599px;
+    margin-left: 5px
+}
+
+#overview_content {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/stats_bg.png);
+    background-repeat: no-repeat;
+    width: 279px;
+    height: 358px;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+.overview_button_active {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/small_tabs_active.png);
+    background-repeat: no-repeat;
+}
+
+.overview_button_inactive {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/small_tabs_inactive.png);
+    background-repeat: no-repeat;
+}
+
+#overview_button_ship, #overview_button_drones, #overview_button_pet {
+    float: left;
+    width: 94px;
+    text-align: center;
+    cursor: pointer;
+    height: 23px;
+    line-height: 21px;
+}
+
+#overview_background {
+    overflow: hidden;
+}
+
+
+.overview_seperator {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/tab_line.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.overview_line {
+    width: 255px;
+    margin-top: 5px;
+}
+
+.overview_line_highlight {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/text_bg.png);
+}
+
+.overview_table {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 260px;
+}
+
+.labels {
+    width: 130px;
+    height:12px;
+}
+
+.values {
+    text-align: right;
+    color: #F1C839;
+    height: 12px;
+}
+
+#buy_container {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_background_157x394.png);
+    background-repeat: no-repeat;
+    width: 157px;
+    height: 394px;
+    float: right;
+}
+
+#buy_button {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_buy-button_576x48.png);
+    background-repeat: no-repeat;
+    background-position: -144px 0;
+    width: 142px;
+    height: 48px;
+    margin-top: 292px;
+    margin-left: 7px;
+    position: absolute;
+    cursor: pointer;
+}
+
+#buy_button_text, #abo_stop_subsrciption_text, #abo_start_subsrciption_button_text {
+    background-repeat: no-repeat;
+    background-position: center 14px;
+    height: 35px;
+    position: absolute;
+    width: 140px;
+    margin-left: 5px;
+}
+
+#abo_button {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_buy-button_576x48.png);
+    background-repeat: no-repeat;
+    width: 142px;
+    height: 48px;
+    margin-top: 338px;
+    margin-left: 7px;
+    position: absolute;
+    display: inline;
+    cursor: pointer;
+}
+
+#abo_button_text {
+    background-repeat: no-repeat;
+    background-position: center 14px;
+    height: 35px;
+    position: absolute;
+    width: 140px;
+    margin-left: 5px;
+}
+
+#buy_amount_label {
+    margin-bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+#buy_level_label {
+    margin-bottom: 8px;
+}
+
+#buy_itemName {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 132px;
+    margin-top: 10px;
+    margin-left: 13px;
+    position: absolute;
+}
+#buy_amount {
+    margin: auto;
+    position: absolute;
+    top: 63px;
+    width: 158px;
+}
+.centerAmount {
+    margin:auto;
+}
+
+#buy_choose_amount_ten, #buy_choose_amount_hundred, #buy_choose_amount_thousand, #buy_choose_amount_max {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_amount_240x71.png);
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 60px;
+    cursor: pointer;
+}
+#buy_choose_amount_ten      { background-position: 0 0;}
+#buy_choose_amount_hundred  { background-position: 0 -18px;}
+#buy_choose_amount_thousand { background-position: 0 -36px;}
+
+#buy_choose_amount_max {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_amount_240x71.png);
+    background-repeat: no-repeat;
+    background-position: 0 -54px;
+    height: 18px;
+    width: 60px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#buy_amount_arrow {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_amount-arrow_48x32.png);
+    background-position: center 0;
+    background-repeat: no-repeat;
+    height: 16px;
+    margin-bottom:8px;
+    margin-top:5px;
+}
+
+
+#buy_amount_plus {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_plus-minus_100x5.png);
+    background-position: 0 -25px;
+    background-repeat: no-repeat;
+    height: 23px;
+    width: 23px;
+    margin-left: 72px;
+    position: absolute;
+    cursor: pointer;
+}
+
+#buy_amount_minus {
+background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_plus-minus_100x5.png);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 23px;
+    margin-left: -35px;
+    position: absolute;
+    width: 23px;
+    cursor: pointer;
+}
+
+#buy_amount_text {
+    position: absolute;
+    top: 130px;
+    left: 47px;
+}
+
+#buy_level {
+    margin: auto;
+    position: absolute;
+    top: 103px;
+    width: 158px;
+}
+
+#buy_choose_level_scroll_container {
+    overflow: hidden;
+}
+
+#buy_choose_level_scroll {
+    height: 52px;
+}
+
+#buy_level_arrow_up, #buy_level_arrow_down {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 12px;
+}
+#buy_level_arrow_up {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-up_240x12.png);
+}
+#buy_level_arrow_down {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-down_240x12.png);
+}
+
+#buy_choose_level_one, #buy_choose_level_two, #buy_choose_level_three
+, #buy_choose_level_four, #buy_choose_level_five, #buy_choose_level_six
+, #buy_choose_level_seven, #buy_choose_level_eight, #buy_choose_level_nine, #buy_choose_level_ten {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    height: 18px;
+    width: 60px;
+    cursor: pointer;
+}
+
+#buy_choose_level_one       { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-01_248x17.png);}
+#buy_choose_level_two       { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-02_248x17.png);}
+#buy_choose_level_three     { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-03_248x17.png);}
+#buy_choose_level_four      { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-04_248x17.png);}
+#buy_choose_level_five      { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-05_248x17.png);}
+#buy_choose_level_six       { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-06_248x17.png);}
+#buy_choose_level_seven     { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-07_248x17.png);}
+#buy_choose_level_eight     { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-08_248x17.png);}
+#buy_choose_level_nine      { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-09_248x17.png);}
+#buy_choose_level_ten       { background-image: url(http://localhost/do_es/do_img/global/hangar/buy-item_level-10_248x17.png);}
+
+
+#sellPrice {
+    background-color: #000000;
+    border: 0 none;
+    color: #FFFFFF;
+    height: 16px;
+    margin-left: 15px;
+    margin-top: 265px;
+    position: absolute;
+    width: 123px;
+    text-align: right;
+}
+
+#buyItemName {
+    background-color: #000000;
+    border: 0 none;
+    color: #FFFFFF;
+    height: 16px;
+    margin-left: 14px;
+    margin-top: 235px;
+    position: absolute;
+    width: 123px;
+    text-align: center;
+}
+
+#buy_name_label {
+    margin-top: 219px;
+    margin-left: 14px;
+    position: absolute;
+    width: 121px;
+}
+
+#buy_name {
+    margin-top: -65px;
+    margin-left: 3px;
+    position: absolute;
+}
+
+#itemAmount {
+    background-color: #000000;
+    border: 0 none;
+    color: #FFFFFF;
+    height: 16px;
+    margin-left: -7px;
+    position: absolute;
+    text-align: right;
+    width: 75px;
+    margin-top: 5px;
+}
+
+.item-view {
+    float:left;
+    overflow:hidden;
+    margin: 0 0 0 0;
+    vertical-align:top;
+}
+
+#item_container {
+    float:left;
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_background_222x395.png);
+    width: 222px;
+    height: 395px;
+    margin-top: -2px;
+    margin-left: -4px;
+}
+
+.item_container_overlay {
+    top: 0;
+    position: absolute;
+    width: 222px;
+    height: 395px;
+    margin-top: -2px;
+    margin-left: -4px;
+}
+
+#item_scroller {
+    overflow: hidden;
+    height: 318px;
+    margin-top: 16px;
+    margin-left: 2px;
+}
+
+#item_scroll_up {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_up_428x21.png);
+    background-repeat: no-repeat;
+    width: 107px;
+    height: 21px;
+    margin-top: 2px;
+    margin-left: 56px;
+}
+
+#item_scroll_down {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_down_428x21.png);
+    background-repeat: no-repeat;
+    width: 107px;
+    height: 21px;
+    margin-top: 16px;
+    margin-left: 56px;
+}
+
+#item_scroll_top {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_up-all_38x80.png);
+    background-repeat: no-repeat;
+    width: 36px;
+    height: 17px;
+    margin-top: -19px;
+    margin-left: 174px;
+}
+
+#item_scroll_bottom {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-list_down-all_38x80.png);
+    background-repeat: no-repeat;
+    width: 36px;
+    height: 17px;
+    margin-top: -22px;
+    margin-left: 174px;
+}
+
+.items {
+    float: left;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#preview_container {
+    float:left;
+    width: 206px;;
+    height:206px;
+    margin:0 0 0 0 !important;
+}
+#preview {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/preview_frame_276x264.png);
+    background-repeat: no-repeat;
+    float:left;
+    width: 276px;
+    height:264px;
+    margin:0 0 0 0 !important;
+}
+
+#previewMovie {
+    margin-left: 12px;
+    margin-top: 25px;
+    width: 253px;
+    height: 206px;
+}
+
+#previewBuyButton1 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/preview_buy_471x38.png);
+    background-repeat: no-repeat;
+    width: 157px;
+    height:38px;
+    margin-left: 60px;
+    margin-top: 7px;
+}
+
+#info {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-info_background_260x127.png);
+    background-repeat: no-repeat;
+    float:left;
+    width:260px;
+    height:127px;
+    margin:0 0 0 8px !important;
+}
+#info table {
+    width: 250px;
+    margin: 0 0 0 5px;
+    border-collapse: collapse;
+}
+.cycleBg {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-info_background_cycle.png);
+}
+.info_ship_key {
+    color: #6b6b6b;
+}
+.info_ship_value {
+    color: #a4d3ff;
+}
+.info_other_value {
+    color: #bcd3e3;
+}
+
+/* use only info */
+#info1 {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/item-info_background_260x127.png);
+    background-repeat: no-repeat;
+    float:left;
+    width:260px;
+    height:127px;
+    margin:0 0 0 8px !important;
+    position: relative;
+}
+
+#nav_drones {
+    position: absolute;
+    top: 360px;
+    left: 26px;
+}
+
+#equipment_container {
+    position: relative;
+    top: 0;
+    left: 0;
+    height:366px;
+    width: 597px;
+    float: left;
+}
+
+#mainContentShop {
+    float:left;
+    width:641px;
+    height:394px;
+}
+
+#repair_ship {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/repair_201x53.png);
+    background-repeat: no-repeat;
+    width: 201px;
+    height: 56px;
+    cursor: pointer;
+    position:absolute;
+    top: 25px;
+    left: 286px;
+}
+#repairShipLabel {
+
+    background-repeat: no-repeat;
+    float: left;
+    height: 22px;
+    margin-left: 61px;
+    margin-top: 10px;
+    position: relative;
+    width: 129px;
+}
+#repairShipPrice {
+    background-repeat: no-repeat;
+    background-position: 0 1px;
+    float: left;
+    height: 22px;
+    margin-left: 61px;
+    margin-top: 2px;
+    position: relative;
+    width: 129px;
+}
+#repairShipFree {
+    background-repeat: no-repeat;
+    background-position: 0 1px;
+    float: left;
+    height: 22px;
+    margin-left: 61px;
+    margin-top: 5px;
+    position: relative;
+    width: 129px;
+}
+
+
+#repair_pet {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/repair_201x53.png);
+    background-repeat: no-repeat;
+    width: 203px;
+    height: 56px;
+    cursor: pointer;
+    position:absolute;
+    top: 25px;
+    left: 286px;
+}
+#repair_pet_disable {
+    background-image: url(http://localhost/do_es/do_img/global/hangar/overview/repair_201x53.png);
+    background-position: 0px -180px;;
+    background-repeat: no-repeat;
+    width: 203px;
+    height: 56px;
+    position:absolute;
+    cursor: help;
+    left: -1px;
+}
+#repairPetLabel {
+    background-repeat: no-repeat;
+    float: left;
+    height: 22px;
+    margin-left: 61px;
+    margin-top: 10px;
+    position: relative;
+    width: 129px;
+}
+#repairPetPrice {
+    background-repeat: no-repeat;
+    background-position: 0 1px;
+    float: left;
+    height: 22px;
+    margin-left: 61px;
+    margin-top: 2px;
+    position: relative;
+    width: 129px;
+}
+
+.box-left {
+    margin-top: 5px;
+    margin-left:5px;
+    float:left;
+}
+.box-right {
+    margin-top:5px;
+    margin-left:5px;
+    float:left;
+}
+#infoBox_shipView {
+    position: absolute;
+    top: 140px;
+    left: 404px;
+}
+#infoBox_petView {
+    display: none;
+    position: absolute;
+    top: 122px;
+    left: 395px;
+}
+
+#infoBox_droneView {
+    display: none;
+    position: absolute;
+    top: 118px;
+    left: 410px;
+}
+
+/* Systempopup */
+#shopInfoPopup {
+    position:absolute;
+    width:359px;
+    display:none;
+    z-index:10;
+}
+
+#shopInfoPopup .popup_shop_headcontainer {
+    width:359px;
+    height:39px;
+    text-align: center;
+    background-image: url(http://localhost/do_es/do_img/global/popups/hangar/popup_header.png);
+    color: #ffcc04;
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+#shopInfoPopup .popup_shop_head_title {
+    color: #ffcc04;
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+#shopInfoPopup .popup_shop_contentcontainer {
+    width:359px;
+    text-align: center;
+    background-image: url(http://localhost/do_es/do_img/global/popups/hangar/popup_middle.png);
+}
+
+#shopInfoPopup .popup_shop_footcontainer {
+    width:359px;
+    height:49px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/hangar/popup_footer.png);
+    margin-top: 20px;
+}
+
+#shopInfoPopup a.popup_shop_close {
+    width:24px;
+    height:24px;
+    float: right;
+    margin-top: 7px;
+    margin-right: 7px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/hangar/close_button_sprite.png);
+}
+
+#shopInfoPopup a.popup_shop_close:hover {
+    background-position: 0px 48px;
+}
+
+#shopInfoPopup .popup_shop_close_button {
+    width:150px;
+    height:32px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/hangar/button_sprite_150x32px.png);
+    background-position: 0 -96px;
+    margin: auto;
+}
+
+#shopInfoPopup .popup_shop_close_button:hover {
+    background-position: 0 -128px;
+    cursor: pointer;
+}
+
+#shopInfoPopup .popup_shop_confirm_button {
+    width:150px;
+    height:32px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/hangar/button_sprite_150x32px.png);
+    background-position: 0 -96px;
+    float: left;
+    margin-left: 20px;
+}
+
+#shopInfoPopup .popup_shop_confirm_button:hover {
+    background-position: 0 -128px;
+    cursor: pointer;
+}
+
+#shopInfoPopup .popup_shop_abort_button {
+    width:150px;
+    height:32px;
+    background-image: url(http://localhost/do_es/do_img/global/popups/hangar/button_sprite_150x32px.png);
+    background-position: 0 0;
+    float: right;
+    margin-right: 20px;
+}
+
+#shopInfoPopup .popup_shop_abort_button:hover {
+    background-position: 0 -32px;
+    cursor: pointer;
+}
+
+#shopInfoPopup .popup_shop_question {
+
+}
+#shopInfoPopup .question {
+    padding-top: 60px;
+    text-align: center;
+    margin: 0 20px;
+}
+#shopInfoPopup .icon_success, #shopInfoPopup .icon_error, #shopInfoPopup .icon_question {
+    background-repeat: no-repeat;
+    background-position: center -3px;
+}
+#shopInfoPopup .icon_success    { background-image: url(http://localhost/do_es/do_img/global/popups/icon_success.png);}
+#shopInfoPopup .icon_error      { background-image: url(http://localhost/do_es/do_img/global/popups/icon_error.png);}
+#shopInfoPopup .icon_question   { background-image: url(http://localhost/do_es/do_img/global/popups/icon_question.png);}
+
+#shopInfoPopup .popup_shop_confirm_text, #shopInfoPopup .popup_shop_abort_text, #shopInfoPopup .popup_shop_close_text {
+    background-repeat: no-repeat;
+    background-position: center 7px;
+    height: 32px;
+    cursor: pointer;
+}
+
+
+.popup_global_hint {
+    margin-top: 20px;
+    font-size: 11px;
+}
+
+#noDronesMessage, #noPetMessage {
+     text-align:center;
+     padding-top:25px;
+}
+
+.shop_missing_requirement {
+    color: red;
+}

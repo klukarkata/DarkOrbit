@@ -1,0 +1,846 @@
+SocketManager.send(user, "0|"+ServerCommands.MAP_EVENT+"|"+..........);
+
+package net.bigpoint.darkorbit.net
+{
+    import com.bigpoint.filecollection.finish.*;
+    import com.bigpoint.utils.*;
+    import flash.display.*;
+    import flash.utils.*;
+    import net.bigpoint.darkorbit.*;
+    import net.bigpoint.darkorbit.audio.*;
+    import net.bigpoint.darkorbit.collectable.*;
+    import net.bigpoint.darkorbit.combat.*;
+    import net.bigpoint.darkorbit.data.vo.*;
+    import net.bigpoint.darkorbit.gui.container.*;
+    import net.bigpoint.darkorbit.gui.windows.*;
+    import net.bigpoint.darkorbit.map.*;
+    import net.bigpoint.darkorbit.pattern.*;
+    import net.bigpoint.darkorbit.settings.*;
+    import net.bigpoint.darkorbit.ship.*;
+    import net.bigpoint.darkorbit.ship.effects.*;
+
+    public class MapEventsAssembly extends BaseAssembly
+    {
+        private var map:Map;
+        private var main:Main;
+        private var delegateDict:Dictionary;
+        private var effectsManager:EffectsManager;
+        private static var instance:MapEventsAssembly;
+
+        public function MapEventsAssembly(param1:Function)
+        {
+            this.effectsManager = EffectsManager.getInstance();
+            if (param1 !== hidden)
+            {
+                throw new Error("MapEventsAssembly is a Singleton and can only be accessed through MapEventsAssembly.getInstance()");
+            }
+            this.main = _main;
+            this.initDelegateDict();
+            return;
+        }// end function
+
+        private function initDelegateDict() : void
+        {
+            this.delegateDict = new Dictionary();
+            this.delegateDict[ServerCommands.SET_PLAYER_ATTACKABLE] = this.assembleSetPlayerAttackable;
+            this.delegateDict[ServerCommands.DISPLAY_MESSAGE] = this.assembleDisplayMessage;
+            this.delegateDict[ServerCommands.TARGET_FADE_TO_GRAY] = this.assembleTargetFadeToGray;
+            this.delegateDict[ServerCommands.TARGET_FADE_TO_GRAY_ABORT] = this.assembleTargetFadeToGrayAbort;
+            this.delegateDict[ServerCommands.TARGET_INVISIBLE] = this.assembleTargetInvisible;
+            this.delegateDict[ServerCommands.SET_DRONES] = this.assembleSetDrones;
+            this.delegateDict[ServerCommands.SET_DRONE_DISPLAY] = this.assembleSetDroneDisplay;
+            this.delegateDict[ServerCommands.EMP_MALUS_BOLT] = this.assembleEmpMalusBolt;
+            this.delegateDict[ServerCommands.ENEMY_WARNING] = this.assembleEnemyWarning;
+            this.delegateDict[ServerCommands.SPAWN_ENEMIES] = this.assembleSpawnEnemies;
+            this.delegateDict[ServerCommands.SET_TITLE] = this.assembleSetTitle;
+            this.delegateDict[ServerCommands.REMOVE_TITLE] = this.assembleRemoveTitle;
+            this.delegateDict[ServerCommands.SET_PERMANENT_TITLE] = this.assembleSetPermanentTitle;
+            this.delegateDict[ServerCommands.MALUS] = this.assembleMalus;
+            this.delegateDict[ServerCommands.SMARTBOMB] = this.assembleSmartbomb;
+            this.delegateDict[ServerCommands.INSTASHIELD] = this.assembleInstashield;
+            this.delegateDict[ServerCommands.EMP] = this.assembleEmp;
+            this.delegateDict[ServerCommands.TECHS_UPDATE] = this.assembleTechsUpdate;
+            this.delegateDict[ServerCommands.SET_PORTAL] = this.assembleSetPortal;
+            this.delegateDict[ServerCommands.BOOSTER_FOUND] = this.assembleBoosterFound;
+            this.delegateDict[ServerCommands.FIREWORKS_IGNITE] = this.assembleFireworksIgnite;
+            this.delegateDict[ServerCommands.FIREWORKS_IGNITE_GROUP] = this.assembleFireworksIgniteGroup;
+            this.delegateDict[ServerCommands.INDEPENDENCE_DAY_MODE] = this.assembleIndependenceDayMode;
+            this.delegateDict[ServerCommands.INIT_SCOREBOARD] = this.assembleInitScoreboard;
+            this.delegateDict[ServerCommands.SET_SCORE] = this.assembleSetScore;
+            this.delegateDict[ServerCommands.SET_SPEED] = this.assembleSetSpeed;
+            this.delegateDict[ServerCommands.INIT_INVASION_SCOREBOARD] = this.assembleInitInvasionScoreboard;
+            this.delegateDict[ServerCommands.SET_INVASION_SCORE] = this.assembleSetInvasionScore;
+            this.delegateDict[ServerCommands.SET_INVASION_WAVE] = this.assembleSetInvasionWave;
+            this.delegateDict[ServerCommands.CTB] = this.assembleCtb;
+            this.delegateDict[ServerCommands.TEAM_DEATHMATCH] = this.assembleTeamDeathmatch;
+            this.delegateDict[ServerCommands.SKILL_DESIGNS] = this.assembleSkillDesigns;
+            this.delegateDict[ServerCommands.MINE_EXPLODE] = this.assembleMineExplode;
+            this.delegateDict[ServerCommands.RANKED_HUNT_EVENT_UPDATE] = this.assembleRankedHuntEventUpdate;
+            this.delegateDict[ServerCommands.PLAY_SPECIAL_EXPLOSION] = this.assemblePlaySpecialExplosion;
+            this.delegateDict[ServerCommands.SAB_SHOT] = this.assembleSabShot;
+            this.delegateDict[ServerCommands.SPAWN] = this.assembleSpawn;
+            this.delegateDict[ServerCommands.DESPAWN] = this.assembleSpawn;
+            this.delegateDict[ServerCommands.HEAL_RAY] = this.assembleHealRay;
+            this.delegateDict[ServerCommands.GRAPHIC_FX] = this.assembleGraphicFx;
+            return;
+        }// end function
+
+        public function assembleSubCommand(param1:Array) : void
+        {
+            var _loc_2:* = param1[3];
+            if (this.delegateDict[_loc_2] != null)
+            {
+                var _loc_3:* = this.delegateDict;
+                _loc_3.this.delegateDict[_loc_2](param1);
+                ;
+            }
+            return;
+        }// end function
+
+        public function assembleCommand(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            if (this.delegateDict[_loc_2] != null)
+            {
+                var _loc_3:* = this.delegateDict;
+                _loc_3.this.delegateDict[_loc_2](param1);
+                ;
+            }
+            return;
+        }// end function
+
+        private function assemblePlaySpecialExplosion(param1:Array) : void
+        {
+            var _loc_3:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_3 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_3 != null)
+                {
+                    _loc_3.explodeTypeID = 6;
+                    AudioManager.playSoundEffect(75, false, false, _loc_3.x, _loc_3.y, true);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleSabShot(param1:Array) : void
+        {
+            var _loc_4:CombatManager = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getCombatManager();
+                if (_loc_4 != null)
+                {
+                    _loc_4.addChasingShot(_loc_2, _loc_3, "sab_shot");
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleSpawn(param1:Array) : void
+        {
+            var _loc_2:int = 0;
+            var _loc_3:int = 0;
+            var _loc_6:int = 0;
+            var _loc_7:MapObject = null;
+            if (param1.length == 4)
+            {
+                _loc_6 = int(param1[3]);
+                _loc_7 = this.main.screenManager.map.getShipManager().getShip(_loc_6);
+                if (_loc_7 == null)
+                {
+                    return;
+                }
+                _loc_2 = _loc_7.x;
+                _loc_3 = _loc_7.y;
+            }
+            else if (param1.length == 5)
+            {
+                _loc_2 = int(param1[3]);
+                _loc_3 = int(param1[4]);
+            }
+            else
+            {
+                return;
+            }
+            var _loc_4:* = SWFFinisher(ResourceManager.fileCollection.getFinisher("spawn0"));
+            var _loc_5:* = MovieClip(_loc_4.getEmbededMovieClip("mc"));
+            this.main.screenManager.getExplosionLayer().addChild(_loc_5);
+            _loc_5.x = _loc_2;
+            _loc_5.y = _loc_3;
+            ScreenManager.playAnimation(_loc_5, 20, false, 1, true);
+            AudioManager.playSoundEffect(79, false, false, _loc_2, _loc_3, true);
+            return;
+        }// end function
+
+        private function assembleHealRay(param1:Array) : void
+        {
+            var _loc_4:CombatManager = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getCombatManager();
+                if (_loc_4 != null)
+                {
+                    _loc_4.addHealingBeam(_loc_2, _loc_3);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleGraphicFx(param1:Array) : void
+        {
+            var _loc_6:MapObject = null;
+            var _loc_7:RageEffect = null;
+            var _loc_8:SaboteurEffect = null;
+            var _loc_9:SpeedBuffEffect = null;
+            var _loc_10:SkullEffect = null;
+            var _loc_11:InvincibilityEffect = null;
+            var _loc_2:* = this.main.screenManager.map.getShipManager();
+            var _loc_3:* = int(param1[5]);
+            var _loc_4:* = param1[3];
+            var _loc_5:* = param1[4];
+            if (_loc_4 == ServerCommands.GRAPHIC_FX_START)
+            {
+                _loc_6 = _loc_2.getShip(_loc_3);
+                if (_loc_5 == ServerCommands.GRAPHIC_FX_RAGE)
+                {
+                    if (_loc_6 != null && !this.effectsManager.doesEffectExistOn(_loc_6, EffectIDList.RAGE))
+                    {
+                        _loc_7 = new RageEffect(EffectIDList.RAGE, new EffectPattern(EffectIDList.RAGE, ""), false, [_loc_6]);
+                        this.effectsManager.addEffect(_loc_7, _loc_6);
+                        AudioManager.playSoundEffect(78, false, false, _loc_6.x, _loc_6.y, true);
+                    }
+                }
+                else if (_loc_5 == ServerCommands.GRAPHIC_FX_SABOTEUR_DEBUFF)
+                {
+                    if (_loc_6 != null && !this.effectsManager.doesEffectExistOn(_loc_6, EffectIDList.SABOTEUR_SLOW_DOWN_EFFECT))
+                    {
+                        _loc_8 = new SaboteurEffect(EffectIDList.SABOTEUR_SLOW_DOWN_EFFECT, new EffectPattern(EffectIDList.SABOTEUR_SLOW_DOWN_EFFECT, "slow-effect"));
+                        this.effectsManager.addEffect(_loc_8, _loc_6, EffectsManager.ROTATION_DEPENDANT_EFFECT);
+                        _loc_6.isDebuffed = true;
+                    }
+                }
+                else if (_loc_5 == ServerCommands.SPEED_BUFF)
+                {
+                    _loc_9 = new SpeedBuffEffect(EffectIDList.SPEED_BUFF_EFFECT, new EffectPattern(EffectIDList.SPEED_BUFF_EFFECT, "speed-buff-effect"));
+                    this.effectsManager.addEffect(_loc_9, _loc_2.getShip(_loc_3), EffectsManager.ROTATION_DEPENDANT_EFFECT);
+                }
+                else if (_loc_5 == ServerCommands.GRAPHIC_FX_SKULL)
+                {
+                    if (_loc_6 != null && !this.effectsManager.doesEffectExistOn(_loc_6, EffectIDList.SKULL))
+                    {
+                        _loc_10 = new SkullEffect(EffectIDList.SKULL, new EffectPattern(EffectIDList.SKULL, "skull"));
+                        this.effectsManager.addEffect(_loc_10, _loc_6);
+                    }
+                }
+                else if (_loc_5 == ServerCommands.GRAPHIC_FX_INVINCIBILITY)
+                {
+                    if (_loc_6 != null && !this.effectsManager.doesEffectExistOn(_loc_6, EffectIDList.INVINCIBILITY))
+                    {
+                        _loc_11 = new InvincibilityEffect(EffectIDList.INVINCIBILITY, new EffectPattern(EffectIDList.INVINCIBILITY, "invincibilityShield"));
+                        this.effectsManager.addEffect(_loc_11, _loc_6);
+                        AudioManager.playSoundEffect(80, false, false, _loc_6.x, _loc_6.y, true);
+                    }
+                }
+                else if (_loc_5 == ServerCommands.GRAPHIC_FX_KAMIKAZE)
+                {
+                    if (_loc_6 != null)
+                    {
+                        AudioManager.playSoundEffect(75, false, false, _loc_6.x, _loc_6.y, true);
+                    }
+                }
+            }
+            else if (_loc_4 == ServerCommands.GRAPHIC_FX_END)
+            {
+                if (_loc_5 == ServerCommands.GRAPHIC_FX_RAGE)
+                {
+                    _loc_6 = _loc_2.getShip(_loc_3);
+                    this.effectsManager.removeEffectByIdFromEntity(_loc_6, EffectIDList.RAGE);
+                }
+                else if (_loc_5 == ServerCommands.GRAPHIC_FX_SABOTEUR_DEBUFF)
+                {
+                    _loc_6 = _loc_2.getShip(_loc_3);
+                    if (_loc_6 != null)
+                    {
+                        this.effectsManager.removeEffectByIdFromEntity(_loc_6, EffectIDList.SABOTEUR_SLOW_DOWN_EFFECT);
+                        _loc_6.isDebuffed = false;
+                    }
+                }
+                else if (_loc_5 == ServerCommands.SPEED_BUFF)
+                {
+                    this.effectsManager.removeEffectByIdFromEntity(_loc_2.getShip(_loc_3), EffectIDList.SPEED_BUFF_EFFECT);
+                }
+                else if (_loc_5 == ServerCommands.GRAPHIC_FX_SKULL)
+                {
+                    this.effectsManager.removeEffectByIdFromEntity(_loc_2.getShip(_loc_3), EffectIDList.SKULL);
+                }
+                else if (_loc_5 == ServerCommands.GRAPHIC_FX_INVINCIBILITY)
+                {
+                    _loc_6 = _loc_2.getShip(_loc_3);
+                    if (_loc_6 != null)
+                    {
+                        this.effectsManager.removeEffectByIdFromEntity(_loc_6, EffectIDList.INVINCIBILITY);
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleSetPlayerAttackable(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            var _loc_2:* = Boolean(int(param1[4]));
+            var _loc_3:* = int(param1[3]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getShip(_loc_3);
+                if (_loc_4 != null)
+                {
+                    _loc_4.changeAttackableStateInNonPvPMap(_loc_2);
+                }
+            }
+            if (_loc_4 != null)
+            {
+                if (_loc_2)
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("msg_recovery_of_ceasefire").replace(/%nick%/, _loc_4.getUsername()));
+                }
+                else
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("msg_loss_of_ceasefire").replace(/%nick%/, _loc_4.getUsername()));
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleDisplayMessage(param1:Array) : void
+        {
+            var _loc_5:TextReplacementList = null;
+            var _loc_2:* = param1[3];
+            var _loc_3:* = int(param1[4]);
+            var _loc_4:* = BPLocale.getText(param1[5]);
+            if (param1[6] != undefined)
+            {
+                _loc_5 = TextReplacementList.parseRawTextReplacement(param1[6]);
+                _loc_4 = _loc_5.replace(_loc_4);
+            }
+            this.main.getGuiManager().addNotification(_loc_4);
+            return;
+        }// end function
+
+        private function assembleTargetFadeToGray(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            this.map = this.main.screenManager.map;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            if (_loc_3 != Hero.userID)
+            {
+                if (this.map != null)
+                {
+                    _loc_4 = this.map.getShipManager().getShip(_loc_2);
+                    if (_loc_4 != null && !_loc_4.isGroupMember)
+                    {
+                        _loc_4.setCrossHairColor(MapObject.CROSSHAIR_GRAY);
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleTargetFadeToGrayAbort(param1:Array) : void
+        {
+            var _loc_3:MapObject = null;
+            this.map = this.main.screenManager.map;
+            var _loc_2:* = int(param1[3]);
+            if (this.map != null)
+            {
+                _loc_3 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_3 != null)
+                {
+                    _loc_3.setCrossHairColor(MapObject.CROSSHAIR_RED);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleTargetInvisible(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = Boolean(int(param1[4]));
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_4 != null)
+                {
+                    _loc_4.setCloak(_loc_3);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleSetDrones(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = param1[4];
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_4 != null)
+                {
+                    _loc_4.removeDrones();
+                    _loc_4.removeSimpleDroneDisplay();
+                    this.map.getDroneManager().parseDroneString(_loc_2, _loc_3);
+                    this.map.getDroneManager().deployDrones(_loc_2);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleSetDroneDisplay(param1:Array) : void
+        {
+            var _loc_6:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = String(param1[4]).split("/");
+            var _loc_4:* = int(_loc_3[0]);
+            var _loc_5:* = int(_loc_3[1]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_6 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_6 != null)
+                {
+                    _loc_6.removeDrones();
+                    _loc_6.removeSimpleDroneDisplay();
+                    _loc_6.updateDroneDisplay(_loc_4, _loc_5);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleEmpMalusBolt(param1:Array) : void
+        {
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.map.getMinimapManager().getMiniMap().startInterference(int(param1[3]));
+            }
+            return;
+        }// end function
+
+        private function assembleEnemyWarning(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            this.main.getGuiManager().setThreadIndicator(_loc_2);
+            return;
+        }// end function
+
+        private function assembleSpawnEnemies(param1:Array) : void
+        {
+            return;
+        }// end function
+
+        private function assembleSetTitle(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = param1[4];
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_4 != null)
+                {
+                    if (_loc_3 == "-1")
+                    {
+                        _loc_4.removeTitle();
+                    }
+                    else
+                    {
+                        _loc_4.updateTitle(BPLocale.getText(_loc_3));
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleRemoveTitle(param1:Array) : void
+        {
+            var _loc_3:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_3 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_3 != null)
+                {
+                    _loc_3.removeTitle();
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleSetPermanentTitle(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = param1[4];
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_4 != null)
+                {
+                    if (_loc_3 == "-1")
+                    {
+                        _loc_4.removePermanentTitle();
+                    }
+                    else
+                    {
+                        _loc_4.updatePermanentTitle(BPLocale.getText(_loc_3));
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleMalus(param1:Array) : void
+        {
+            var _loc_5:MapObject = null;
+            var _loc_2:* = param1[3];
+            var _loc_3:* = int(param1[4]);
+            var _loc_4:* = _loc_3 == Hero.userID;
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_5 = this.map.getShipManager().getShip(_loc_3);
+                if (_loc_5 != null)
+                {
+                    switch(_loc_2)
+                    {
+                        case ServerCommands.MALUS_SET:
+                        {
+                            _loc_5.addMalus();
+                            if (_loc_4)
+                            {
+                                this.main.getGuiManager().writeToLog(BPLocale.getText("msg_arms_harmed"));
+                            }
+                            break;
+                        }
+                        case ServerCommands.MALUS_REMOVE:
+                        {
+                            _loc_5.removeMalus();
+                            if (_loc_4)
+                            {
+                                this.main.getGuiManager().writeToLog(BPLocale.getText("msg_arms_recovered"));
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleMultiplierFound(param1:Array) : void
+        {
+            return;
+        }// end function
+
+        private function assembleSmartbomb(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            var _loc_5:ExplosionPattern = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:int = 0;
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_4 != null)
+                {
+                    _loc_5 = PatternManager.getPyroPattern(ExplosionPattern.TYPE_SMARTBOMB_EXPLOSION, _loc_3);
+                    this.map.getCombatManager().showPyroEffect(_loc_4.x, _loc_4.y, _loc_5, 50, true);
+                    AudioManager.playSoundEffect(30);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleInstashield(param1:Array) : void
+        {
+            var _loc_4:MapObject = null;
+            var _loc_5:ExplosionPattern = null;
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:int = 0;
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_4 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_4 != null)
+                {
+                    _loc_5 = PatternManager.getPyroPattern(ExplosionPattern.TYPE_INSTASHIELD, _loc_3);
+                    this.map.getCombatManager().showPyroEffectOnShip(_loc_5, _loc_4, 50);
+                    AudioManager.playSoundEffect(31);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleEmp(param1:Array) : void
+        {
+            var _loc_3:MapObject = null;
+            var _loc_2:* = int(param1[3]);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_3 = this.map.getShipManager().getShip(_loc_2);
+                if (_loc_3 != null)
+                {
+                    this.map.getCombatManager().addEMPtoShip(_loc_3);
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleTechsUpdate(param1:Array) : void
+        {
+            TechAssembly.getInstance().assembleSubCommand(param1);
+            return;
+        }// end function
+
+        private function assembleSetPortal(param1:Array) : void
+        {
+            var _loc_3:int = 0;
+            var _loc_2:* = param1[3];
+            if (_loc_2 == ServerCommands.SET_PORTAL_REMOVE)
+            {
+                this.map = this.main.screenManager.map;
+                if (this.map != null)
+                {
+                    if (param1[4] == ServerCommands.SET_PORTAL_REMOVE_ALL)
+                    {
+                        this.map.portalManager.deleteAllPortals();
+                    }
+                    else
+                    {
+                        _loc_3 = int(param1[4]);
+                        this.map.portalManager.deletePortal(_loc_3);
+                    }
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleMineExplode(param1:Array) : void
+        {
+            var _loc_2:* = param1[3];
+            var _loc_3:* = this.main.screenManager.map;
+            if (_loc_3 != null)
+            {
+                _loc_3.getMineManager().removeMine(_loc_2, true);
+            }
+            return;
+        }// end function
+
+        private function assembleRankedHuntEventUpdate(param1:Array) : void
+        {
+            var _loc_3:int = 0;
+            var _loc_4:RankedHuntStatsVO = null;
+            var _loc_2:* = param1[3];
+            switch(_loc_2)
+            {
+                case ServerCommands.RANKED_HUNT_EVENT_END:
+                {
+                    _loc_3 = int(param1[4]);
+                    if (Hero.rankedHuntingEventData != null && Hero.rankedHuntingEventData.eventVOs != null)
+                    {
+                        _loc_4 = Hero.rankedHuntingEventData.eventVOs[_loc_3] as RankedHuntStatsVO;
+                        if (_loc_4 != null)
+                        {
+                            delete Hero.rankedHuntingEventData.eventVOs[_loc_3];
+                            this.main.getGuiManager().initUpdateRankedHuntStats(_loc_3);
+                        }
+                    }
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            return;
+        }// end function
+
+        private function assembleBoosterFound(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            var _loc_4:* = BPLocale.getText("booster_found");
+            _loc_4 = BPLocale.getText("booster_found").replace("%BOOSTERNAME%", InGameCatalog.instance.boosterNames[_loc_2]);
+            _loc_4 = _loc_4.replace("%HOURS%", _loc_3);
+            this.main.getGuiManager().writeToLog(_loc_4);
+            return;
+        }// end function
+
+        private function assembleFireworksIgnite(param1:Array) : void
+        {
+            var _loc_3:Collectable = null;
+            var _loc_2:* = param1[3];
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                _loc_3 = this.map.getCollectableManager().getCollectable(_loc_2);
+                this.map.getFireworksManager().showFirework(_loc_3.getTypeID(), _loc_3.clip.x, _loc_3.clip.y);
+                this.map.getCollectableManager().removeCollectable(_loc_2);
+            }
+            return;
+        }// end function
+
+        private function assembleFireworksIgniteGroup(param1:Array) : void
+        {
+            var _loc_3:String = null;
+            var _loc_4:Collectable = null;
+            var _loc_2:int = 3;
+            while (_loc_2 < param1.length)
+            {
+                
+                _loc_3 = param1[_loc_2];
+                this.map = this.main.screenManager.map;
+                if (this.map != null)
+                {
+                    _loc_4 = this.map.getCollectableManager().getCollectable(_loc_3);
+                    this.map.getFireworksManager().showFirework(_loc_4.getTypeID(), _loc_4.clip.x, _loc_4.clip.y);
+                    this.map.getCollectableManager().removeCollectable(_loc_3);
+                }
+                _loc_2++;
+            }
+            return;
+        }// end function
+
+        private function assembleIndependenceDayMode(param1:Array) : void
+        {
+            Settings.fireworksModeIndependenceDay = Boolean(int(param1[3]));
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.map.getFireworksManager().updateColorsHashmap();
+            }
+            return;
+        }// end function
+
+        private function assembleInitScoreboard(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            var _loc_4:* = int(param1[5]);
+            var _loc_5:* = int(param1[6]);
+            var _loc_6:* = int(param1[7]);
+            this.main.getGuiManager().createSpaceballScoreboard([_loc_2, _loc_3, _loc_4]);
+            this.main.getGuiManager().setSpaceballSpeed(_loc_6, _loc_5);
+            return;
+        }// end function
+
+        private function assembleSetScore(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            var _loc_4:* = int(param1[5]);
+            this.main.getGuiManager().updateScoreboard(SimpleWindow.WINDOW_CLASS_SPACEBALL, SimpleContainer.CLASS_SPACEBALL, _loc_2, _loc_3);
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.map.portalManager.playPortalAnimation(_loc_4, true);
+            }
+            return;
+        }// end function
+
+        private function assembleSetSpeed(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            this.main.getGuiManager().setSpaceballSpeed(_loc_2, _loc_3);
+            return;
+        }// end function
+
+        private function assembleInitInvasionScoreboard(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            var _loc_4:* = int(param1[5]);
+            var _loc_5:* = int(param1[6]);
+            this.main.getGuiManager().createInvasionScoreboard([_loc_2, _loc_3, _loc_4]);
+            this.main.getGuiManager().setInvasionWave(_loc_5);
+            return;
+        }// end function
+
+        private function assembleSetInvasionScore(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            this.main.getGuiManager().updateScoreboard(SimpleWindow.WINDOW_CLASS_INVASION, SimpleContainer.CLASS_INVASION, _loc_2, _loc_3);
+            return;
+        }// end function
+
+        private function assembleSetInvasionWave(param1:Array) : void
+        {
+            var _loc_2:* = int(param1[3]);
+            this.main.getGuiManager().setInvasionWave(_loc_2);
+            return;
+        }// end function
+
+        private function assembleCtb(param1:Array) : void
+        {
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.map.getCtbManager().parseCommands(param1);
+            }
+            return;
+        }// end function
+
+        private function assembleTeamDeathmatch(param1:Array) : void
+        {
+            this.main.getTDMManager().parseCommands(param1);
+            return;
+        }// end function
+
+        private function assembleSkillDesigns(param1:Array) : void
+        {
+            SkillsAssembly.getInstance().assembleSubCommand(param1);
+            return;
+        }// end function
+
+        public static function getInstance() : MapEventsAssembly
+        {
+            if (instance == null)
+            {
+                instance = new MapEventsAssembly(hidden);
+            }
+            return instance;
+        }// end function
+
+        private static function hidden() : void
+        {
+            return;
+        }// end function
+
+    }
+}

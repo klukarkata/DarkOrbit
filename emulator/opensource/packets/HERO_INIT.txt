@@ -1,0 +1,145 @@
+case ServerCommands.HERO_INIT:
+                {
+                    _loc_4 = int(_loc_3[2]);//Id de la nave
+                    _loc_34 = _loc_3[3];//Nombre del Usuario
+                    _loc_32 = int(_loc_3[4]);//ID de la nave
+                    _loc_33 = int(_loc_3[5]) * 0.97;//Velocidad de la nave
+                    _loc_28 = int(_loc_3[6]);//Escudo min
+                    _loc_25 = int(_loc_3[7]);//escudo max
+                    _loc_21 = int(_loc_3[8]);//Vida min
+                    _loc_24 = int(_loc_3[9]);//Vida max
+                    _loc_12 = int(_loc_3[10]);//Carga min
+                    _loc_23 = int(_loc_3[11]);//Carga Max
+                    _loc_35 = int(_loc_3[12]);//pos1
+                    _loc_36 = int(_loc_3[13]);//pos2
+                    _loc_22 = int(_loc_3[14]);//ID del Mapa
+                    _loc_19 = int(_loc_3[15]);//factionID
+                    _loc_13 = int(_loc_3[16]);//clanID
+                    Hero.maxLaserCapacity = int(_loc_3[17]);//Maxima capacidad de laser
+                    Hero.maxRocketCapacity = int(_loc_3[18]);//Maxima capacidad de misiles
+                    _loc_101 = int(_loc_3[19]);//expansionTypeID
+                    Hero.premium = Boolean(int(_loc_3[20]));//premium
+                    Hero.experiencePoints = Number(_loc_3[21]);//experiencia
+                    Hero.honorPoints = Number(_loc_3[22]);//honor
+                    Hero.level = int(_loc_3[23]);//nivel
+                    Hero.creditsAmount = Number(_loc_3[24]);//creditos
+                    Hero.uridiumAmount = Number(_loc_3[25]);//uris
+                    Hero.jackpotAmount = Number(_loc_3[26]);/jackpot
+                    _loc_16 = int(_loc_3[27]);//Modo admin (21) posible rango
+                    _loc_14 = _loc_3[28];//tituloClan
+                    _loc_17 = int(_loc_3[29]);//galaxyGatesTerminado
+                    _loc_15 = Boolean(int(_loc_3[31]));
+                    Hero.isKilled = false;
+                    this.main.getGuiManager().removeStopoverView();
+                    _loc_32 = this.getMappedShipType(_loc_32);
+                    if (_loc_16 == 21)
+                    {
+                        Hero.admin = true;
+                    }
+                    else
+                    {
+                        Hero.admin = false;
+                    }
+                    Hero.username = _loc_34;
+                    if (StringUtil.trim(_loc_14).length > 0)
+                    {
+                        Hero.clan = _loc_14;
+                    }
+                    Hero.factionID = _loc_19;
+                    if (Settings.lastMapID != -1 && Settings.lastMapID != _loc_22)
+                    {
+                        AudioManager.playSoundEffect(6);
+                    }
+                    if (Settings.lastMapID != _loc_22)
+                    {
+                        this.isMapLoaded = false;
+                        this.main.createMap(_loc_22);
+                        Settings.lastMapID = _loc_22;
+                    }
+                    _loc_10 = this.main.screenManager.map.getShipManager().createShip(_loc_32, _loc_4, _loc_35, _loc_36, _loc_33, _loc_34, _loc_14, _loc_19, _loc_13, -1, _loc_16, _loc_101, false, _loc_17, false);
+                    if (_loc_32 == 80)
+                    {
+                        _loc_10.isCubicon = true;
+                    }
+                    if (_loc_10 == null)
+                    {
+                        return;
+                    }
+                    _loc_10.setHitpoints(_loc_21);
+                    _loc_10.setMaxHitpoints(_loc_24);
+                    _loc_10.setCargo(_loc_23 - _loc_12);
+                    _loc_10.setMaxCargo(_loc_23);
+                    _loc_10.setShieldChunk(_loc_28, _loc_25, true);
+                    if (Settings.createOpponents)
+                    {
+                        _loc_9 = this.main.screenManager.map;
+                        _loc_31 = _loc_9.getShipManager();
+                        _loc_59 = 0;
+                        while (_loc_59 < this.bufferedShips.length)
+                        {
+                            
+                            _loc_11 = this.bufferedShips[_loc_59];
+                            if (_loc_19 > 3)
+                            {
+                                _loc_19 = 0;
+                            }
+                            if (_loc_31 != null)
+                            {
+                                _loc_30 = _loc_31.createShip(_loc_11.typeID, _loc_11.userID, _loc_11.xPos, _loc_11.yPos, 1, _loc_11.username, _loc_11.clanTag, _loc_11.fractionID, _loc_11.clanID, _loc_11.clanDiplomacy, _loc_11.dailyRank, _loc_11.expansionstage, _loc_11.warnIconOnMap, _loc_11.galaxyGatesFinished, _loc_11.isNPC);
+                                _loc_30.setCloak(_loc_11.cloaked);
+                            }
+                            _loc_59++;
+                        }
+                        this.bufferedShips = [];
+                    }
+                    this.main.getGuiManager().removeConnectionWindow();
+                    this.main.screenManager.map.getEventManager().unlockControls();
+                    this.main.getGuiManager().loadChat();
+                    this.main.getGuiManager().createLogWindow();
+                    this.main.getGuiManager().addGUI();
+                    _loc_102 = this.main.getGuiManager().getWindow(SimpleWindow.WINDOW_CLASS_JACKPOTBATTLE);
+                    if (_loc_102 != null)
+                    {
+                        this.main.getGuiManager().closeWindow(this.main.getGuiManager().getWindow(SimpleWindow.WINDOW_CLASS_JACKPOTBATTLE));
+                    }
+                    this.main.getGuiManager().createWindow(SimpleWindow.WINDOW_CLASS_USER);
+                    this.main.getGuiManager().createWindow(SimpleWindow.WINDOW_CLASS_SHIP);
+                    this.main.getGuiManager().createQuestWindow();
+                    if (Settings.showInstantLog)
+                    {
+                        this.main.getGuiManager().createInstantLogView();
+                    }
+                    this.main.getGuiManager().createGlobalNotificationView();
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_LASER);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_ROCKETS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_CREDITS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_URIDIUM);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_JACKPOT);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_EXPERIENCE);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_HONOR);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_LEVEL);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_JUMP_VOUCHERS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_0, SimpleElement.TYPE_HITPOINTS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_0, SimpleElement.TYPE_SHIELD);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_0, SimpleElement.TYPE_CARGO);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_LASER);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_ROCKETS);
+                    this.main.setScheduledDisconnect(false);
+                    if (Hero.admin)
+                    {
+                        this.main.getGuiManager().createCommandLineInterface();
+                    }
+                    this.main.getGuiManager().unlockWindow(SimpleWindow.WINDOW_CLASS_LOGOUT);
+                    this.main.getGroupManager().init();
+                    this.main.getGuiManager().destroyWindow(SimpleWindow.WINDOW_CLASS_TDM);
+                    this.main.getTDMManager().cleanUp();
+                    if (Main.showCross)
+                    {
+                        this.main.getGuiManager().showCrosshair();
+                        this.main.getGuiManager().moveCrosshairs(_loc_35, _loc_36);
+                    }
+                    _loc_10.setCloak(_loc_15);
+                    this.isHeroLoaded = true;
+                    this.dispatchSpacemapLoaded();
+                    break;
+                }

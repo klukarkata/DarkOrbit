@@ -1,0 +1,535 @@
+@charset "utf-8";
+
+.reg_main {
+    margin:auto;
+    width:816px;
+    background-image:url(../do_img/global/register/bg_stripes.jpg);
+    background-repeat:repeat-y;
+    text-align:left;
+}
+
+.reg_bg {
+    background-image:url(../do_img/global/register/bg_glob.jpg);
+    background-repeat: no-repeat;
+}
+
+.reg_foot {
+    height:24px;
+    background-image:url(../do_img/global/register/bg_foot.jpg);
+    background-position:bottom;
+    background-repeat:no-repeat;
+}
+/*
+*/
+
+.signup {
+    font-family: Verdana, Arial, sans-serif;
+    font-size:10px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0px;
+}
+
+
+.signup td {}
+
+.signup_center {
+    text-align: center;
+}
+
+.singup_successDoubleOptIn {
+    vertical-align:top;
+    color: #ffffff;
+    font-size: 10px;
+    padding-left: 350px;
+    padding-top: 200px;
+    width: 400px;
+}
+*+html .singup_successDoubleOptIn {
+    padding-left: 320px;
+}
+
+
+.singup_successDoubleOptIn a {
+    color: #ffffff;
+    font-size: 10px;
+}
+
+
+.signup_left {
+    width: 295px;
+    vertical-align:top;
+    padding:0;
+    margin:149px 0 0 31px;
+    text-align: left;
+    height:415px;
+    min-height:415px;
+}
+
+.signup_right {
+    width: 251px;
+    vertical-align:top;
+    margin: 149px 0 0 10px;
+    text-align: left;
+    height:400px;
+    min-height:400px;
+    padding-top:2px;
+}
+
+.signup_input{
+    border-collapse: collapse;
+}
+
+.signup_input td{
+    padding: 0px;
+}
+
+.signup_link{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 9px;
+color: #FFFFFF;
+text-decoration: none
+}
+
+.signup_link:hover {
+color: #FFFFFF;
+text-decoration: underline;
+}
+
+.input_selectInstance {width:145px;font-size: 9px;}
+.input_selectCountry {width:270px;font-size: 9px;}
+.input_selectProvince {width:270px;font-size: 9px;}
+
+.input_text {
+    width: 140px;
+    height: 15px;
+
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    color: #000000;
+
+    border: 1px #000000 solid;
+    background-color: #DEDEDE;
+    margin-top: 1px;
+
+}
+
+.input_textLong {
+    width: 268px;
+    height: 17px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    color: #000000;
+
+    border: 1px #000000 solid;
+    background-color: #DEDEDE;
+    margin-top:1px;
+}
+
+.input_select {
+    width: 146px;
+    height: 20px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000000;
+/*    padding-top:4px;*/
+    border: 1px #000000 solid;
+/*    margin-top:1px;*/
+    z-index: 5;
+}
+
+
+.input_selectDay {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    color: #000000;
+    padding: 0px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    border: 1px #000000 solid;
+    background-color: #DEDEDE;
+    width: 40px;
+    height:20px;
+}
+
+.input_selectMonth {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 9px;
+color: #000000;
+padding: 0px;
+padding-top: 2px;
+padding-bottom: 1px;
+border: 1px #000000 solid;
+background-color: #DEDEDE;
+    width: 40px;
+    height:20px;
+}
+
+.input_selectYear {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    color: #000000;
+    padding: 0px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    border: 1px solid #666666;
+    background-color: #DEDEDE;
+    width: 56px;
+    height:20px;
+}
+
+.error {
+    background-color:#ffce58;
+    border:1px solid #ffce58;
+}
+
+
+.login_username {
+    width: 175px;
+    height: 20px;
+}
+
+.login_password {
+    width: 184px;
+    height: 20px;
+}
+
+.login_submit {
+    color:#FFFFFF;
+    width: 184px; height:22px;
+    background-image: url(../do_img/global/register/bg_butt.jpg);
+    font-weight: bold;
+    padding: 0px;
+}
+
+.login_instance {
+    width:177px;
+    height:22px;
+}
+
+.input_checkbox {
+}
+
+.input_radio{
+}
+
+.input_button{
+
+}
+
+.signup_submit {
+    background: url(../do_img/global/register/bg_butt_short.jpg);
+    width: 144px;
+    height:22px;
+    border: none;
+    font-weight: bold;
+    padding: 0px;
+    color:#DEDEDE;
+    cursor:pointer;
+}
+.signup_back {
+    background: url(../do_img/global/register/bg_butt_short.jpg);
+    width: 144px;
+    height:22px;
+    border: none;
+    font-weight: bold;
+    padding: 0px;
+    color:#DEDEDE;
+    cursor:pointer;
+}
+.change_resendSubmit {
+    background: url(../do_img/global/register/bg_butt_short.jpg);
+    width: 144px;
+    height:22px;
+    border: none;
+    font-weight: bold;
+    padding: 0px;
+    color:#DEDEDE;
+    cursor:pointer;
+}
+.change_submit {
+    background: url(../do_img/global/register/bg_butt_short.jpg);
+    width: 144px;
+    height:22px;
+    border: none;
+    font-weight: bold;
+    padding: 0px;
+    color:#DEDEDE;
+    cursor:pointer;
+}
+
+
+.signup_errorLayer{
+    position: absolute;
+    width: 320px;
+    height: 350px;
+    left: 270px;
+    top: 50px;
+    background-image:url(../do_img/global/register/bg_info.jpg);
+    padding: 5px;
+    background-color:#D0CFBE;
+    border:1px solid #000000;
+    z-index: 1111;
+}
+* html .signup_errorLayer{
+    left:-250px;
+}
+
+.signup_errorHeader{
+}
+
+.signup_errorClose{
+    float:right;
+    background-image:URL(../do_img/global/register/kreuz.jpg);
+    width:26px;
+    height:22px;
+}
+
+.signup_errorTitle{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    width:100%;
+}
+
+.singup_errorMessages{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    clear: both;
+    text-align: left;
+    color: #ffce58;
+    font-weight:bold;
+    padding: 10px;
+}
+
+.singup_errorMessages p {
+    margin: 10px 0;
+}
+
+.singup_errorMessage{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+}
+
+.signup_errorSuggestion{
+    color: #FFFFFF;
+}
+
+/* ------------------------------------------------------------------------ */
+/* SUCCESS-Meldung -------------------------------------------------------- */
+/* ------------------------------------------------------------------------ */
+.signup_success {
+    width: 100%;
+    text-align: center;
+    height: 584px;
+}
+.signup_successLayer{
+    position: absolute;
+    width: 320px;
+    height: 256px;
+    left: 100px;
+    top: 50px;
+    background-image:url(../do_img/global/register/bg_info.jpg);
+    padding: 5px;
+    background-color:#D0CFBE;
+    border:1px solid #000000;
+    z-index: 1111;
+}
+
+.signup_successTitle{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    width:100%;
+}
+
+.singup_successMessages{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    clear: both;
+    text-align: left;
+    color: #FFFFFF;
+    font-weight:bold;
+    padding: 10px;
+}
+
+.signup_successClose{
+    float:right;
+    background-image:URL(../do_img/global/register/kreuz.jpg);
+    width:26px;
+    height:22px;
+}
+/* ------------------------------------------------------------------------ */
+/* SUCCESS-Meldung -------------------------------------------------------- */
+/* ------------------------------------------------------------------------ */
+
+.signup_label{
+    font-weight: bold;
+}
+
+.label_username{
+    padding:10px 0 0 0px;
+}
+
+.label_description{
+    vertical-align: top;
+    font-weight: normal;
+    padding:10px 20px 10px 0;
+/*height: 100%;*/
+}
+
+.label_description li {
+    list-style-type:disc;
+    margin-left:15px;
+}
+
+.label_password {
+    padding:10px 0 0 0px;
+}
+
+.label_passwordRepeat{
+}
+
+.label_instances{
+}
+
+.label_email{
+}
+
+.label_birthday{
+}
+
+.label_sex{
+}
+
+.label_country{
+}
+
+.label_province{
+}
+
+.label_checkbox{
+}
+.label_checkbox a{ color:#FFFFFF;}
+.label_checkbox a:hover{ color:#FFFFFF;}
+.label_info {}
+.label_openIdLink {}
+.label_openIdLink a { color: #FFFFFF;}
+
+
+.align_checkbox{
+    vertical-align: top;
+}
+
+.align_buttonRegister{
+    vertical-align: bottom;
+    padding-right:20px;
+/*height: 100%;*/
+}
+
+.align_buttonLogin{
+}
+
+.signup_winningsLabel {
+    width:295px;
+    height: 80px;
+    overflow: auto;
+}
+
+.signup_infoLayer{
+	position: absolute;
+	width: 200px;
+	border:1px solid #000000;
+}
+
+.singup_infoMessages{
+	font-size:11px;
+	text-align: left;
+	font-weight:bold;
+	margin:10px;
+}
+
+
+
+
+/*WINNING*/
+.signup_attentionLayer{
+    position: absolute;
+    left: 270px;
+    background-image:url(../do_img/global/register/bg_info.jpg);
+    top: 50px;
+    width: 320px;
+    height: 350px;
+    border:1px solid #000000;
+    padding:5px;
+    z-index: 10;
+}
+* html .signup_attentionLayer{
+    left:-250px;
+}
+
+.signup_errorHeader{
+}
+
+.signup_attentionClose{
+    float:right;
+    background-image:URL(../do_img/global/register/kreuz.jpg);
+    width:26px;
+    height:22px;
+}
+
+.signup_attentionTitle{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    width:100%;
+}
+/* Text Fehlermeldung*/
+.singup_attentionMessages{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    clear: both;
+    text-align: left;
+    font-weight:bold;
+    margin-left:15px;
+    margin-top:20px;
+    margin-bottom:20px;
+    width: 260px;
+}
+
+.label_attentionCheck {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:10px;
+    color:#ffce58;
+    padding-top:10px;
+    margin-top:10px;
+}
+
+.align_buttonSuccess {
+    padding: 500px 0 0 20px;
+}
+
+.signup_tableUserDataChange {
+    width:400px;
+    margin-bottom:30px;
+}
+.signup_tableUserDataChange td {
+    height:30px;
+    width:50%;
+}
+.signup_tableUserDataChange input[type='text'], .signup_tableUserDataChange input[type='password'] {
+    width:200px;
+}
+
+.signup_tableEmailChange {
+    width:400px;
+}
+.signup_tableEmailChange td {
+    height:30px;
+    width:50%;
+}
+.signup_tableEmailChange input[type='text'], .signup_tableEmailChange input[type='password'] {
+    width:200px;
+}
+
+/**/

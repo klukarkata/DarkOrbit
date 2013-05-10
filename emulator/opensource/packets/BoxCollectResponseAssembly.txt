@@ -1,0 +1,549 @@
+package net.bigpoint.darkorbit.net
+{
+    import com.bigpoint.utils.*;
+    import flash.utils.*;
+    import net.bigpoint.darkorbit.*;
+    import net.bigpoint.darkorbit.collectable.*;
+    import net.bigpoint.darkorbit.config.items.*;
+    import net.bigpoint.darkorbit.gui.*;
+    import net.bigpoint.darkorbit.gui.container.*;
+    import net.bigpoint.darkorbit.gui.elements.*;
+    import net.bigpoint.darkorbit.gui.windows.*;
+    import net.bigpoint.darkorbit.map.*;
+    import net.bigpoint.darkorbit.pattern.*;
+    import net.bigpoint.darkorbit.ship.*;
+    import net.bigpoint.darkorbit.ship.effects.*;
+    import net.bigpoint.darkorbit.vo.*;
+
+    public class BoxCollectResponseAssembly extends BaseAssembly
+    {
+        private var param1:String;
+        private var param2:String;
+        private var delegateDict:Dictionary;
+        private var mineTypesDict:Dictionary;
+        private var main:Main;
+        private var effectsManager:EffectsManager;
+        private static var _instance:BoxCollectResponseAssembly;
+
+        public function BoxCollectResponseAssembly(param1:Function)
+        {
+            this.effectsManager = EffectsManager.getInstance();
+            if (param1 !== hidden)
+            {
+                throw new Error("SettingsAssembly is a Singleton and can only be accessed through BoxCollectResponseAssembly.getInstance()");
+            }
+            this.main = _main;
+            this.initDelegateDict();
+            return;
+        }// end function
+
+        private function initDelegateDict() : void
+        {
+            this.delegateDict = new Dictionary();
+            this.delegateDict[ServerCommands.BOX_CONTENT_ORE] = this.assembleOre;
+            this.delegateDict[ServerCommands.BOX_CONTENT_JACKPOT] = this.assembleJackpot;
+            this.delegateDict[ServerCommands.BOX_CONTENT_CREDITS] = this.assembleCredits;
+            this.delegateDict[ServerCommands.BOX_CONTENT_URIDIUM] = this.assembleUridium;
+            this.delegateDict[ServerCommands.BOX_CONTENT_EXPERIENCE_POINTS] = this.assembleExperiencePoints;
+            this.delegateDict[ServerCommands.BOX_CONTENT_HONOR_POINTS] = this.assembleHonorPoints;
+            this.delegateDict[ServerCommands.BOX_CONTENT_HITPOINTS] = this.assembleHitPoints;
+            this.delegateDict[ServerCommands.BOX_CONTENT_FIREWORK] = this.assembleFireworks;
+            this.delegateDict[ServerCommands.BOX_CONTENT_ROCKETS] = this.assembleRockets;
+            this.delegateDict[ServerCommands.BOX_CONTENT_LASER_BATTERIES] = this.assembleLaserBatteries;
+            this.delegateDict[ServerCommands.BOX_CONTENT_BANKING_MULTIPLIKATOR] = this.assembleBankingMultiplier;
+            this.delegateDict[ServerCommands.BOX_CONTENT_DEDUCTION_HITPOINTS] = this.assembleHitpointDeduct;
+            this.delegateDict[ServerCommands.BOX_CONTENT_EXTRA_ENERGY] = this.assembleExtraEnergy;
+            this.delegateDict[ServerCommands.BOX_CONTENT_JUMP_VOUCHERS] = this.assembleJumpVoucherLoot;
+            this.delegateDict[ServerCommands.BOX_CONTENT_MINE] = this.assembleMineLoot;
+            this.delegateDict[ServerCommands.BOX_CONTENT_PET_FUEL] = this.assemblePetFuelLoot;
+            this.delegateDict[ServerCommands.ITEM_LOOT] = this.assembleItemLoot;
+            this.delegateDict[ServerCommands.BOX_TOO_BIG] = this.assembleBoxTooBig;
+            this.delegateDict[ServerCommands.BOX_ALREADY_COLLECTED] = this.assembleAlreadyCollectedBox;
+            this.delegateDict[ServerCommands.MINE_EXPLODE] = this.assembleMineExplode;
+            this.delegateDict[ServerCommands.AVAILABLE_SHIPS_ON_MAP] = this.assembleAvailableShipsOnMap;
+            this.delegateDict[ServerCommands.ROCKETLAUNCHER] = this.assembleRocketLauncher;
+            this.delegateDict[ServerCommands.LOGFILE] = this.assembleLogFile;
+            this.delegateDict[ServerCommands.DISCOUNT_MESSAGE] = this.assembleDiscountMessage;
+            this.delegateDict[ServerCommands.SET_ITEM_LOOTING_ACTIVE] = this.assembleItemLootActive;
+            this.delegateDict[ServerCommands.SET_ITEM_LOOTING_CANCELLED] = this.assembleItemLootCancelling;
+            this.mineTypesDict = new Dictionary();
+            this.mineTypesDict[ServerCommands.MINE_ACM] = new ItemSysMine("mine_acm-01", "ACM-01");
+            this.mineTypesDict[ServerCommands.MINE_DDM] = new ItemSysMine("mine_ddm-01", "DDM-01");
+            this.mineTypesDict[ServerCommands.MINE_EMP] = new ItemSysMine("mine_empm-01", "EMPM-01");
+            this.mineTypesDict[ServerCommands.MINE_SAB] = new ItemSysMine("mine_sabm-01", "SABM-01");
+            this.delegateDict[ServerCommands.NEWBIE_BOOSTER] = this.assembleBoosterMessage;
+            return;
+        }// end function
+
+        private function assembleBoosterMessage(param1:Array) : void
+        {
+            var _loc_5:String = null;
+            var _loc_2:* = param1[2];
+            var _loc_3:* = param1[4];
+            var _loc_4:* = int(param1[5]);
+            switch(_loc_3)
+            {
+                case ServerCommands.BOOSTER_QUEST_REWARD:
+                {
+                    _loc_5 = "msg_info_booster_quest_reward_higher_loot_level";
+                    break;
+                }
+                case ServerCommands.BOOSTER_BONUS_BOX:
+                {
+                    _loc_5 = "msg_info_booster_bonus_box_higher_box_content_level";
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            if (_loc_4 > 0)
+            {
+                this.main.getGuiManager().writeToLog(BPLocale.getText(_loc_5).replace(/%AMOUNT%/, _loc_4), _loc_2);
+            }
+            return;
+        }// end function
+
+        private function assembleDiscountMessage(param1:Array) : void
+        {
+            var _loc_5:String = null;
+            var _loc_2:* = param1[2];
+            var _loc_3:* = param1[4];
+            var _loc_4:* = int(param1[5]);
+            switch(_loc_3)
+            {
+                case ServerCommands.LOOT_DISCOUNT:
+                {
+                    if (_loc_4 > 0)
+                    {
+                        _loc_5 = "msg_warning_less_box_content_level";
+                    }
+                    else
+                    {
+                        _loc_5 = "msg_warning_no_box_content_level";
+                    }
+                    break;
+                }
+                case ServerCommands.REWARD_DISCOUNT:
+                {
+                    if (_loc_4 > 0)
+                    {
+                        _loc_5 = "msg_warning_less_loot_level";
+                    }
+                    else
+                    {
+                        _loc_5 = "msg_warning_no_loot_level";
+                    }
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            this.main.getGuiManager().writeToLog(BPLocale.getText(_loc_5).replace(/%AMOUNT%/, _loc_4), _loc_2);
+            return;
+        }// end function
+
+        private function assembleLogFile(param1:Array) : void
+        {
+            var _loc_5:String = null;
+            var _loc_2:* = int(param1[4]);
+            var _loc_3:* = param1[2];
+            var _loc_4:* = int(param1[5]);
+            if (_loc_2 == 1)
+            {
+                _loc_5 = BPLocale.getText("log_msg_gather_log-file_s");
+            }
+            else
+            {
+                _loc_5 = BPLocale.getText("log_msg_gather_log-file_p").replace(/%COUNT%/, _loc_2);
+            }
+            this.main.getGuiManager().writeToLog(_loc_5, _loc_3);
+            return;
+        }// end function
+
+        private function assembleRocketLauncher(param1:Array) : void
+        {
+            var _loc_5:String = null;
+            var _loc_2:* = int(param1[4]);
+            var _loc_3:* = int(param1[5]);
+            var _loc_4:* = param1[2];
+            _loc_5 = BPLocale.getText("getbonusrok").replace(/%!/, BPLocale.roundInteger(_loc_3)).replace(/%2!/, InGameCatalog.instance.rocketNames[_loc_2]);
+            this.main.getGuiManager().writeToLog(_loc_5, _loc_4);
+            return;
+        }// end function
+
+        private function assembleMineLoot(param1:Array) : void
+        {
+            var _loc_6:String = null;
+            var _loc_2:* = param1[4];
+            var _loc_3:* = int(param1[5]);
+            var _loc_4:String = "log_msg_gather_mine_";
+            var _loc_5:* = param1[2];
+            if (_loc_3 == 1)
+            {
+                _loc_6 = BPLocale.getText(_loc_4 + "s");
+            }
+            else
+            {
+                _loc_6 = BPLocale.getText(_loc_4 + "p").replace(/%COUNT%/, BPLocale.roundInteger(_loc_3));
+            }
+            _loc_6 = _loc_6.replace(/%TYPE%/, (this.mineTypesDict[_loc_2] as ItemSysMine).name);
+            this.main.getGuiManager().writeToLog(_loc_6, _loc_5);
+            return;
+        }// end function
+
+        private function assembleAvailableShipsOnMap(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            this.main.getGuiManager().writeToLog(BPLocale.getText("msg_jackpot_players_left").replace(/%COUNT%/, param1[4]), _loc_2);
+            return;
+        }// end function
+
+        private function assembleMineExplode(param1:Array) : void
+        {
+            var _loc_2:* = param1[4];
+            var _loc_3:* = this.main.screenManager.map;
+            if (_loc_3 != null)
+            {
+                this.main.screenManager.map.getMineManager().removeMine(_loc_2, true);
+            }
+            return;
+        }// end function
+
+        private function assembleAlreadyCollectedBox(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = this.main.screenManager.map;
+            if (_loc_3 != null)
+            {
+                this.main.screenManager.map.getCollectableManager().setLastSelectedHash(null);
+            }
+            this.main.getGuiManager().writeToLog(BPLocale.getText("boxdisabled"), _loc_2);
+            return;
+        }// end function
+
+        private function assembleBoxTooBig(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = this.main.screenManager.map;
+            if (_loc_3 != null)
+            {
+                this.main.screenManager.map.getCollectableManager().setLastSelectedHash(null);
+            }
+            this.main.getGuiManager().writeToLog(BPLocale.getText("boxtoobig"), _loc_2);
+            return;
+        }// end function
+
+        private function assembleExtraEnergy(param1:Array) : void
+        {
+            var _loc_5:String = null;
+            var _loc_2:* = int(param1[4]);
+            var _loc_3:* = param1[2];
+            var _loc_4:String = "log_msg_gather_extra-energy_";
+            if (_loc_2 > 1)
+            {
+                _loc_5 = BPLocale.getText(_loc_4 + "p").replace(/%COUNT%/, _loc_2);
+            }
+            else
+            {
+                _loc_5 = BPLocale.getText(_loc_4 + "s");
+            }
+            this.main.getGuiManager().writeToLog(_loc_5, _loc_3);
+            return;
+        }// end function
+
+        private function assembleJumpVoucherLoot(param1:Array) : void
+        {
+            var _loc_5:String = null;
+            var _loc_2:* = int(param1[4]);
+            var _loc_3:* = param1[2];
+            var _loc_4:String = "log_msg_gather_jump-voucher_";
+            if (_loc_2 == 1)
+            {
+                _loc_5 = BPLocale.getText(_loc_4 + "s");
+            }
+            else
+            {
+                _loc_5 = BPLocale.getText(_loc_4 + "p").replace(/%COUNT%/, _loc_2);
+            }
+            this.main.getGuiManager().writeToLog(_loc_5, _loc_3);
+            return;
+        }// end function
+
+        private function assemblePetFuelLoot(param1:Array) : void
+        {
+            var _loc_5:String = null;
+            var _loc_2:* = int(param1[4]);
+            var _loc_3:* = param1[2];
+            var _loc_4:String = "log_msg_gather_pet-fuel_";
+            if (_loc_2 == 1)
+            {
+                _loc_5 = BPLocale.getText(_loc_4 + "s");
+            }
+            else
+            {
+                _loc_5 = BPLocale.getText(_loc_4 + "p").replace(/%COUNT%/, _loc_2);
+            }
+            this.main.getGuiManager().writeToLog(_loc_5, _loc_3);
+            return;
+        }// end function
+
+        private function assembleItemLoot(param1:Array) : void
+        {
+            var _loc_7:String = null;
+            var _loc_2:* = param1[4];
+            var _loc_3:* = int(param1[5]);
+            var _loc_4:* = param1[2];
+            var _loc_5:String = "log_msg_gather_";
+            var _loc_6:* = InGameCatalog.getInstance().sysItems[_loc_2] as SysItem;
+            if (_loc_3 == 1)
+            {
+                _loc_7 = BPLocale.getText(_loc_5 + _loc_6.category + "_s").replace(/%TYPE%/, _loc_6.name);
+            }
+            else
+            {
+                _loc_7 = BPLocale.getText(_loc_5 + _loc_6.category + "_p").replace(/%TYPE%/, _loc_6.name).replace(/%COUNT%/, BPLocale.roundInteger(_loc_3));
+            }
+            this.main.getGuiManager().writeToLog(_loc_7, _loc_4);
+            return;
+        }// end function
+
+        private function assembleItemLootActive(param1:Array) : void
+        {
+            var _loc_5:CollectorBeamEffect = null;
+            var _loc_2:* = param1[4];
+            var _loc_3:* = this.main.screenManager.map.getShipManager().getHero();
+            if (!this.effectsManager.doesEffectExistOn(_loc_3, EffectIDList.COLLECTOR_BEAM))
+            {
+                _loc_5 = new CollectorBeamEffect(EffectIDList.COLLECTOR_BEAM, PatternManager.effectPatterns[EffectIDList.COLLECTOR_BEAM], false, [_loc_2, _loc_3, true]);
+                this.effectsManager.addEffect(_loc_5, _loc_3, EffectsManager.BEHIND_MAP_OBJECT_EFFECT);
+            }
+            var _loc_4:* = BPLocale.getText("msg_loot_harvest_init");
+            this.main.getGuiManager().writeToLog(_loc_4);
+            return;
+        }// end function
+
+        private function assembleItemLootCancelling(param1:Array) : void
+        {
+            var _loc_2:* = this.main.screenManager.map.getShipManager().getHero();
+            this.effectsManager.removeEffectByIdFromEntity(_loc_2, EffectIDList.COLLECTOR_BEAM);
+            var _loc_3:* = BPLocale.getText("msg_loot_error_generic");
+            this.main.getGuiManager().writeToLog(_loc_3);
+            return;
+        }// end function
+
+        private function handleLootComplete(event:EntityEffectEvent) : void
+        {
+            var _loc_2:* = this.main.screenManager.map.getShipManager().getHero();
+            var _loc_3:* = this.effectsManager.getEffectFromEntity(_loc_2, EffectIDList.COLLECTOR_BEAM);
+            if (_loc_3 != null)
+            {
+                _loc_3.removeEventListener(EntityEffectEvent.EFFECT_FINISHED, this.handleLootComplete);
+            }
+            return;
+        }// end function
+
+        private function handleStopLooting(event:EntityEffectEvent) : void
+        {
+            var _loc_2:* = this.main.screenManager.map.getShipManager().getHero();
+            var _loc_3:* = this.effectsManager.getEffectFromEntity(_loc_2, EffectIDList.COLLECTOR_BEAM);
+            if (_loc_3 != null)
+            {
+                _loc_3.removeEventListener(EntityEffectEvent.EFFECT_CANCELLED, this.handleStopLooting);
+            }
+            return;
+        }// end function
+
+        private function assembleHitpointDeduct(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = int(param1[4]);
+            this.main.getGuiManager().writeToLog(BPLocale.getText("minushp").replace(this.param1, _loc_3), _loc_2);
+            return;
+        }// end function
+
+        private function assembleBankingMultiplier(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = param1[4];
+            this.main.getGuiManager().writeToLog(BPLocale.getText("banking_multiplier_active").replace(this.param1, _loc_3), _loc_2);
+            return;
+        }// end function
+
+        private function assembleLaserBatteries(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = parseInt(param1[4]);
+            var _loc_4:* = param1[5];
+            this.main.getGuiManager().writeToLog(BPLocale.getText("getbonuslas").replace(this.param1, _loc_4).replace(this.param2, InGameCatalog.instance.battery_types[_loc_3]), _loc_2);
+            return;
+        }// end function
+
+        private function assembleRockets(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = param1[4];
+            var _loc_4:* = param1[5];
+            this.main.getGuiManager().writeToLog(BPLocale.getText("getbonusrok").replace(this.param1, _loc_4).replace(this.param2, InGameCatalog.instance.rocketNames[_loc_3]), _loc_2);
+            return;
+        }// end function
+
+        private function assembleFireworks(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = param1[4];
+            var _loc_4:* = param1[5];
+            this.main.getGuiManager().writeToLog(BPLocale.getText("log_collected_firework").replace(this.param1, _loc_4).replace(this.param2, InGameCatalog.instance.explosive_types[_loc_3]), _loc_2);
+            return;
+        }// end function
+
+        private function assembleHitPoints(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = parseFloat(param1[4]);
+            this.main.getGuiManager().writeToLog(BPLocale.getText("gethp").replace(this.param1, _loc_3), _loc_2);
+            return;
+        }// end function
+
+        private function assembleHonorPoints(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = param1[4];
+            this.main.getGuiManager().writeToLog(BPLocale.getText("gatherep").replace(this.param1, _loc_3), _loc_2);
+            Hero.honorPoints = param1[5];
+            this.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_HONOR);
+            return;
+        }// end function
+
+        private function assembleExperiencePoints(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = parseFloat(param1[4]);
+            this.main.getGuiManager().writeToLog(BPLocale.getText("getexp").replace(this.param1, BPLocale.roundInteger(_loc_3)), _loc_2);
+            Hero.experiencePoints = parseFloat(param1[5]);
+            this.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_EXPERIENCE);
+            Hero.level = int(param1[6]);
+            this.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_LEVEL);
+            return;
+        }// end function
+
+        private function assembleUridium(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = parseFloat(param1[4]);
+            this.main.getGuiManager().writeToLog(BPLocale.getText("geturidium").replace(this.param1, BPLocale.roundInteger(_loc_3)), _loc_2);
+            Hero.uridiumAmount = parseFloat(param1[5]);
+            this.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_URIDIUM);
+            return;
+        }// end function
+
+        private function assembleCredits(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = parseFloat(param1[4]);
+            this.main.getGuiManager().writeToLog(BPLocale.getText("getcredits").replace(this.param1, BPLocale.roundInteger(_loc_3)), _loc_2);
+            Hero.creditsAmount = Number(param1[5]);
+            this.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_CREDITS);
+            return;
+        }// end function
+
+        private function assembleJackpot(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            var _loc_3:* = parseFloat(param1[4]);
+            this.main.getGuiManager().writeToLog(BPLocale.getText("getjackpot").replace(this.param1, BPLocale.round(_loc_3, 2)), _loc_2);
+            Hero.jackpotAmount = parseFloat(param1[5]);
+            this.updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_JACKPOT);
+            return;
+        }// end function
+
+        private function assembleOre(param1:Array) : void
+        {
+            var _loc_7:int = 0;
+            var _loc_2:* = param1[2];
+            var _loc_3:* = BPLocale.getText("farmresult");
+            var _loc_4:int = 4;
+            var _loc_5:int = 11;
+            var _loc_6:* = _loc_4;
+            while (_loc_6 < _loc_5)
+            {
+                
+                _loc_7 = int(param1[_loc_6]);
+                if (_loc_7 > 0)
+                {
+                    _loc_3 = _loc_3 + ("\n" + _loc_7 + " " + BPLocale.getText(CollectableManager.loot_ore_keys[_loc_6 - _loc_4]));
+                }
+                _loc_6++;
+            }
+            if (_loc_3.length != BPLocale.getText("farmresult").length)
+            {
+                this.main.getGuiManager().writeToLog(_loc_3, _loc_2);
+            }
+            return;
+        }// end function
+
+        private function updateInfoField(param1:int, param2:int, param3:int) : void
+        {
+            this.main.getGuiManager().updateInfoField(param1, param2, param3);
+            return;
+        }// end function
+
+        public function assembleBoxCollectResponse(param1:Array) : void
+        {
+            var _loc_3:String = null;
+            param1 = this.formatLegacy(param1);
+            var _loc_2:* = param1[3];
+            if (this.delegateDict[_loc_2] != null)
+            {
+                var _loc_4:* = this.delegateDict;
+                _loc_4.this.delegateDict[_loc_2](param1);
+            }
+            else
+            {
+                _loc_3 = BPLocale.getText(_loc_2);
+                if (_loc_3.length > 0)
+                {
+                    this.main.getGuiManager().writeToLog(_loc_3, param1[2]);
+                    ;
+                }
+            }
+            return;
+        }// end function
+
+        private function formatLegacy(param1:Array) : Array
+        {
+            if (param1[1] == ServerCommands.BOX_COLLECT_RESPONSE)
+            {
+                param1[0] = ServerCommands.LOG_MESSAGE;
+                param1[1] = LogMessageProfileFactory.STANDARD_MESSAGE;
+                param1.unshift("0");
+            }
+            return param1;
+        }// end function
+
+        public function setParams(param1:String, param2:String) : void
+        {
+            this.param1 = param1;
+            this.param2 = param2;
+            return;
+        }// end function
+
+        public static function getInstance() : BoxCollectResponseAssembly
+        {
+            if (_instance == null)
+            {
+                _instance = new BoxCollectResponseAssembly(hidden);
+            }
+            return _instance;
+        }// end function
+
+        private static function hidden() : void
+        {
+            return;
+        }// end function
+
+    }
+}

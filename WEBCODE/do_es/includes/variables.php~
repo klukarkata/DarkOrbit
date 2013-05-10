@@ -1,0 +1,29 @@
+<?php
+// #########################################################################
+// Cargando configuración
+
+
+// #########################################################################
+// #########################################################################
+// VARIABLES
+$HOST = "localhost";
+$DHOST = "$HOST/do_es";
+$SERVIDOR = "http://$HOST/do_es/";
+$remote_ip = $_SERVER[REMOTE_ADDR];
+$fp = @fsockopen($HOST, "8080", $errno, $errstr, 1);
+
+	if($fp){
+		$online = "online";
+		$online_txt = "<span style=\"color: #006600\"'>Conectado</span>";
+		fclose($fp);
+	} else {
+		$online = "offline";
+		$online_txt = "<span style=\"color: #990000\"'>Desconectado</span>";
+	}
+	
+function formatoUID($c) 
+{
+	printf("%012d",  $c);
+}
+
+?>

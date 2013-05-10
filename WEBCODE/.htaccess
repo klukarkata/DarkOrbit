@@ -1,0 +1,22 @@
+Options +FollowSymLinks
+RewriteEngine on
+## USER IP BANNING
+<Limit GET POST>
+ order allow,deny
+ #deny from 127.0.0.1
+ #deny from 127.0.0.1
+ allow from all
+</Limit>
+
+RewriteRule ^spacemap(.*) /do_es/spacemap$1 [L]
+RewriteRule ^spacemap/(.*) /do_es/spacemap$1 [L]
+RewriteRule ^flashinput(.*) /do_es/flashinput$1 [L]
+RewriteRule ^flashinput/(.*) /do_es/flashinput$1 [L]
+RewriteRule ^do_img(.*) /do_es/do_img$1 [L]
+RewriteRule ^do_img/(.*) /do_es/do_img$1 [L]
+RewriteRule ^flashAPI(.*) /do_es/flashAPI$1 [L]
+RewriteRule ^flashAPI/(.*) /do_es/flashAPI$1 [L]
+RewriteRule ^gamechat(.*) /do_es/gamechat$1 [L]
+RewriteRule ^gamechat/(.*) /do_es/gamechat$1 [L]
+RewriteRule ^swf_global(.*) /do_es/swf_global$1 [L]
+RewriteRule ^swf_global/(.*) /do_es/swf_global$1 [L]

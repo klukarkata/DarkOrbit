@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xml>
+	<core>
+    <variable key="chatGFX" value="darkorbit"/>
+  </core>
+  
+  <vars>
+      <variable key="backgroundTiled" value="false" />
+      <variable key="chatFontFace" value="TAHOMA" />
+    	<variable key="chatFontSize" value="10" />
+      <variable key="chatFontColor" value="#000000" />
+      
+      <variable key="tabVisible" value="true" />
+      <variable key="tabBar_XPos" value="20" />
+      <variable key="tabBar_YPos" value="8" />
+      <variable key="tabFontFace" value="TAHOMA" />
+    	<variable key="tabFontSize" value="10" />
+      <variable key="tabFontNormalColor" value="#bec8dc" />
+      <variable key="tabFontSelectedColor" value="#dae6ff" />
+      <variable key="tabFontOverColor" value="#6b95ef" />
+      <variable key="tabFontBold" value="true" />
+      <variable key="tabFontItalic" value="false" />
+      <variable key="tabGap" value="2" />
+      
+      <variable key="InputField_XPos" value="8" />
+      <variable key="InputField_YPos" value="101" />
+      <variable key="InputField_Width" value="220" />
+      <variable key="InputField_Height" value="18" />
+      <variable key="InputField_Font" value="TAHOMA" />
+      <variable key="InputField_FontSize" value="10" />
+      <variable key="InputField_FontColor" value="0x000000" />
+	  <variable key="InputField_Border" value="false" />
+      
+      <variable key="OutputField_XPos" value="6" />
+      <variable key="OutputField_YPos" value="27" />
+      <variable key="OutputField_Width" value="225" />
+      <variable key="OutputField_Height" value="70" />
+      <variable key="OutputField_Border" value="false" />
+      
+      <variable key="maximizeButton_XPos" value="275" />
+      <variable key="maximizeButton_YPos" value="20" />
+      
+      <variable key="btnMinimizeVisible" value="false" />
+      <variable key="btnRestoreVisible" value="false" />
+      <variable key="restoreButton_XPos" value="10" />
+      <variable key="restoreButton_YPos" value="300" />
+     
+      <variable key="systemFontColor" value="#3864c0" />
+      <variable key="adminFontColor" value="#fff82d" />
+      <variable key="whisperFontColor" value="#fff82d" />
+      <variable key="scrollBarShapeColor" value="0x8a8e94" />
+      <variable key="scrollBarAlpha" value="1" />
+      <variable key="scrollBar_X" value="280" />
+      <variable key="scrollBar_Y" value="35" />
+      <variable key="scrollBar_Height" value="80" /> 
+      <variable key="useScrollBarBg" value="false" />
+      <variable key="draggable" value="false" /> 
+      <variable key="minWidth" value="250" />
+      <variable key="minHeight" value="120" />
+      <variable key="maxWidth" value="900" />
+      <variable key="maxHeight" value="900" />
+      <variable key="resizerVisible" value="false" />
+
+  </vars>
+</xml>

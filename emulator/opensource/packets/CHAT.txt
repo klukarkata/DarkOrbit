@@ -1,0 +1,747 @@
+        private function onData(event:ProgressEvent) : void
+        {
+            var _loc_7:int = 0;
+            var _loc_2:* = this.socket.bytesAvailable;
+            var _loc_3:String = "";
+            var _loc_4:* = new ByteArray();
+            var _loc_5:int = 0;
+            while (_loc_5 < _loc_2)
+            {
+                
+                _loc_7 = this.socket.readByte();
+                if (_loc_7 != 0)
+                {
+                    _loc_4.writeByte(_loc_7);
+                }
+                _loc_5++;
+            }
+            _loc_4.position = 0;
+            _loc_3 = _loc_4.readUTFBytes(_loc_4.bytesAvailable);
+            if (_loc_3.charAt((_loc_3.length - 1)) == "#")
+            {
+                _loc_3 = this.buffer + _loc_3;
+                this.buffer = "";
+            }
+            else
+            {
+                this.buffer = this.buffer + _loc_3;
+                return;
+            }
+            _loc_3 = _loc_3.substr(0, (_loc_3.length - 1));
+            var _loc_6:* = _loc_3.split(Constants.LINE_SEPERATOR);
+            _loc_5 = 0;
+            while (_loc_5 < _loc_6.length)
+            {
+                
+                this.processMessage(_loc_6[_loc_5]);
+                _loc_5++;
+            }
+            return;
+        }
+       
+       private function onConnection(event:Event) : void
+        {
+            this.roomList.length = 0;
+            this.chat.resetChat();
+            this.firstRun = true;
+            this.username = encodeString(this.username);
+            this.clanName = encodeString(this.clanName);
+            var _loc_2:Array = [];
+            _loc_2[0] = this.username;
+            _loc_2[1] = this.userId;
+            _loc_2[2] = this.sessionId;
+            _loc_2[3] = this.projectId;
+            _loc_2[4] = this.language;
+            _loc_2[5] = this.clanName;
+            _loc_2[6] = this.chatVersion;
+            _loc_2[7] = this.convertBooleanToInt(this.showNewcomerChannel);
+            _loc_2[8] = -1;
+            this.sendCommand(Constants.CMD_USER_LOGIN, _loc_2);
+            return;
+        }// end function
+
+        private function processMessage(param1:String) : void
+        {
+            var _loc_4:Array = null;
+            var _loc_5:String = null;
+            var _loc_6:Array = null;
+            var _loc_7:int = 0;
+            var _loc_8:int = 0;
+            var _loc_9:String = null;
+            var _loc_10:int = 0;
+            var _loc_11:String = null;
+            var _loc_12:String = null;
+            var _loc_13:int = 0;
+            var _loc_14:ChatEvent = null;
+            var _loc_15:String = null;
+            var _loc_16:Boolean = false;
+            var _loc_17:String = null;
+            var _loc_18:int = 0;
+            var _loc_19:String = null;
+            var _loc_20:int = 0;
+            var _loc_21:String = null;
+            var _loc_22:Room = null;
+            var _loc_23:int = 0;
+            var _loc_24:String = null;
+            var _loc_25:Room = null;
+            var _loc_26:String = null;
+            var _loc_27:String = null;
+            var _loc_28:Array = null;
+            var _loc_29:Number = NaN;
+            var _loc_30:String = null;
+            var _loc_31:int = 0;
+            var _loc_32:int = 0;
+            var _loc_33:Room = null;
+            var _loc_34:Room = null;
+            var _loc_35:Number = NaN;
+            var _loc_36:Number = NaN;
+            var _loc_37:Number = NaN;
+            var _loc_38:Number = NaN;
+            var _loc_39:String = null;
+            var _loc_40:String = null;
+            var _loc_41:String = null;
+            var _loc_42:int = 0;
+            var _loc_43:String = null;
+            var _loc_44:Array = null;
+            var _loc_45:int = 0;
+            var _loc_46:int = 0;
+            var _loc_47:int = 0;
+            var _loc_48:Boolean = false;
+            var _loc_49:Room = null;
+            var _loc_50:int = 0;
+            var _loc_51:ScalableRoom = null;
+            var _loc_52:Message = null;
+            var _loc_53:int = 0;
+            var _loc_54:Room = null;
+            var _loc_55:* = undefined;
+            var _loc_56:int = 0;
+            var _loc_57:Array = null;
+            var _loc_58:int = 0;
+            var _loc_59:int = 0;
+            var _loc_60:String = null;
+            var _loc_61:Room = null;
+            var _loc_62:String = null;
+            var _loc_63:Array = null;
+            var _loc_64:String = null;
+            var _loc_65:Array = null;
+            var _loc_66:String = null;
+            logger.debug("<-" + param1);
+            var _loc_2:* = param1.split(Constants.MSG_SEPERATOR);
+            var _loc_3:* = _loc_2[0];
+            if (_loc_2.length > 1)
+            {
+                _loc_4 = String(_loc_2[1]).split(Constants.PARAM_SEPERATOR);
+            }
+            switch(_loc_3)
+            {
+                case Constants.CMD_USER_LOGIN_OK:
+                {
+                    this.userId = _loc_4[0];
+                    this.sendCommand(Constants.CMD_GET_USER_ROOMLIST, null);
+                    break;
+                }
+                case Constants.CMD_USER_LOGIN_NOK:
+                {
+                    this.createTmpRoom();
+                    this.activeRoomId = 100000000;
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, "user already exist", this.activeRoomId);
+                    this.userBlocked = true;
+                    break;
+                }
+                case Constants.CMD_PING:
+                {
+                    this.sendCommand(Constants.CMD_PONG);
+                    break;
+                }
+                case Constants.CMD_USER_LOGIN_NOK:
+                {
+                    this.userId = _loc_4[0];
+                    this.sendCommand(Constants.CMD_GET_USER_ROOMLIST, null);
+                    break;
+                }
+                case Constants.CMD_SET_USER_ROOMLIST:
+                {
+                    _loc_5 = _loc_4[0];
+                    _loc_6 = _loc_5.split(Constants.OBJECT_SEPERATOR);
+                    _loc_42 = 0;
+                    while (_loc_42 < _loc_6.length)
+                    {
+                        
+                        _loc_43 = _loc_6[_loc_42];
+                        _loc_44 = _loc_43.split(Constants.ATRIBUTE_SEPERATOR);
+                        _loc_10 = parseInt(_loc_44[0]);
+                        _loc_19 = decodeString(_loc_44[1]);
+                        _loc_45 = parseInt(_loc_44[2]);
+                        _loc_46 = parseInt(_loc_44[3]);
+                        _loc_47 = parseInt(_loc_44[4]);
+                        _loc_48 = this.parseBooleanFromInt(parseInt(_loc_44[5]));
+                        if (_loc_47 == Room.SCALABLE_ROOM_PARENT)
+                        {
+                            _loc_49 = new ScalableRoom(_loc_10, _loc_19, _loc_45, _loc_46, _loc_47, _loc_48);
+                            this.scalableRooms = true;
+                        }
+                        else
+                        {
+                            _loc_49 = new Room(_loc_10, _loc_19, _loc_45, _loc_46, _loc_47, _loc_48);
+                        }
+                        this.roomList.push(_loc_49);
+                        _loc_42++;
+                    }
+                    this.chat.updateTabBar();
+                    dispatchEvent(new Event("ChatEvent.CONNECTED"));
+                    break;
+                }
+                case Constants.CMD_SCAL_JOINED_CHILD:
+                {
+                    _loc_7 = _loc_4[0];
+                    _loc_8 = _loc_4[1];
+                    _loc_9 = _loc_4[2];
+                    this.setActiveThemeId(_loc_7);
+                    this.setActiveRoomId(_loc_8);
+                    this.setActiveScalRoomId(_loc_8);
+                    _loc_50 = 0;
+                    while (_loc_50 < this.roomList.length)
+                    {
+                        
+                        _loc_49 = this.roomList[_loc_50];
+                        if (_loc_49.getRoomId() == _loc_7)
+                        {
+                            _loc_51 = ScalableRoom(_loc_49);
+                            _loc_51.setChildRoomId(_loc_8);
+                            _loc_51.setChildRoomName(_loc_9);
+                            _loc_51.setThemeId(_loc_7);
+                            _loc_51.setRoomFirstRun(false);
+                            _loc_17 = this.languageHandler.getWord("globalchat.chat.joinRoom");
+                            _loc_17 = _loc_17.replace("%ROOM", _loc_51.getRoomName());
+                            _loc_52 = new Message(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17);
+                            _loc_51.addMessage(_loc_52);
+                            this.chat.addToJoined(_loc_8);
+                            this.chat.getTextOutput().htmlText = _loc_51.getAllMessages();
+                            this.chat.getTextOutput().scrollV = this.chat.getTextOutput().maxScrollV;
+                        }
+                        _loc_50++;
+                    }
+                    this.chat.updateTabBar();
+                    break;
+                }
+                case Constants.CMD_ADMIN_MSG:
+                {
+                    _loc_10 = _loc_4[0];
+                    _loc_11 = _loc_4[1];
+                    _loc_12 = decodeString(_loc_4[2]);
+                    _loc_13 = parseInt(_loc_4[3]);
+                    this.chat.output(Message.TYPE_MODERATOR, _loc_11, null, _loc_12, _loc_10, _loc_13);
+                    _loc_14 = new ChatEvent("MessageEvent.TEXT_RECEIVED");
+                    _loc_14.username = _loc_11;
+                    _loc_14.message = _loc_12;
+                    _loc_14.clanTag = _loc_15;
+                    _loc_14.usertype = _loc_13;
+                    dispatchEvent(_loc_14);
+                    break;
+                }
+                case Constants.CMD_USER_MSG:
+                {
+                    _loc_10 = _loc_4[0];
+                    _loc_11 = decodeString(_loc_4[1]);
+                    _loc_12 = decodeString(_loc_4[2]);
+                    _loc_15 = null;
+                    if (_loc_4.length > 3)
+                    {
+                        _loc_15 = decodeString(_loc_4[3]);
+                    }
+                    if (this.userIsIgnored(_loc_11))
+                    {
+                        return;
+                    }
+                    this.chat.output(Message.TYPE_USER, _loc_11, _loc_15, _loc_12, _loc_10);
+                    _loc_14 = new ChatEvent("MessageEvent.TEXT_RECEIVED");
+                    _loc_14.username = _loc_11;
+                    _loc_14.message = _loc_12;
+                    _loc_14.clanTag = _loc_15;
+                    _loc_14.usertype = -1;
+                    dispatchEvent(_loc_14);
+                    break;
+                }
+                case Constants.CMD_SCHEDULED_MSG:
+                {
+                    _loc_16 = this.parseBooleanFromInt(parseInt(_loc_4[0]));
+                    _loc_12 = decodeString(_loc_4[1]);
+                    _loc_42 = 0;
+                    while (_loc_42 < this.roomList.length)
+                    {
+                        
+                        _loc_49 = this.roomList[_loc_42];
+                        if (_loc_16 && _loc_49.newcomerRoom)
+                        {
+                            this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_12, _loc_49.getRoomId());
+                        }
+                        else if (!_loc_16)
+                        {
+                            this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_12, _loc_49.getRoomId());
+                        }
+                        _loc_42++;
+                    }
+                    break;
+                }
+                case Constants.CMD_KICK_USER:
+                {
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.kickmsg");
+                    _loc_17 = _loc_17.replace("%ADMIN", this.languageHandler.getWord("globalchat.chat.administrator"));
+                    if (_loc_4[0].length > 0)
+                    {
+                        _loc_17 = _loc_17 + " " + decodeString(_loc_4[0]);
+                    }
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    this.userBlocked = true;
+                    break;
+                }
+                case Constants.CMD_KICK_BY_SYSTEM:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.kickBySystem"), this.activeRoomId);
+                    this.userBlocked = true;
+                    break;
+                }
+                case Constants.CMD_BANN_USER:
+                {
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.banmsg");
+                    _loc_17 = _loc_17.replace("%ADMIN", this.languageHandler.getWord("globalchat.chat.administrator"));
+                    if (_loc_4[0].length > 0)
+                    {
+                        _loc_17 = _loc_17 + " " + decodeString(_loc_4[0]);
+                    }
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    this.userBlocked = true;
+                    break;
+                }
+                case Constants.CMD_BANN_BY_SYSTEM:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.banBySystem"), this.activeRoomId);
+                    this.userBlocked = true;
+                    break;
+                }
+                case Constants.CMD_PRIVATE_ROOM_CREATED:
+                {
+                    _loc_18 = _loc_4[0];
+                    _loc_19 = decodeString(_loc_4[1]);
+                    _loc_20 = _loc_4[2];
+                    _loc_21 = decodeString(_loc_4[3]);
+                    _loc_22 = new Room(_loc_18, _loc_19, 99, -1, Room.PRIVATE_ROOM, false);
+                    _loc_22.setCreatorId(_loc_20);
+                    _loc_22.setCreatorName(_loc_21);
+                    this.roomList.push(_loc_22);
+                    if (this.userId == _loc_22.getCreatorId())
+                    {
+                        this.chat.updateTabBar();
+                        this.chat.selectTabIndexByRoomId(_loc_22.getRoomId());
+                        _loc_4 = new Array();
+                        _loc_4.push(_loc_22.getRoomId());
+                        this.sendCommand(Constants.CMD_USER_JOIN, _loc_4);
+                    }
+                    else
+                    {
+                        _loc_17 = this.languageHandler.getWord("globalchat.chat.inviteMessage");
+                        _loc_17 = _loc_17.replace("%CREATOR", _loc_21);
+                        _loc_17 = _loc_17.replace("%ROOM", _loc_19);
+                        this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                        this.chat.output(Message.TYPE_INVITE, "", null, this.languageHandler.getWord("globalchat.chat.inviteMessageAccept") + ";" + _loc_18, this.activeRoomId);
+                    }
+                    break;
+                }
+                case Constants.CMD_USER_ADDED_TO_DYN_ROOM:
+                {
+                    _loc_23 = _loc_4[0];
+                    _loc_24 = _loc_4[1];
+                    _loc_48 = this.parseBooleanFromInt(parseInt(_loc_44[2]));
+                    _loc_25 = new Room(_loc_23, _loc_24, 99, -1, Room.DYNAMIC_ROOM, _loc_48);
+                    this.roomList.push(_loc_25);
+                    this.chat.updateTabBar();
+                    this.chat.selectTabIndexByRoomId(_loc_25.getRoomId());
+                    _loc_4 = new Array();
+                    _loc_4.push(_loc_25.getRoomId());
+                    _loc_4.push(this.userId);
+                    this.sendCommand(Constants.CMD_USER_JOINED_DYN_ROOM, _loc_4);
+                    break;
+                }
+                case Constants.CMD_USER_JOINED_DYN_ROOM:
+                {
+                    _loc_23 = _loc_4[0];
+                    _loc_26 = "";
+                    _loc_53 = 0;
+                    while (_loc_53 < this.roomList.length)
+                    {
+                        
+                        _loc_54 = this.roomList[_loc_53];
+                        if (_loc_54.getRoomId() == _loc_23)
+                        {
+                            _loc_26 = _loc_54.getRoomName();
+                        }
+                        _loc_53++;
+                    }
+                    _loc_27 = _loc_4[1];
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.userEnterRoom");
+                    _loc_17 = _loc_17.replace("%USER", _loc_27);
+                    _loc_17 = _loc_17.replace("%ROOM", _loc_26);
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_USER_REMOVED_FROM_DYN_ROOM:
+                {
+                    _loc_23 = _loc_4[0];
+                    if (this.chat.getTabBar().getSelectedRoomId() == _loc_23)
+                    {
+                        this.setActiveNormalRoomId(this.getActiveNormalRoomId());
+                        this.chat.selectTabIndexByRoomId(this.getActiveNormalRoomId());
+                    }
+                    this.deleteRoom(_loc_23);
+                    this.chat.updateTabBar();
+                    break;
+                }
+                case Constants.CMD_USER_LEFT_DYN_ROOM:
+                {
+                    _loc_23 = _loc_4[0];
+                    _loc_27 = _loc_4[1];
+                    _loc_26 = "";
+                    for (_loc_55 in this.roomList)
+                    {
+                        
+                        _loc_25 = Room(this.roomList[_loc_55]);
+                        if (_loc_25.getRoomId() == _loc_23)
+                        {
+                            _loc_26 = _loc_25.getRoomName();
+                            break;
+                        }
+                    }
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.userLeaveRoom");
+                    _loc_17 = _loc_17.replace("%USER", _loc_27);
+                    _loc_17 = _loc_17.replace("%ROOM", _loc_26);
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_SECTOR_ROOM_UPDATE:
+                {
+                    _loc_28 = String(_loc_4[0]).split(Constants.OBJECT_SEPERATOR);
+                    _loc_56 = 0;
+                    while (_loc_56 < (_loc_28.length - 1))
+                    {
+                        
+                        _loc_57 = String(_loc_28[_loc_56]).split(Constants.ATRIBUTE_SEPERATOR);
+                        _loc_58 = _loc_57[0];
+                        if (_loc_58 != -1)
+                        {
+                            this.deleteRoom(_loc_58);
+                            this.chat.updateTabBar();
+                        }
+                        _loc_59 = _loc_57[1];
+                        _loc_60 = _loc_57[2];
+                        _loc_61 = new Room(_loc_59, _loc_60, 99, -1, Room.SECTOR_ROOM, this.parseBooleanFromInt(parseInt(_loc_57[4])));
+                        _loc_61.setSectorId(_loc_57[3]);
+                        this.roomList.push(_loc_61);
+                        this.chat.updateTabBar();
+                        this.chat.selectTabIndexByRoomId(_loc_61.getRoomId());
+                        _loc_56++;
+                    }
+                    break;
+                }
+                case Constants.CMD_USER_JOIN_INVITED_ROOM:
+                {
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.userEnterRoom");
+                    _loc_17 = _loc_17.replace("%USER", decodeString(_loc_4[0]));
+                    _loc_17 = _loc_17.replace("%ROOM", "");
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_USER_LEFT_INVITED_ROOM:
+                {
+                    _loc_29 = _loc_4[0];
+                    _loc_30 = decodeString(_loc_4[1]);
+                    _loc_10 = _loc_4[2];
+                    if (_loc_29 == this.userId)
+                    {
+                        if (this.chat.getTabBar().getSelectedRoomId() == _loc_10)
+                        {
+                            if (this.scalableRooms)
+                            {
+                                this.setActiveRoomId(this.getActiveScalRoomId());
+                                this.chat.selectTabIndexByRoomId(this.getActiveRoomId());
+                            }
+                            else
+                            {
+                                this.setActiveNormalRoomId(this.getActiveNormalRoomId());
+                                this.chat.selectTabIndexByRoomId(this.getActiveNormalRoomId());
+                            }
+                        }
+                        this.deleteRoom(_loc_10);
+                        this.chat.updateTabBar();
+                    }
+                    else
+                    {
+                        _loc_17 = this.languageHandler.getWord("globalchat.chat.userLeaveRoom");
+                        _loc_17 = _loc_17.replace("%USER", _loc_30);
+                        _loc_17 = _loc_17.replace("%ROOM", "");
+                        this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    }
+                    break;
+                }
+                case Constants.CMD_GROUP_ROOM_CREATED:
+                {
+                    _loc_31 = _loc_4[0];
+                    _loc_32 = _loc_4[1];
+                    _loc_19 = decodeString(_loc_4[2]);
+                    _loc_48 = this.parseBooleanFromInt(parseInt(_loc_4[3]));
+                    _loc_33 = new Room(_loc_31, _loc_19, 99, -1, Room.GROUP_ROOM, _loc_48);
+                    _loc_33.groupID = _loc_32;
+                    this.roomList.push(_loc_33);
+                    this.chat.updateTabBar();
+                    if (this.autojoinGroup)
+                    {
+                        this.chat.selectTabIndexByRoomId(_loc_31);
+                        _loc_4 = new Array();
+                        _loc_4.push(_loc_31);
+                        this.sendCommand(Constants.CMD_USER_JOIN, _loc_4);
+                    }
+                    break;
+                }
+                case Constants.CMD_NO_MORE_PRIVATE_ROOMS_ALLOWED:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.noMorePrivateRoomsAllowed"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_CREATE_ROOM_WRONG_ARGUMENTS:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.wrongArguments"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_ROOMNAME_TOO_SHORT:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.roomnameToShort"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_PRIVATE_ROOM_EXIST:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.privateRoomAlreadyExist"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_ROOM_NAME_NOT_ALLOWED:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.roomNameNotAllowed"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_ROOM_DELETED:
+                {
+                    _loc_34 = this.getRoom(_loc_4[0]);
+                    if (this.chat.getTabBar().getSelectedRoomId() == _loc_34.getRoomId())
+                    {
+                        if (this.scalableRooms)
+                        {
+                            this.setActiveRoomId(this.getActiveScalRoomId());
+                        }
+                        else
+                        {
+                            this.setActiveRoomId(this.getActiveNormalRoomId());
+                            this.chat.selectTabIndexByRoomId(this.getActiveNormalRoomId());
+                        }
+                    }
+                    if (_loc_34.getRoomType() == Room.PRIVATE_ROOM)
+                    {
+                        if (_loc_34.getCreatorId() == this.userId || _loc_34.isInvited())
+                        {
+                            _loc_17 = this.languageHandler.getWord("globalchat.chat.privateRoomDeleted");
+                            _loc_17 = _loc_17.replace("%ROOM", _loc_34.getRoomName());
+                            this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                        }
+                    }
+                    this.deleteRoom(_loc_4[0]);
+                    this.chat.updateTabBar();
+                    break;
+                }
+                case Constants.CMD_PRIVATE_ROOM_NOT_EXIST:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.PrivateRoomNotExist"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_WRONG_COMMAND:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.wrongCommand"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_CANNOT_INVITE_YOURSELF:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.cannotInviteYourself"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_INVITE_ERROR_NOT_YOUR_ROOM:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.inviteErrorNotYourRoom"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_YOU_INVITED:
+                {
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.youInvited");
+                    _loc_17 = _loc_17.replace("%USER", _loc_4[0]);
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_NO_WHISPER_MESSAGE:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.noWhisperMessage"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_USER_NOT_EXIST:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.userNotExistOrOnline"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_USER_WHISPERS:
+                {
+                    _loc_11 = decodeString(_loc_4[0]);
+                    if (this.userIsIgnored(_loc_11))
+                    {
+                        return;
+                    }
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.userWhispers");
+                    _loc_17 = _loc_17.replace("%USER", _loc_11);
+                    _loc_17 = _loc_11 + "WHISPER_SEPERATOR" + _loc_17;
+                    this.chat.output(Message.TYPE_WHISPER, _loc_17, null, decodeString(_loc_4[1]), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_YOU_WHISPER:
+                {
+                    _loc_17 = this.languageHandler.getWord("globalchat.chat.youWhisper");
+                    _loc_17 = _loc_17.replace("%USER", decodeString(_loc_4[0]));
+                    this.chat.output(Message.TYPE_YOU_WHISPER, _loc_17, null, decodeString(_loc_4[1]), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_WRONG_CHAT_VERSION:
+                {
+                    _loc_49 = new Room(-1, "tmp", 0, -1, Room.NORMAL_ROOM, false);
+                    this.roomList.push(_loc_49);
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.wrongVersion"), this.activeRoomId);
+                    this.socket.close();
+                    this.userBlocked = true;
+                    break;
+                }
+                case Constants.CMD_FLOOD_WARNING:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.floodWarning"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_INVITE_ERROR_USER_NOT_FOUND:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.inviteErrorUserNotFound"), this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_IP_FAILED:
+                {
+                    this.createTmpRoom();
+                    this.activeRoomId = 100000000;
+                    this.userBlocked = true;
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.loginerror.bannedForever") + " code 0", this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_AUTH_FAILED:
+                {
+                    this.createTmpRoom();
+                    this.activeRoomId = 100000000;
+                    this.userBlocked = true;
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, "Authorization failed!", this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_SHOW_BANN_MESSAGE:
+                {
+                    this.createTmpRoom();
+                    this.activeRoomId = 100000000;
+                    this.userBlocked = true;
+                    if (_loc_4[5] == 1)
+                    {
+                        this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.loginerror.bannedForever"), this.activeRoomId);
+                        return;
+                    }
+                    _loc_35 = parseInt(_loc_4[4]);
+                    _loc_36 = Math.floor(_loc_35 / 60);
+                    _loc_37 = Math.floor(_loc_36 / 24);
+                    if (_loc_37 > 0)
+                    {
+                        _loc_38 = _loc_37;
+                        _loc_39 = this.languageHandler.getWord("globalchat.loginerror.days");
+                    }
+                    else if (_loc_36 > 0)
+                    {
+                        _loc_38 = _loc_36;
+                        _loc_39 = this.languageHandler.getWord("globalchat.loginerror.hours");
+                    }
+                    else if (_loc_35 > 0)
+                    {
+                        _loc_38 = _loc_35;
+                        _loc_39 = this.languageHandler.getWord("globalchat.loginerror.minutes");
+                    }
+                    _loc_17 = this.languageHandler.getWord("globalchat.loginerror.banned");
+                    _loc_17 = _loc_17.replace("%BEGINDATE", _loc_4[0]);
+                    _loc_17 = _loc_17.replace("%ENDDATE", _loc_4[1]);
+                    _loc_17 = _loc_17.replace("%BEGINTIME", _loc_4[2]);
+                    _loc_17 = _loc_17.replace("%ENDTIME", _loc_4[3]);
+                    _loc_17 = _loc_17.replace("%PERIOD", _loc_38);
+                    _loc_17 = _loc_17.replace("%TIME", _loc_39);
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_17, this.activeRoomId);
+                    break;
+                }
+                case Constants.CMD_SHOW_USERS:
+                {
+                    _loc_40 = _loc_4[0];
+                    _loc_41 = "";
+                    if (_loc_40 != "-")
+                    {
+                        _loc_62 = _loc_40;
+                        _loc_63 = _loc_62.split(Constants.OBJECT_SEPERATOR);
+                        _loc_42 = 0;
+                        while (_loc_42 < _loc_63.length)
+                        {
+                            
+                            _loc_64 = _loc_63[_loc_42];
+                            _loc_65 = _loc_64.split(Constants.ATRIBUTE_SEPERATOR);
+                            _loc_11 = decodeString(_loc_65[0]);
+                            _loc_66 = decodeString(_loc_65[1]);
+                            if (_loc_65[1] == "noclan")
+                            {
+                                _loc_41 = _loc_41 + (_loc_11 + ", ");
+                            }
+                            else
+                            {
+                                _loc_41 = _loc_41 + ("[" + _loc_66 + "]" + _loc_11 + ", ");
+                            }
+                            _loc_42++;
+                        }
+                        this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.userInRoom") + "\n" + _loc_41.substring(0, _loc_41.length - 2), this.activeRoomId);
+                    }
+                    break;
+                }
+                case Constants.CMD_SHOW_MODERATORS:
+                {
+                    _loc_40 = _loc_4[0];
+                    _loc_41 = "";
+                    if (_loc_40 != "-")
+                    {
+                        _loc_62 = _loc_40;
+                        _loc_63 = _loc_62.split(Constants.OBJECT_SEPERATOR);
+                        _loc_42 = 0;
+                        while (_loc_42 < _loc_63.length)
+                        {
+                            
+                            _loc_41 = _loc_41 + (_loc_63[_loc_42] + ", ");
+                            _loc_42++;
+                        }
+                        this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, this.languageHandler.getWord("globalchat.chat.moderatorsInRoom") + "\n" + _loc_41.substring(0, _loc_41.length - 2), this.activeRoomId);
+                    }
+                    break;
+                }
+                case Constants.CMD_DEVELOPER_MSG:
+                {
+                    this.chat.output(Message.TYPE_SYSTEM, this.languageHandler.getWord("globalchat.chat.system"), null, _loc_4[0], this.activeRoomId);
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            return;
+        }// end function

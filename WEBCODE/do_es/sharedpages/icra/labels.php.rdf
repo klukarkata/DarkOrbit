@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:label="http://www.w3.org/2004/12/q/contentlabel#"
+  xmlns:icra="http://www.icra.org/rdfs/vocabularyv03#">
+
+  <rdf:Description rdf:about="">
+    <dc:creator rdf:resource="http://www.icra.org" />
+    <dcterms:issued>2010-7-12</dcterms:issued>
+    <label:authorityFor>http://www.icra.org/rdfs/vocabularyv03#</label:authorityFor>
+  </rdf:Description>
+
+  <label:Ruleset>
+    <label:hasHostRestrictions>
+      <label:Hosts>
+        <label:hostRestriction>es3.darkorbit.bigpoint.com</label:hostRestriction>
+      </label:Hosts>
+    </label:hasHostRestrictions>
+    <label:hasDefaultLabel rdf:resource="#label_1" />
+    <label:rules rdf:parseType="Collection">
+      <rdf:Description>
+        <label:hasURI>www\.darkorbit\.com</label:hasURI>
+        <label:hasLabel rdf:resource="#label_2"/>
+      </rdf:Description>
+    </label:rules>
+  </label:Ruleset>
+
+  <label:ContentLabel rdf:ID="label_1">
+    <rdfs:comment>Kennzeichnung für gesamte Website/Großteil der Website</rdfs:comment>
+    <icra:nz>1</icra:nz>
+    <icra:sz>1</icra:sz>
+    <icra:vz>1</icra:vz>
+    <icra:lz>1</icra:lz>
+    <icra:oz>1</icra:oz>
+    <icra:ca>1</icra:ca>
+    <label:hasModifier><icra:xa /></label:hasModifier>
+    <rdfs:label>Keine Nacktdarstellungen; Kein sexuelles Material; Keine Gewalt; Keine potenziell anst&#246;&#223;ige Sprache; Keine potenziell sch&#228;digenden Aktivit&#228;ten; Benutzergenerierte Inhalte wie Chat-Rooms und Message Boards (moderiert); Dieses Material erscheint in k&#252;nstlerischem Zusammenhang; </rdfs:label>
+  </label:ContentLabel>
+
+  <label:ContentLabel rdf:ID="label_2">
+    <icra:nz>1</icra:nz>
+    <icra:sz>1</icra:sz>
+    <icra:vz>1</icra:vz>
+    <icra:lc>1</icra:lc>
+    <icra:od>1</icra:od>
+    <icra:ca>1</icra:ca>
+    <label:hasModifier><icra:xa /></label:hasModifier>
+    <rdfs:label>Keine Nacktdarstellungen; Kein sexuelles Material; Keine Gewalt; Moderate Kraftausdr&#252;cke; Darstellung des Gebrauchs von Waffen; Benutzergenerierte Inhalte wie Chat-Rooms und Message Boards (moderiert); Dieses Material erscheint in k&#252;nstlerischem Zusammenhang; </rdfs:label>
+  </label:ContentLabel>
+
+</rdf:RDF>

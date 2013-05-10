@@ -1,0 +1,173 @@
+       public function parseDroneString(param1:int, param2:String) : void
+        {
+            var _loc_5:int = 0;
+            var _loc_7:String = null;
+            var _loc_8:Array = null;
+            var _loc_9:int = 0;
+            var _loc_10:int = 0;
+            var _loc_11:String = null;
+            var _loc_12:Array = null;
+            var _loc_13:Array = null;
+            var _loc_14:int = 0;
+            var _loc_15:int = 0;
+            var _loc_3:* = param2.split("/");
+            var _loc_4:* = _loc_3.shift();
+            var _loc_6:int = 0;
+            while (_loc_6 < _loc_3.length)
+            {
+                
+                if (_loc_4 == 1)
+                {
+                    _loc_5 = DroneConnector.POSITION_DOWN;
+                }
+                else if (_loc_4 == 2)
+                {
+                    if (_loc_6 == 0)
+                    {
+                        _loc_5 = DroneConnector.POSITION_LEFT;
+                    }
+                    else if (_loc_6 == 1)
+                    {
+                        _loc_5 = DroneConnector.POSITION_RIGHT;
+                    }
+                }
+                else if (_loc_4 == 3)
+                {
+                    if (_loc_6 == 0)
+                    {
+                        _loc_5 = DroneConnector.POSITION_RIGHT;
+                    }
+                    else if (_loc_6 == 1)
+                    {
+                        _loc_5 = DroneConnector.POSITION_DOWN;
+                    }
+                    else if (_loc_6 == 2)
+                    {
+                        _loc_5 = DroneConnector.POSITION_LEFT;
+                    }
+                }
+                else if (_loc_4 == 4)
+                {
+                    if (_loc_6 == 0)
+                    {
+                        _loc_5 = DroneConnector.POSITION_RIGHT;
+                    }
+                    else if (_loc_6 == 1)
+                    {
+                        _loc_5 = DroneConnector.POSITION_DOWN;
+                    }
+                    else if (_loc_6 == 2)
+                    {
+                        _loc_5 = DroneConnector.POSITION_LEFT;
+                    }
+                    else if (_loc_6 == 3)
+                    {
+                        _loc_5 = DroneConnector.POSITION_TOP;
+                    }
+                }
+                _loc_7 = _loc_3[_loc_6];
+                _loc_8 = _loc_7.split("-");
+                _loc_9 = _loc_8.shift();
+                _loc_10 = 0;
+                while (_loc_10 < _loc_8.length)
+                {
+                    
+                    _loc_11 = _loc_8[_loc_10];
+                    _loc_12 = _loc_11.split(",");
+                    _loc_13 = String(_loc_12[0]).split("");
+                    _loc_14 = _loc_13[0];
+                    _loc_15 = _loc_13[1];
+                    if (_loc_9 == 1)
+                    {
+                        this.addDrone(param1, _loc_5, DroneConnector.POSITION_CENTER, _loc_14, _loc_15);
+                    }
+                    if (_loc_9 == 2)
+                    {
+                        if (_loc_10 == 0)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_LEFT, _loc_14, _loc_15);
+                        }
+                        else if (_loc_10 == 1)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_RIGHT, _loc_14, _loc_15);
+                        }
+                    }
+                    if (_loc_9 == 3)
+                    {
+                        if (_loc_10 == 0)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_TOP, _loc_14, _loc_15);
+                        }
+                        else if (_loc_10 == 1)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_RIGHT, _loc_14, _loc_15);
+                        }
+                        else if (_loc_10 == 2)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_LEFT, _loc_14, _loc_15);
+                        }
+                    }
+                    if (_loc_9 == 4)
+                    {
+                        if (_loc_10 == 0)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_TOP, _loc_14, _loc_15);
+                        }
+                        else if (_loc_10 == 1)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_RIGHT, _loc_14, _loc_15);
+                        }
+                        else if (_loc_10 == 2)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_LEFT, _loc_14, _loc_15);
+                        }
+                        else if (_loc_10 == 3)
+                        {
+                            this.addDrone(param1, _loc_5, DroneConnector.POSITION_DOWN, _loc_14, _loc_15);
+                        }
+                    }
+                    _loc_10++;
+                }
+                _loc_6++;
+            }
+            return;
+        }// end function
+        
+        
+        
+                public function addDrone(param1:int, param2:int, param3:int, param4:int, param5:int) : void
+        {
+            var _loc_8:MovieClip = null;
+            var _loc_10:DronePattern = null;
+            var _loc_11:BitmapClip = null;
+            var _loc_6:* = this.map.getShipManager().getShip(param1);
+            if (this.map.getShipManager().getShip(param1).droneConnector == null)
+            {
+                _loc_6.initDroneConnector();
+            }
+            var _loc_7:* = _loc_6.droneConnector.getDroneGroup(param2);
+            if (_loc_6.droneConnector.getDroneGroup(param2) == null)
+            {
+                _loc_8 = new MovieClip();
+                _loc_8.mouseEnabled = Main.mouseEventsEnabled;
+                _loc_8.mouseChildren = Main.mouseEventsEnabled;
+                _loc_7 = new DroneGroup(param2, _loc_8, this.getDroneGroupRadius() * 2);
+                _loc_6.droneConnector.addDroneGroup(_loc_7);
+                _loc_6.getDroneDisplayClipContainer().addChild(_loc_8);
+            }
+            var _loc_9:* = _loc_7.getDrone(param3);
+            if (_loc_7.getDrone(param3) == null)
+            {
+                _loc_10 = PatternManager.getDronePattern(param4, param5);
+                _loc_11 = new BitmapClip(ResourceManager.getMovieClip("drones", _loc_10.getResKey()), _loc_10.getResKey());
+                _loc_11.gotoAndStop(1);
+                if (!Settings.displayDrones)
+                {
+                    _loc_11.visible = false;
+                }
+                _loc_9 = new Drone(param3, _loc_10.getDroneRadius(), _loc_11);
+                _loc_7.addDrone(_loc_9);
+                _loc_7.getClip().addChild(_loc_11);
+            }
+            return;
+        }// end function

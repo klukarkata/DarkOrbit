@@ -1,0 +1,820 @@
+.userInfo_left {
+    float:left;margin-left:5px;
+}
+.userInfo_right {
+    float:right;margin-right:5px;
+}
+.userInfo_center {
+    text-align:center;
+    font-weight:bold;
+}
+.hof_center {
+    text-align:center;
+    font-weight:bold;
+}
+.history_center {
+    text-align:center;
+    font-weight:bold;
+}
+
+/* events shown on the left sidebar */
+#spaceBall_left, #summerGames_left, #invasion_left, #ctb_left, #springfight_left, #pvpEvent_left, .competitionContent, #npcEvent_left {
+    float:right;
+    text-align:left;
+    width:127px;
+    height:439px;
+    padding-left:30px;
+}
+.competitionTab {
+    float: left;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    cursor: pointer;
+}
+.competitionTab2 {
+    width: 57px;
+    background-image: url(http://localhost/do_es/do_img/global/left/button_normal.png);
+}
+.competitionTab3 {
+    width: 38px;
+    background-image: url(http://localhost/do_es/do_img/global/left/button3_normal.png);
+}
+.competitionContent {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_em_SB.jpg);
+}
+
+#spaceBall_left {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_em_SB.jpg);
+}
+#ctb_left {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_em_SB.jpg);
+}
+#summerGames_left {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_em_SG3.jpg);
+}
+#invasion_left {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_invasion.jpg);
+}
+#springfight_left {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_springfight.jpg);
+}
+#pvpEvent_left {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_pvpEvent.jpg);
+}
+#competitionContent_hunt {
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_pirateHunt.jpg);
+}
+#npcEvent_left {
+    background-image: url(http://localhost/do_es/do_img/global/left/highscore/bg.jpg);
+}
+
+/* spaceball */
+#spaceBall_hl {
+    position:absolute;
+    top:75px;
+    left:0px;
+    text-align:center;
+    width:115px;
+}
+#spaceBall_current_date {
+    position:absolute;
+    top:94px;
+    left:0px;
+    width:115px;
+
+}
+#spaceBall_current_result {
+    position:absolute;
+    top:115px;
+    left:0px;
+    height:40px;
+    margin-left:-3px;
+}
+#spaceBall_current_result td {
+    width:39px;
+    text-align:center;
+    padding-top:10px;
+    font-size:12px;
+}
+#spaceBall_price {
+    position:absolute;
+    top:150px;
+    left:0px;
+}
+#spaceBall_allOldResults {
+    position:absolute;
+    top:190px;
+    left:0px;
+}
+.spaceBall_oldResult {
+    width:88px;
+    height:63px;
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_em_history.png);
+    margin:10px 20px 10px 10px;
+    font-size:12px;
+}
+.spaceBall_oldResult table {
+    width:70px;
+    margin-left:10px;
+}
+
+.spaceBall_oldResult_date {
+    margin:0 0 2px 5px;
+}
+.spaceBall_right {
+    text-align:right;
+}
+#spaceBall_showResult {
+    position:absolute;
+    top:338px;
+    left:0px;
+    text-align:center;
+    width:115px;
+}
+#spaceBall_showResult a {
+    text-decoration:underline;
+}
+
+/* CTB - capture the Beacon */
+#ctb_hl {
+    position:absolute;
+    top:75px;
+    left:0px;
+    text-align:center;
+    width:115px;
+}
+#ctb_current_date {
+    position:absolute;
+    top:94px;
+    left:0px;
+    width:115px;
+
+}
+#ctb_current_result {
+    position:absolute;
+    top:115px;
+    left:0px;
+    height:40px;
+    margin-left:-3px;
+}
+#ctb_current_result td {
+    width:39px;
+    text-align:center;
+    padding-top:10px;
+    font-size:12px;
+}
+#ctb_price {
+    position:absolute;
+    top:150px;
+    left: 0;
+}
+#competitionContent_hunt #ctb_price {
+    position:absolute;
+    top:250px;
+    left: 2px;
+}
+.points_mmo {
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 36px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13px;
+}
+.points_eic {
+    position: absolute;
+    left: 40px;
+    top: 10px;
+    width: 36px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13px;
+}
+.points_vru {
+    position: absolute;
+    left: 79px;
+    top: 10px;
+    width: 36px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13px;
+}
+#competitionContent_hunt .points_mmo {
+    position: absolute;
+    left: 8px;
+    top: 50px;
+    width: 100px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13px;
+}
+#competitionContent_hunt .points_eic {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    width: 100px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13px;
+}
+#competitionContent_hunt .points_vru {
+    position: absolute;
+    left: 8px;
+    top: 88px;
+    width: 100px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 13px;
+}
+#ctb_allOldResults {
+    position:absolute;
+    top:190px;
+    left:0px;
+}
+.ctb_oldResult {
+    width:88px;
+    height:63px;
+    background-image: url(http://localhost/do_es/do_img/global/left/bg_em_history.png);
+    margin:10px 20px 10px 10px;
+    font-size:12px;
+}
+.ctb_oldResult table {
+    width:70px;
+    margin-left:10px;
+}
+
+.ctb_oldResult_date {
+    margin:0 0 2px 5px;
+}
+.ctb_right {
+    text-align:right;
+}
+#competitionContent_hunt #ctb_showResult {
+    position:absolute;
+    top: 320px;
+    left: 0;
+    text-align:center;
+    width:115px;
+}
+#ctb_showResult {
+    position:absolute;
+    top:338px;
+    left: 0;
+    text-align:center;
+    width:115px;
+}
+#ctb_showResult a {
+    text-decoration:underline;
+}
+
+/* summer games 3 */
+#summerGames_3_hl {
+    text-align:center;
+    height:25px;
+    margin-left:-35px;
+    margin-top:40px;
+}
+
+/* invasion */
+#invasion_hl {
+    position:absolute;
+    top:75px;
+    left:0px;
+    text-align:center;
+    width:115px;
+}
+#invasion_mmo {
+	position: absolute;
+	left: -3px;
+	top: 119px;
+	width: 117px;
+	height: 58px;
+}
+#invasion_eic {
+	position: absolute;
+	left: -3px;
+	top: 210px;
+	width: 117px;
+	height: 58px;
+}
+#invasion_vru {
+	position: absolute;
+	left: -3px;
+	top: 302px;
+	width: 117px;
+	height: 58px;
+}
+.invasion {
+	position: absolute;
+	left: 0px;
+	width: 117px;
+	text-align: center;
+}
+.invasionLabelPoints {
+	top: 2px;
+	font-weight: bold;
+}
+.invasionPoints {
+	top: 14px;
+}
+.invasionLabelWaves {
+	top: 30px;
+	font-weight: bold;
+}
+.invasionWaves {
+	top: 42px;
+}
+
+/* srpingfight */
+#springfight_hl {
+    position:absolute;
+    top:75px;
+    left:0px;
+    text-align:center;
+    width:115px;
+}
+#springfight_mmo {
+    position: absolute;
+    left: -3px;
+    top: 102px;
+    width: 117px;
+    height: 58px;
+}
+#springfight_eic {
+    position: absolute;
+    left: -3px;
+    top: 193px;
+    width: 117px;
+    height: 58px;
+}
+#springfight_vru {
+    position: absolute;
+    left: -3px;
+    top: 285px;
+    width: 117px;
+    height: 58px;
+}
+.springfight {
+    position: absolute;
+    left: 0px;
+    width: 117px;
+    text-align: center;
+}
+
+.sprinfightLabelName {
+    top: 2px;
+    font-weight: bold;
+}
+.springfightIcon {
+    top: 22px;
+}
+.springfightUsername {
+    top: 41px;
+    font-weight: bold;
+}
+.springfightFaction {
+    top: 55px;
+}
+
+#pvpEvent_hl {
+    position:absolute;
+    top:50px;
+    left:0px;
+    text-align:center;
+    width:115px;
+    color: #bcf5fe;
+    font-weight: bold;
+}
+.pvpEvent_topten_points {
+    color: #ba952b;
+}
+#pvpEvent_daily_ranking_topten {
+    position:absolute;
+    top: 90px;
+    left: -5px;
+}
+.pvpEvent_list {
+    padding-left:27px;
+    background-repeat: no-repeat;
+    background-position: 0px -6px;
+}
+.pvpEvent_list li {
+    cursor: pointer;
+    margin-bottom: 1px;
+}
+
+
+/* npcEvent */
+#npcEventContent {
+    margin-left:-3px;
+}
+#npcEvent_hl {
+    position:relative;
+    text-align:center;
+    width:118px;
+    height: 25px;
+    background-color: black;
+    margin-top: 47px;
+}
+#npcEvent_mmo, #npcEvent_eic, #npcEvent_vru {
+    position: relative;
+    width: 118px;
+    height: 58px;
+}
+.npcEvent {
+    position: absolute;
+    left: 0px;
+    width: 117px;
+    text-align: center;
+}
+
+#npcEvent_mmo, #npcEvent_eic, #npcEvent_vru {
+    width:118px;
+    height: 90px;
+}
+
+#npcEvent_mmo {
+    background-image: url(http://localhost/do_es/do_img/global/left/highscore/header_mmo.png);
+}
+#npcEvent_eic {
+    background-image: url(http://localhost/do_es/do_img/global/left/highscore/header_eic.png);
+}
+#npcEvent_vru {
+    background-image: url(http://localhost/do_es/do_img/global/left/highscore/header_vru.png);
+}
+
+.npcEventPoints {
+    top: 60px;
+    font-size: 17px;
+    font-weight: bold;
+}
+#npcEventFooter {
+    margin-top: 3px;
+    width: 118px;
+    height:15px;
+    text-align: center;
+}
+#npcEventFooter a {
+    text-decoration: underline;
+    color: #F1C839;
+    font-weight: bold;
+}
+
+
+#mainContentTable {
+     width: 593px;
+     border: 0px;
+     border-collapse: collapse;
+}
+#mainContentTable_left {
+    width:73px;
+    height:67px;
+}
+#mainContentTable_center {
+    width:278px;
+}
+#mainContentTable_right {
+    width:242px;
+}
+#breakingNews {
+    position:absolute;
+    width:40px;
+    height:34px;
+    margin-top:2px;
+}
+#startRow1 {
+    height: 195px;
+}
+#cell_news {
+    vertical-align: top;
+}
+#div_news {
+    width: 220px;
+    margin-left: 10px;
+    margin-top: 5px;
+    border-collapse: collapse;
+    padding:0px;
+    font-weight:bold;
+}
+#div_news p {
+    text-align:left;
+}
+#div_news li {
+    list-style-type: disc;
+    margin-left:15px;
+}
+#cell_userInfo {
+    vertical-align:top;
+    padding-top:3px;
+    line-height: 13px;
+}
+
+#div_ranking {
+    width: 235px;
+    height: 120px;
+    overflow:auto;
+}
+#table_ranking {
+    width: 220px;
+    margin-top: 0px;
+    margin-left: 5px;
+    overflow: visible;
+    border-collapse: collapse;
+    line-height: 11px;
+}
+#table_ranking td {
+    padding: 0px;
+}
+.table_ranking_right {
+    text-align: right;
+}
+.table_ranking_center span {
+    margin-left:2px;
+}
+#table_history {
+    margin-left:10px;
+    border-collapse: collapse;
+}
+#text_history {
+    width:230px;
+    height:98px;
+    overflow:auto;
+}
+#text_history_guestUser {
+    width: 230px;
+    height: 98px;
+    font-weight: bold;
+    text-align: center;
+}
+#text_history_guestUser a {
+    font-size: 18px;
+    text-decoration: underline;
+    color: #F1C839
+}
+
+/* Breaking News */
+#breakingNewsContainer {
+    position: absolute;
+    left: 72px;
+    top: 70px;
+    width: 244px;
+    height: 128px;
+}
+#breakingNewsContainerHelper {
+    position: absolute;
+    left: 72px;
+    top: 70px;
+    width: 244px;
+    height: 128px;
+}
+#breakingNewsContainerFrame {
+    position: absolute;
+    left: 72px;
+    top: 70px;
+    width: 244px;
+    height: 128px;
+    background-image: url(http://localhost/do_es/do_img/global/events/frame.png);
+    z-index: 3;
+    cursor: pointer;
+}
+#breakingNewsIconContainer {
+    position: absolute;
+    left: 92px;
+    top: 167px;
+    width: 214px;
+    height: 20px;
+    z-index: 5;
+}
+#breakingNewsIconContainer .breakingNewsIcon {
+    width: 20px;
+    height: 20px;
+    float: right;
+    z-index: 6;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.breakingNewsTitleContainer {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 238px;
+    height: 24px;
+    overflow: hidden;
+}
+.breakingNewsTitle {
+    position: absolute;
+    left: 12px;
+    top: 8px;
+    color: #dcdcdc;
+    font-weight: bold;
+    font-size: 12px;
+    width: 2000px;
+}
+
+.breakingNewsHighlightBlue {
+    color: #06c9ff;
+}
+
+/* Layer */
+#galaxyGatesEvent_layer_close {
+    width: 25px;
+    height: 22px;
+    float:right;
+    cursor: pointer;
+}
+#galaxyGatesEvent_layer_content {
+    position: absolute;
+    width: 390px;
+    height: 265px;
+    overflow: auto;
+    top: 270px;
+    left: 52px;
+    overflow: auto;
+}
+#percentBoosterEvent_layer_close {
+    width: 25px;
+    height: 22px;
+    float:right;
+    cursor: pointer;
+}
+#percentBoosterEvent_layer_content {
+    position: absolute;
+    width: 390px;
+    height: 265px;
+    overflow: auto;
+    top: 270px;
+    left: 52px;
+    overflow: auto;
+    cursor:pointer;
+}
+#percentBoosterEvent_layer_content ul {
+    margin-left: 20px;
+}
+#percentBoosterEvent_layer_content li {
+    list-style-type: circle;
+}
+
+#blueGoliathEvent_layer_close {
+    width: 25px;
+    height: 22px;
+    float:right;
+    cursor: pointer;
+}
+#blueGoliathEvent_layer_content {
+    position: absolute;
+    width: 385px;
+    height: 240px;
+    overflow: auto;
+    top: 155px;
+    left: 52px;
+    overflow: auto;
+    cursor:pointer;
+}
+#enforcerEvent_layer_close {
+    width: 25px;
+    height: 22px;
+    float:right;
+    cursor: pointer;
+}
+#enforcerEvent_layer_content {
+    position: absolute;
+    width: 385px;
+    height: 240px;
+    overflow: auto;
+    top: 155px;
+    left: 52px;
+    overflow: auto;
+    cursor:pointer;
+    overflow: auto;
+}
+
+
+#teaser_soccer_2010 {
+    background-image: url(http://localhost/do_es/do_img/global/left/overlay_soccer_2010.png);
+    height:72px;
+    left:-30px;
+    top:364px;
+    width:157px;
+    position: relative;
+}
+
+#teaser_left {
+    float:right;
+    width:127px;
+    height:439px;
+    padding-left:30px;
+}
+#independenceDay2010News {
+    position: relative;
+    float:right;
+    text-align: left;
+    width:127px;
+    height:439px;
+    padding-left:30px;
+}
+#independenceDay2010News_text {
+    position: absolute;
+    top: 90px;
+    width: 112px;
+    text-align: center;
+    z-index: 10;
+}#independenceDay2010NewsTeasertext {
+    position: absolute;
+    top: 90px;
+    width: 112px;
+    z-index: 10;
+}
+#link_wm2010 {
+    width:157px;
+    height:72px;
+    display:block;
+}
+
+
+
+#bettingGames {
+    position:absolute;
+    left:0px;
+    top:50px;
+    background-position:0 0px;
+    display:none;
+    text-align:left;
+    z-index:1000;
+}
+#bettingGame_info {
+    width: 390px;
+    margin: 115px 0px 0px 27px;
+}
+#bettingGame_info p {
+    margin-bottom: 11px;
+}
+#bettingGame_select {
+    margin: auto;
+    margin-top:20px;
+    width: 249px;
+    height: 101px;
+    background-image: url(http://localhost/do_es/do_img/global/layer/bettingGame_select_bg.png);
+}
+#bettingGame_select_inner {
+    padding: 13px 0px 0px 25px;
+}
+#bettingGame_select_inner input[type='radio'] {
+    margin: 5px 0px;
+}
+#bettingGame_select_inner label {
+    margin-left: 10px;
+}
+#bettingGame_bet {
+    margin-top: 15px;
+}
+
+.input_bet {
+    width: 45px;
+    height:14px;
+    text-align:center;
+}
+#game_bet_code_1, #game_bet_code_2 {
+    font-weight: bold;
+    font-size: 13px;
+}
+#bettingGames_butSave {
+    position: absolute;
+    top: 500px;
+    left: 104px;
+    text-align: center;
+    line-height: 47px;
+    font-weight: bold;
+    width: 241px;
+    height: 58px;
+    background-image: url(http://localhost/do_es/do_img/global/layer/bettingGame_but_0.png);
+}
+#bettingGames_butSave :hover {
+    background-image: url(http://localhost/do_es/do_img/global/layer/bettingGame_but_1.png);
+}
+#bettingGame_send {
+}
+#bettingGame_seperator {
+    width:15px;text-align:center;color: #FFFFFF;font-size:20px;line-height:20px;
+}
+#game_bet_flag_1 {
+    float:right;
+    width:56px;
+    height:40px;
+    margin:auto;
+    background-image: url(http://localhost/do_es/do_img/global/flaggen/soccerlayer/GHA.png);
+}
+#game_bet_flag_2 {
+    width:56px;
+    height:40px;
+    margin:auto;
+    background-image: url(http://localhost/do_es/do_img/global/flaggen/soccerlayer/ARG.png);
+}
+.game_bet_col {
+    width:30px;
+}
+
+#breakingnews_image {
+    margin: 20px 0;
+}

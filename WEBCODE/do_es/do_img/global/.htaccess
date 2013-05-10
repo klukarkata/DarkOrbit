@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+## USER IP BANNING
+<Limit GET POST>
+ order allow,deny
+ #deny from 127.0.0.1
+ #deny from 127.0.0.1
+ allow from all
+</Limit>
+
+RewriteRule ^text.esg$ text.php [L]

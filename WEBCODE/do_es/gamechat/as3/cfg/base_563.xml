@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xml>
+  <vars>
+    <variable key="host" value="127.0.0.1"/>
+    <variable key="port" value="9338"/>
+  </vars>
+</xml>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filecollection>
+    <location path="loadingscreen/" id="loadingscreen"/>
+    <location path="loadingscreen/img/" id="loadingscreen_img"/>
+    <location path="loadingscreen/swf/" id="loadingscreen_swf"/>
+    <file version="1" type="jpg" name="bg_loadingscreen_750x600" location="loadingscreen_img" id="bg_loadingscreen_750x600" hash="bc1c90318fb2065feddd11f7c49bc500" debugView="false"/>
+    <file version="1" type="swf" name="scrollbar" location="loadingscreen_swf" id="scrollbar" hash="2d8a9be7993c43fc4dc54122deb03200" debugView="false"/>
+    <file version="1" type="jpg" name="bg_loadingscreen_1024x720" location="loadingscreen_img" id="bg_loadingscreen_1024x720" hash="d0a4acf9dfd9b5e347398e94cb2b5800" debugView="false"/>
+    <file version="1" type="jpg" name="bg_loadingscreen_820x600" location="loadingscreen_img" id="bg_loadingscreen_820x600" hash="da97bd615363381e68a899f105bf6700" debugView="false"/>
+    <file version="1" type="jpg" name="bg_loadingscreen_1280x720" location="loadingscreen_img" id="bg_loadingscreen_1280x720" hash="c74c36f0996dc1636ab54d589ae5f900" debugView="false"/>
+    <file version="1" type="jpg" name="bg_loadingscreen_1280x900" location="loadingscreen_img" id="bg_loadingscreen_1280x900" hash="4a3291876b6f2e541cf5acec0f10e300" debugView="false"/>
+    <file version="1" type="jpg" name="bg_loadingscreen_1024x576" location="loadingscreen_img" id="bg_loadingscreen_1024x576" hash="7dfb2947aed3adebafd4fdee8f5f8000" debugView="false"/>
+    <file version="1" type="swf" name="uiAssets" location="loadingscreen_swf" id="uiAssets" hash="40a04994b0c760765ed1d0a5351d0f00" debugView="false"/>
+</filecollection>

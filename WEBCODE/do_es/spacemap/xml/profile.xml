@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile>
+	<qualityLowLimit>14</qualityLowLimit>
+	<intervalLength>20000</intervalLength>
+	<notificationSteps>
+		<notificationStep value="3" />
+		<notificationStep value="4" />
+		<notificationStep value="6" />
+	</notificationSteps>
+</profile>

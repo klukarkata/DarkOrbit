@@ -1,0 +1,77 @@
+/*
+ note, the : must be directly after the property name
+ flash will not recognize this:	
+ color		: #00ff00;
+ 
+ this is correct:
+ color:		#00ff00;
+ 
+ - don't use the px suffix for the fontSize
+ - all fontsizes should be the same size
+ 
+ kthxbye
+ jmankopf
+ */
+.sender
+{
+	fontFamily: 			_sans;
+	fontWeight: 			bold;
+	fontSize: 				11;
+	color: 					#A6DCF9;
+	
+}
+
+.text
+{
+	fontFamily: 			_sans;
+	fontSize: 				11;
+	color: 					#eeeeee;
+	
+}
+
+.highlight
+{
+	fontFamily: 			_sans;
+	fontSize: 				11;
+	color: 					#55ff55;/*55ff55*/
+}
+
+.supporter
+{
+	fontFamily: 			_sans;
+	fontWeight: 			bold;
+	fontSize: 				11;
+	color: 					#ef0808;
+}
+
+.mod
+{
+	fontFamily: 			_sans;
+	fontWeight: 			bold;
+	fontSize: 				10;
+	color: 					#F5B829;
+}
+
+.system
+{
+	fontFamily: 			_sans;
+	fontWeight: 			bold;
+	fontSize: 			11;
+	color: 				#ffe538;
+}
+
+.whisper
+{
+	fontFamily: 			_sans;
+	fontSize: 				11;
+	color: 					#880000;
+}
+
+.link
+{
+	fontFamily: 			_sans;
+	fontSize: 				11;
+	color: 					#ff00ff;
+	fontStyle: 				normal;
+	textDecoration: 		underline;
+}

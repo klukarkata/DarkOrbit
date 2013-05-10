@@ -1,0 +1,110 @@
+#container_main {
+    width: 829px;
+    height: 663px;
+    background-image: url(http://localhost/do_es/do_img/global/bg_companyChoose.jpg);
+    margin: auto;
+    position: relative;
+}
+
+#headline {
+    position: relative;
+    color: #a6f8fa;
+    font-weight: bold;
+    font-size: 16px;
+    top: 185px;
+    text-align: center;
+    width: 500px;
+    margin: auto;
+}
+
+#company_1, #company_2, #company_3 {
+    cursor: pointer;
+    position: relative;
+    width: 202px;
+    height: 385px;
+    top: 208px;
+    float: left;
+}
+#company_1 {
+    left: 98px;
+}
+#company_2 {
+    left: 111px;
+}
+#company_3 {
+    left: 127px;
+}
+#company_1:hover {
+    background-image: url(http://localhost/do_es/do_img/global/companyChoose/bg_1_over.jpg);
+}
+#company_2:hover {
+    background-image: url(http://localhost/do_es/do_img/global/companyChoose/bg_2_over.jpg);
+}
+#company_3:hover {
+    background-image: url(http://localhost/do_es/do_img/global/companyChoose/bg_3_over.jpg);
+}
+#logo_1, #logo_2, #logo_3 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 4px;
+}
+#logo_1 {
+    left:49px;
+    /*background-image: url(../do_img/global/companyChoose/logo_1.jpg);*/
+}
+#logo_2 {
+    left: 58px;
+    /*background-image: url(../do_img/global/companyChoose/logo_2.jpg);*/
+}
+#logo_3 {
+    left: 59px;
+    top: 4px;
+    /*background-image: url(../do_img/global/companyChoose/logo_3.jpg);*/
+}
+
+#text_1, #text_2, #text_3 {
+    position: absolute;
+    text-align: left;
+    height: 145px;
+    overflow: auto;
+    margin: 10px;
+    top: 98px;
+    color: #909090;
+    left: 4px;
+    width: 182px;
+}
+
+.faction_info {
+    font-size: 11px;
+    color: #FFFFFF;
+}
+
+#button_1, #button_2, #button_3 {
+    position: absolute;
+    width: 100px;
+    height: 29px;
+    line-height: 29px;
+    background-image: url(http://localhost/do_es/do_img/global/companyChoose/choose.png);
+    margin: auto;
+    top: 345px;
+    left: 53px;
+}
+#button_1:hover, #button_2:hover, #button_3:hover {
+    background-image: url(http://localhost/do_es/do_img/global/companyChoose/choose_active.png);
+}
+#button_1 {
+
+}
+#button_2 {
+
+}
+#button_3 {
+
+}
+.font_choose            { font-size: 12px; color: #909090;font-weight: bold}
+.font_choose b          { font-weight:bold;}
+.font_choose a          { color: #909090;text-decoration:none;display: block;}
+.font_choose a:link     { color: #909090;}
+.font_choose a:visited  { color: #909090;}
+.font_choose a:hover    { color: #FFFFFF;}

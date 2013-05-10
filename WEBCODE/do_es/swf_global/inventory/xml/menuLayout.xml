@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--The main Tab Menu for a given Configuration will contain two sections: Ship and Drones-->
+<accordionMenu>
+	
+<!--The Ship Section contains all items separated by type, such as Lasers, Rockets, etc-->
+	<tab title="ship">
+		<!--Each Sub-Section contains dynamic content, not defined here -->
+<!--		<subSection title="Lasers">		</subSection>-->
+<!--		<subSection title="Rockets">	</subSection>-->
+<!--		<subSection title="Generators">	</subSection>-->
+<!--		<subSection title="Extras">		</subSection>-->
+<!--		<subSection title="Junk">		</subSection>-->
+<!--		<subSection title="">			</subSection>-->
+	</tab>
+	
+	<tab title="drone">
+<!--		<subSection title="Drone 1">	</subSection>-->
+<!--		<subSection title="Drone 2">	</subSection>-->
+<!--		<subSection title="Drone 3">	</subSection>-->
+<!--		<subSection title="Drone 4">	</subSection>-->
+<!--		<subSection title="Drone 5">	</subSection>-->
+<!--		<subSection title="">			</subSection>-->
+	</tab>
+	
+	<tab title="pet">
+	
+	</tab>
+	
+	<inventory title="Inventory">
+		<subSection title="Equipment">		</subSection>
+		<subSection title="Ammunition">	</subSection>
+		<subSection title="Resources">	</subSection>
+		<subSection title="Extras">		</subSection>
+		<subSection title="Junk">		</subSection>
+		<subSection title="">			</subSection>
+	</inventory>
+	
+	<inventoryButtons>
+		<button title="SELL"></button>
+		<button title="REPAIR"></button>
+		<button title="QUICK BUY"></button>
+	</inventoryButtons>
+</accordionMenu>

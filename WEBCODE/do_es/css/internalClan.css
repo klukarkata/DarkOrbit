@@ -1,0 +1,1071 @@
+@charset "utf-8";
+
+
+#inner-cont {   margin:25px 0 0 75px;width:535px;position:relative}
+
+.abstand {
+    height:5px;
+}
+
+/* #######################################################*/
+/* Clan, no-member #######################################*/
+/* #######################################################*/
+.noMemb-block-1 {  height:235px;overflow:auto;}
+.noMemb-block-2 {  height:140px;overflow:auto;}
+.intro-1 {  margin:5px 0 5px 10px;}
+.intro-2 {  height:15px;line-height:15px;margin:0 0 0 3px;}
+.clan-list              {width:152px;height:17px;background-color:#787878;}
+.clan-list-percent      {width:50px;height:17px;background-color:#787878;border:1px dotted black;}
+.clan-search    {   width:200px;height:16px;margin-top:1px;background-color:#565656;border:1px dotted black;}
+.clan-textfeld      {   width:506px;height:34px;border:1px dotted black;background-color:#565656;}
+.clan-name          {   width:138px;height:16px;line-height:16px;padding:2px 5px 0 5px;border:1px dotted black;background-color:#565656;font-weight:bold;}
+.clan-tag           {   width:50px;height:16px;line-height:16px;padding:2px 5px 0 5px;border:1px dotted black;background-color:#565656;font-weight:bold;text-align: center;}
+
+.clan-info-row      {   float:left;width:98%;background-image: url(/do_img/global/clan/bg_info_table.jpg?__cv=fa573f18c5cab793f4363f288f33ed00);background-repeat:no-repeat;}
+.clan-info-1st      {   float:left;width:150px;height:16px;line-height:14px;overflow:hidden;padding:0 5px;}
+.clan-info-2nd      {   float:left;height:16px;line-height:14px;overflow:hidden;padding:0 5px;}
+
+.clan-info-row-big-1      {   float:left;width:96%;min-height:16px;line-height:14px;background-image: url(/do_img/global/clan/bg_info_table_big.jpg?__cv=12956a739b23572a6d502b26ec1f1300);background-repeat:repeat-y;}
+.clan-info-row-big-2      {   float:left;width:96%;min-height:16px;line-height:14px;}
+
+.info-clantext  {   width:517px;height:46px;
+                    background-image:url(../do_img/global/clan/bg_info_text.jpg);
+                    padding:3px 5px 5px 5px;
+                    overflow:auto;}
+#newclanName {
+    background-color:#565656;
+    border:1px dotted black;
+    font-weight:bold;
+    height:16px;
+    line-height:16px;
+    padding:2px 5px 0;
+    width:138px;
+}
+
+/* #######################################################*/
+/* Clan, member ##########################################*/
+/* #######################################################*/
+
+#member_all {
+    position: absolute;
+    top:26px;
+    left:3px;
+    width:520px;
+    height:230px;
+    overflow:auto;
+}
+
+#member_new {
+    position: absolute;
+    top:290px;
+    left:3px;
+    width:520px;
+    height:88px;
+    overflow:auto;
+}
+
+#clanInfo {
+    width:430px;margin-top:7px;
+}
+#clanInfo_headline {
+    position:absolute;
+    top:4px;
+}
+#clanInfo_data {
+    position:absolute;
+    top:20px;
+    width:410px;
+    height:151px;
+    padding:8px 0 0 6px;
+    overflow:auto;
+}
+#clanImage {
+    position:absolute;
+    top:4px;
+    left:430px;
+}
+#clanImage_picture {
+    width:100px;height:96px;text-align:center;
+}
+#clanImage_picture img {
+     margin-top:11px;
+}
+#box_clan_text {
+    position:absolute;
+    top:180px;
+}
+#box_clan_news {
+    position:absolute;
+    top:260px;
+}
+.box_clan_news_date {
+    float:left;
+    width:75px;
+}
+.box_clan_news_data {
+    float:left;
+    width:390px;
+}
+#clanSearch {
+    position:absolute;
+    top:345px;
+}
+
+#member_headline {
+    position: absolute;
+    top: -2px;
+    width:525px;
+}
+#member_headline_img {
+    float:left;margin:8px 0 4px 0;
+}
+#member_headline_link {
+    float:right;width:170px;
+}
+#candidates_headline {
+    position: absolute;
+    top:270px;
+    width:525px;
+}
+#candidate_headline_img {
+
+}
+#member_inactive {
+    position:absolute;
+    top:385px;
+    width:525px;
+    height:15px;
+    overflow:auto;
+}
+
+.member_view_1 {
+    width:100%;
+    margin-bottom:1px;
+}
+
+.member_view_1 tr{
+    height:17px;
+}
+.member_all_td1 {
+    vertical-align: top;
+    width:210px;padding-left:10px;
+}
+.member_all_td2 {
+    vertical-align: top;
+    width:170px;
+}
+.member_all_td3 {
+    vertical-align: top;
+    width:145px;
+}
+
+#edit_clanrights {
+    width:489px;
+}
+.edit_clanrights_01 { width:164px;height:45px;}
+.edit_clanrights_02 { width:24px;vertical-align:middle;padding-top:10px;text-align:center;}
+.edit_clanrights_03,.edit_clanrights_04,.edit_clanrights_05,.edit_clanrights_06,.edit_clanrights_07,.edit_clanrights_08,.edit_clanrights_09,.edit_clanrights_10,.edit_clanrights_11 { width:24px;padding-top:10px;text-align:center;}
+.edit_clanrights_12 { width:85px;text-align:right;vertical-align:top;}
+
+#newRank {
+    width:133px;height:17px;border:none;background-color:transparent;margin:5px 0 0 15px;padding:4px 5px 0 5px;
+}
+#editClanrights_foot {
+    position: absolute;
+    top:290px;
+    width:100%;
+}
+.editMember_list {
+    width:352px;
+    height:186px;
+    left:25px;
+    top:25px;
+    position:absolute;
+    background-image: url(/do_img/global/clan/bg_member.jpg?__cv=6734305c1a45777ae4d55f66d0cc1b00);
+    display:none;
+    z-index:2
+}
+#clanConfirmationLayer.editMember_list {
+    background-image: url(/do_img/global/clan/info_bg_standard.jpg?__cv=e110484832cb46ace456ab360d621c00);
+}
+#clanConfirmationLayer #confirmationText {
+    margin: 20px 0 0 35px;
+    width: 280px;
+    height: 60px;
+}
+.editMember_headline_close {
+    float:right;padding:8px 8px 0 0;
+}
+.editMember_headline_img {
+    float:left;padding:16px 0 0 16px;
+}
+.editMember_username {
+    width:160px;margin:9px 0 0 20px;
+}
+.editMember_label {
+    float:left;width:100px;margin:20px 0 0 20px;
+}
+.editMeber_choose {
+    float:left;margin-top:18px;
+}
+.editMember_kick {
+    margin:20px 0 0 20px;
+}
+.editMember_foot {
+    position:absolute;
+    top:150px;
+    width:100%;
+}
+
+#changeLeader {
+    position:absolute;
+    left:25px;
+    top:25px;
+    height:186px;
+    background-image: url(/do_img/global/clan/bg_member.jpg?__cv=6734305c1a45777ae4d55f66d0cc1b00);
+    display:none;
+    z-index:50;
+}
+
+#changeLeader_headline_close {
+    float:right;padding:8px 8px 0 0;
+}
+#changeLeader_headline_img {
+    float:left;padding:16px 0 0 16px;
+}
+#changeLeader_username {
+    width:160px;margin:9px 0 0 20px;
+}
+#changeLeader_label {
+    float:left;width:100px;margin:20px 0 0 20px;
+}
+#changeLeader_choose {
+    float:left;margin-top:18px;
+}
+#changeLeader_foot {
+    position: absolute;
+    top:150px;
+    width:100%;
+}
+
+.candidate_list {
+    height:186px;
+    left:25px;
+    top:25px;
+    position:absolute;
+    background-image: url(/do_img/global/clan/bg_bewerbung.jpg?__cv=d2d00968557745e088e8e64050090e00);
+    display:none;
+    z-index:2
+}
+.candidate_headline_close {
+    float:right;padding:8px 8px 0 0;
+}
+.candidate_headline_img {
+    float:left;padding:16px 0 0 16px;
+}
+.candidate_username {
+    width:285px;
+    height:23px;
+    line-height:23px;
+    padding:0 5px;
+    margin:4px 0 0 23px;
+}
+.candidate_description {
+    width:285px;
+    height:60px;
+    padding:0 5px;
+    margin:25px 0 0 23px;
+    overflow:auto;
+}
+.candidate_foot {
+    margin-top:10px;
+}
+/* #######################################################*/
+/* Clan, mail ############################################*/
+/* #######################################################*/
+#mail_headline {
+    position: absolute;
+    top:4px;
+    width:100%;
+}
+
+#mail_all {
+    position: absolute;
+    top: 23px;
+    width:523px;
+    height:193px;
+    margin:2px 0 0 3px;
+    overflow:auto;
+}
+
+.mail_list_first_1 {
+    height:16px;
+    padding-top:2px;
+    background-image: url(/do_img/global/clan/bg_member_1.jpg?__cv=6fbbdcbf51d02b80ae683fd027383d00);
+    background-repeat:no-repeat;
+}
+.mail_list_first_2 {
+    height:16px;
+    padding-top:2px;
+    background-image: url(/do_img/global/clan/bg_member_2.jpg?__cv=fc5e5c612aca5bc55aa9eaa433c74700);
+    background-repeat:no-repeat;
+}
+
+.mail_list_second {
+    height:16px;
+    background-image: url(/do_img/global/clan/bg_member_2.jpg?__cv=fc5e5c612aca5bc55aa9eaa433c74700);
+    background-repeat:no-repeat;
+    padding-top:2px;
+    margin-top:-2px;
+}
+/* fix fÃ¼r ie7*/
+*+html .mail_list_second { margin-top:-6px; }
+/* fix fÃ¼r ie6*/
+* html .mail_list_second { margin-top:-6px; }
+
+.mail_list_first_1 div, .mail_list_first_2 div, .mail_list_second div {
+    float: left;
+    height: 16px;
+}
+
+#message_view_subject       {
+    position: absolute;
+    top:242px;
+    height:18px;
+    line-height:18px;
+    width:515px;
+    padding-left:5px;
+    overflow:auto;
+}
+#message_view_text          {
+    position: absolute;
+    top:273px;
+    width: 515px;
+    height:90px;
+    padding:5px;
+    overflow:auto;}
+
+#news_betreff {
+    position: absolute;
+    top:30px;
+    left:24px;
+}
+#news_an {
+    position: absolute;
+    top:30px;
+    left:140px;
+}
+#news_recipient {
+    position: absolute;
+    top:26px;
+    left:162px;
+}
+#news_betreff_text {
+    position:absolute;
+    top:50px;
+    left:29px;
+    height:17px;
+}
+
+#news_msgText {
+    left:29px;
+    position:absolute;
+    top:80px;
+}
+#news_msgText textarea{  width:288px;height:58px;background:none;border:none;}
+
+/*#news_bottom {*/
+    /*position:absolute;*/
+    /*top:154px;*/
+    /*width: 100%;*/
+/*}*/
+.news_send {    float:left;width:175px;text-align:center;}
+#news_send_button {
+    width:99px;
+    height:13px;
+    padding-top:2px;
+    background-image: url(/do_img/global/clan/bg_button.gif?__cv=64bbe91ffda8d3988dd016c99cf47800);text-align:center;margin:auto;}
+.news_cancel {  float:left;width:150px;text-align:center;}
+#news_cancel_button {
+    width:99px;
+    height:13px;
+    padding-top:2px;
+    background-image: url(/do_img/global/clan/bg_button.gif?__cv=64bbe91ffda8d3988dd016c99cf47800);text-align:center;margin:auto;}
+
+#mail_new_mail {
+    position:absolute;
+    top:372px;
+}
+
+#newMail {
+    position:absolute;
+    top:25px;
+    left:25px;
+    height:186px;
+    background-image: url(/do_img/global/clan/bg_new_mail.jpg?__cv=627317198196b70b60936f5c7410cc00);
+    display:none;
+    z-index:2
+}
+#newMail_close {
+    float:right;padding:8px 8px 0 0;
+}
+#newMail_headline {
+    float:left;padding:10px 0 0 16px;
+}
+/* #######################################################*/
+/* Clan, Admin ###########################################*/
+/* #######################################################*/
+.admin_list_first {
+    height:16px;
+    padding-top:2px;
+    margin-left:2px;
+}
+.admin_list_first div {
+    float:left;
+    height:16px;
+    /*border: 1px solid red;*/
+}
+.admin_list_second {
+    height:16px;
+    padding:2px 0 0 5px;
+    margin-left:2px;
+    /*border: 1px solid red;*/
+}
+.admin_list_second_chrome {
+    margin-top: -12px;;
+}
+.admin_list_cash_first {
+    height:16px;
+    padding-top:2px;
+    margin-left:2px;
+    background-image: url(/do_img/global/clan/bg_member_2.jpg?__cv=fc5e5c612aca5bc55aa9eaa433c74700);
+    background-repeat:no-repeat;
+}
+.admin_list_cash_second {
+    height:16px;
+    padding-top:2px;
+    margin:0 0 5px 2px;
+    background-image: url(/do_img/global/clan/bg_member_2.jpg?__cv=fc5e5c612aca5bc55aa9eaa433c74700);
+    background-repeat:no-repeat;
+}
+.admin_list_cash_first div, .admin_list_cash_second div {
+    float:left;
+}
+
+.foo_test {
+        border:1px solid red;
+        width:100px;
+        }
+
+#showUserSearch {
+    width:200px;
+    max-height:200px;overflow: auto;
+    overflow:auto;
+    border:1px solid white;
+    display:none;
+    z-index:1;
+    background-color:#565656;
+    border:1px solid #1a1a1a;
+    position:absolute
+}
+#showUserSearch1 {
+    position:absolute;
+    overflow:auto;
+    border: 1px solid white;
+    display:none;
+    z-index:1;
+    margin-left:200px;
+    border:1px solid #1a1a1a;
+    width:152px;background-color:#787878;border:1px dotted black;
+}
+
+.clan_rankinfo   {
+    position:absolute;
+    display:none;
+    background:#000000;
+    filter:alpha(opacity=75); -moz-opacity: 0.75;
+    border:1px solid #FFFFFF;
+    text-align:center;
+    padding:10px 0;
+    padding:10px 20px;
+}
+
+/* #######################################################*/
+/* Clan, Diplomacy #######################################*/
+/* #######################################################*/
+#diplo_all_headline {
+    position: absolute;
+    top: 6px;
+}
+
+#diplo_all {
+    position: absolute;
+    top: 25px;
+    left: 3px;
+    width:523px;
+    height:148px;
+    overflow:auto;
+}
+
+#diplo_new_headline {
+    position: absolute;
+    top:182px;
+}
+#diplo_new {
+    position: absolute;
+    top: 200px;
+    width:523px;
+    height:109px;
+    margin:2px 0 0 3px;
+    overflow:auto;
+}
+#diplo_new tr {
+    height:16px;
+}
+
+.diplo-new-1 {
+    width:505px;
+    background-image: url(/do_img/global/clan/bg_member_2.jpg?__cv=fc5e5c612aca5bc55aa9eaa433c74700);background-repeat:no-repeat;
+}
+.diplo-new-2 {
+    width:505px;
+}
+.text-search {
+     width:125px;
+     height:13px;
+     margin:0 10px 0 10px;
+     background-color:#787878;
+}
+*+html .text-search {
+      height:11px;
+      margin-top:-1px;
+}
+
+
+.search-show {
+     position:absolute;
+     width:200px;
+     max-height:200px;
+     margin-left:10px;
+     overflow:auto;
+}
+
+.clan_text {
+     width:522px;
+     height:54px;
+     border:none;
+     margin:7px 0 0 3px;
+     background-color:transparent;
+     text-align:left;
+}
+
+.clan_text_chrome {
+     height:50px;
+}
+
+*+html .clan_text {
+     height:50px;
+}
+.clan_news {
+    width:517px;
+    margin-top:9px;
+    padding:0 5px 0 5px;
+    height:51px;
+    overflow:auto;
+}
+.clan_news_chrome {
+    margin-top: 0;
+}
+#diplo_apply_headline {
+    position: absolute;
+    top: 315px;
+}
+#diplo_apply_content {
+    position: absolute;
+    top: 333px;
+}
+#diplo_reason_headline {
+    position: absolute;
+    top: 352px;
+}
+#diplo_reason_description {
+    position: absolute;
+    top: 366px;
+    width:525px;
+    height:20px;
+    background-color:transparent;
+    border:none;
+}
+
+.diplo_candidate {
+    position:absolute;
+    top:25px;
+    left:25px;
+    height:248px;
+    background-image: url(/do_img/global/clan/bg_new_diplo.jpg?__cv=d04c44fee3a58952633d23f3bfc23b00);
+    display:none;
+    z-index:2
+}
+.diplo_candidate_close {
+    float:right;padding:8px 8px 0 0;
+}
+.diplo_candidate_headline {
+    float:left;padding:16px 0 0 16px;
+}
+.diplo_candidate_clanname {
+    position:absolute;
+    top:33px;
+    left:30px;
+    width:280px;height:23px;line-height:23px;overflow:hidden;
+}
+.diplo_candidate_form_headline {
+    position:absolute;
+    top:58px;
+    left:25px;
+    height:23px;line-height:23px;
+}
+.diplo_candidate_form {
+    position:absolute;
+    top:80px;
+    left:30px;
+    height:23px;line-height:23px;
+}
+.diplo_candidate_description_headline {
+    position:absolute;
+    top:107px;
+    left:25px;
+    height:23px;line-height:23px;
+}
+.diplo_candidate_description {
+    position:absolute;
+    top:131px;
+    left:25px;
+    width:290px;height:62px;overflow:auto;
+}
+.diplo_candidate_foot {
+    position:absolute;
+    top:215px;
+    width:100%
+}
+
+#editRequests {
+    position:absolute;
+    top:25px;
+    left:25px;
+    height:186px;
+    background-image: url(/do_img/global/clan/bg_open_reqests.jpg?__cv=e8fd166553d5111f5d67c19025e47d00);
+    display:none;
+    z-index:2;
+}
+#editRequests_close {
+    float:right;padding:8px 8px 0 0;
+}
+#editRequests_headline {
+    float:left;padding:16px 0 0 16px;
+}
+#editRequests_showAll {
+    position:absolute;
+    top:35px;
+    left:19px;
+    width:344px;height:130px;overflow:auto;
+}
+
+#stopWar {
+    position:absolute;
+    top:25px;
+    left:25px;
+    height:248px;
+    background-image: url(/do_img/global/clan/bg_new_diplo.jpg?__cv=d04c44fee3a58952633d23f3bfc23b00);
+    display:none;
+    z-index:2;
+}
+#stopWar_close {
+    float:right;padding:8px 8px 0 0;
+}
+#stopWar_headline {
+    float:left;padding:16px 0 0 16px;
+}
+#clanName {
+    position: absolute;
+    top:32px;
+    left:30px;
+    width:280px;
+    height:23px;
+    line-height:23px;
+    overflow:hidden;
+}
+#stopWar_form_headline {
+    position: absolute;
+    top:55px;
+    left:25px;
+    height:23px;line-height:23px;
+}
+#stopWar_form_value {
+    position: absolute;
+    top:80px;
+    left:30px;
+    height:23px;line-height:23px;
+}
+#stopWar_desription {
+    position: absolute;
+    top:105px;
+    left:25px;
+    height:23px;line-height:23px;
+}
+#stopWar_footer {
+    position: absolute;
+    top:215px;
+    width:100%;
+}
+/* ################################################### */
+/* ##### ShowClanInfo ################################ */
+/* ################################################### */
+#editClanPic {
+        height:232px;left:25px;top:25px;position:absolute;background-image: url(/do_img/global/clan/bg_popup_pic.jpg?__cv=f9521eaf0ef5d529905711a93068ee00);display:none;z-index:50
+}
+#editClanPic_close {
+    float:right;
+    padding:8px 8px 0 0;
+}
+#editClanPic_headline {
+     float:left;
+     padding:16px 0 0 16px;
+}
+
+.clanInfo_pic           {   float:left;margin:13px 0 0 33px;}
+* html .clanInfo_pic    {   float:left;margin:13px 0 0 17px;}
+.clanInfo_descr {
+                    margin:3px 0 0 137px;
+                    width:194px;
+                    height:90px;
+                    overflow:auto;
+                    padding:3px;}
+
+
+
+.editClanPic_pic        {float:left;margin:12px 0 0 33px;}
+* html .editClanPic_pic {float:left;margin:12px 0 0 16px;}
+.editClanPic_descr      {width:195px;height:115px;margin:10px 0 0 139px;overflow:auto;}
+
+
+.changeInfo_name_title          { height:12px;margin:6px 0 0 20px;}
+.changeInfo_name_input          { width:250px;height:14px;margin:5px 0 0 25px;padding-left:5px;border:none;background-color:transparent;}
+
+.changeInfo_tag_title           { height:12px;margin:7px 0 0 20px;}
+*+html .changeInfo_tag_title    { margin:5px 0 0 20px;} /* IE 7*/
+* html .changeInfo_tag_title    { margin:5px 0 0 20px;} /* IE 6*/
+.changeInfo_tag_input            { width:45px;height:14px;margin:5px 0 0 25px;padding-left:5px;border:none;background-color:transparent;}
+
+.changeInfo_hp_title            { height:15px;margin:8px 0 0 20px;}
+*+html .changeInfo_hp_title     { margin:6px 0 0 20px;}  /* IE 7*/
+* html .changeInfo_hp_title     { margin:5px 0 0 20px;}  /* IE 6*/
+.changeInfo_hp_input            { width:250px;height:14px;margin:1px 0 0 25px;padding-left:5px;border:none;background-color:transparent;}
+
+.changeInfo_ts_title            { height:15px;margin:7px 0 0 20px;}
+*+html .changeInfo_ts_title     { margin:5px 0 0 20px;} /* IE 7*/
+* html .changeInfo_ts_title     { margin:5px 0 0 20px;} /* IE 6*/
+.changeInfo_ts_input            { width:250px;height:14px;margin:2px 0 0 25px;padding-left:5px;border:none;background-color:transparent;}
+
+.changeInfo_footer              { margin-top:60px;}
+* html .changeInfo_footer       { margin-top:60px;} /* IE 6*/
+
+
+#editClanText {
+    height:186px;
+    left:25px;
+    top:25px;
+    position:absolute;
+    background-image: url(/do_img/global/clan/bg_news.jpg?__cv=aba9ea7896840ea21a59b946150d1900);
+    display:none;
+    z-index:50
+}
+#editClanText_close {
+    float:right;padding:8px 8px 0 0;
+}
+#editClanText_headline {
+    float:left;padding:16px 0 0 16px;
+}
+#editClanText_cont {
+    margin:10px 0 0 22px;
+}
+
+#editClanNews {
+    height:186px;
+    left:25px;
+    top:25px;
+    position:absolute;
+    background-image: url(/do_img/global/clan/bg_news.jpg?__cv=aba9ea7896840ea21a59b946150d1900);
+    display:none;
+    z-index:50;
+}
+#editClanNews_close {
+    float:right;padding:8px 8px 0 0;
+}
+#editClanNews_headline {
+    float:left;padding:16px 0 0 16px;
+}
+#editClanNews_cont {
+    margin:10px 0 0 22px;
+}
+#showClanInfo_cont {
+    position: absolute;
+    top:147px;
+    left:27px;
+    width: 305px;
+    height:145px;
+    overflow:auto;
+}
+#showClanInfo_foot {
+    position: absolute;
+    top:307px;
+    width: 100%;
+}
+#showClanInfo_close {
+    width:99px;
+    height:15px;
+    background-image: url(/do_img/global/clan/bg_button.gif?__cv=64bbe91ffda8d3988dd016c99cf47800);
+    text-align:center;
+    margin:auto;
+}
+/* ################################################### */
+/* ##### Verwaltung  ################################# */
+/* ################################################### */
+
+.hl_auszahlungen {margin:13px 0 2px 0;}
+*+html .hl_auszahlungen {margin:13px 0 2px 0;}
+* html .hl_auszahlungen {margin:10px 0 2px 0;}
+
+.hl_grund {margin-top:8px;}
+
+#administrate {
+    width: 525px;
+}
+#administrate_account {
+    position: absolute;
+    top: 3px;
+}
+#administrate_money {
+
+    background-image: url(/do_img/global/clan/bg_member_1.jpg?__cv=6fbbdcbf51d02b80ae683fd027383d00);
+    background-repeat:no-repeat;
+    position: absolute;
+    top: 25px;
+    width:100%;
+}
+#administrate_head_balance {
+    position: absolute;
+    top: 67px;
+}
+/*#cashflow           { width:520px;height:195px;margin:7px 0 0 3px;overflow:auto;}*/
+/**+html #cashflow    { width:520px;height:195px;margin:15px 0 0 3px;overflow:auto;} /* IE 7*/
+/** html #cashflow    { width:520px;height:195px;margin:15px 0 0 3px;overflow:auto;} /* IE 6*/
+
+#cashflow {
+    position: absolute;
+    top: 91px;
+	left:5px;
+    width:520px;height:195px;
+    overflow:auto;
+}
+#administrate_payout_hl {
+    position: absolute;
+    top: 283px;
+}
+#administrate_payout_description {
+    position: absolute;
+    top: 309px;
+}
+#administrate_payout_content {
+    position: absolute;
+    top: 323px;
+}
+#administrate_payout_content_userlist {
+    float:left;
+    margin-left:20px;
+    margin-top: 2px;
+}
+#administrate_payout_reason {
+    position: absolute;
+    top: 342px;
+}
+#administrate_payout_reason_content {
+    position: absolute;
+    top: 368px;
+}
+#administrate_editTax {
+    position:absolute;
+    top:25px;
+    left:25px;
+    height:186px;
+    background-image: url(/do_img/global/clan/bg_change_tax.jpg?__cv=aa558b7a167ee2d64b824f438223bf00);
+    display:none;
+    z-index:2
+}
+#administrate_editTax_close {
+    float:right;padding:8px 8px 0 0;
+}
+#administrate_editTax_headline {
+    float:left;padding:16px 0 0 16px;
+}
+#administrate_editTax_description {
+    margin:15px 0 0 30px;width:290px;height:50px;
+    overflow:auto;
+}
+#administrate_editTax_taxrate {
+    float:left;margin:18px 10px 0 30px;
+}
+#administrate_editTax_changeTaxrate {
+    float:left;margin-top:15px;
+}
+#administrate_editTax_foot {
+    position:absolute;
+    top:153px;
+    width:100%;
+}
+
+/* ################################################### */
+/* ##### Clanlist-Navi  ############################## */
+/* ################################################### */
+.clanlist_navi              {    font-size: 11px;color:#a1c8e7;cursor:pointer;margin-right:3px;}
+.clanlist_navi a            {    color:#a1c8e7;text-decoration:underline;}
+.clanlist_navi a:link       {    color:#a1c8e7;}
+.clanlist_navi a:visited    {    color:#a1c8e7;}
+.clanlist_navi a:hover      {    color:#a1c8e7;cursor:pointer;}
+
+#editClaninfo {
+    left:25px;
+    top:25px;
+    height:288px;
+    position:absolute;
+    background-image: url(/do_img/global/clan/bg_claninfo_edit.jpg?__cv=027e5f63423c080149e39dfbb5c75700);
+    z-index:50;
+    display:none;
+}
+#editClaninfo_close {
+    float:right;
+    padding:8px 8px 0 0;
+}
+#editClaninfo_headline {
+    float:left;
+    padding:16px 0 0 16px;
+}
+#editClaninfo_faction {
+    float:left;
+    width:160px;
+    margin:20px 0 0 20px;
+}
+#editClaninfo_faction_choose {
+    float:left;
+    margin-top:18px;
+}
+#send_button {
+    width:99px;
+    height:13px;
+    padding-top:2px;
+    text-align:center;
+    margin-top: -2px;
+    display:block;
+}
+.send_button {
+    width:99px;
+    height:13px;
+    padding-top:2px;
+    background-image: url(/do_img/global/clan/bg_button.gif?__cv=64bbe91ffda8d3988dd016c99cf47800);
+    text-align:center;
+    margin:auto;
+}
+#close_button {
+    width:99px;
+    height:13px;
+    padding-top:2px;
+    background-image: url(/do_img/global/clan/bg_button.gif?__cv=64bbe91ffda8d3988dd016c99cf47800);
+    text-align:center;
+    margin:auto;
+}
+.close_button {
+    width:99px;
+    height:13px;
+    padding-top:2px;
+    background-image: url(/do_img/global/clan/bg_button.gif?__cv=64bbe91ffda8d3988dd016c99cf47800);
+    text-align:center;
+    margin:auto;
+}
+
+
+/* ################################################### */
+/* ##### ChangeFirm  ################################# */
+/* ################################################### */
+
+#changeFirm_headline {
+    position: absolute;
+    top: 8px;
+}
+#changeFirm_myFirm {
+    position: absolute;
+    top: 25px;
+    left:-2px;
+}
+#changeFirm_myFirm_image {
+    float:left;
+    width:150px;
+}
+#changeFirm_myFirm_name {
+    float:left;
+    line-height: 115px;
+}
+#changeFirm_history {
+    position: absolute;
+    top: 150px;
+    width:90%;
+    margin:15px 0 0 25px;
+}
+#changeFirm_history_left {
+    float:left;
+    width:50%;
+}
+#changeFirm_history_right {
+    float:left;
+    width:50%;
+}
+#changeFirm {
+    position: absolute;
+    top:259px;
+    left: -8px;
+}
+#changeFaction_all {
+    float:left;
+}
+#changeFaction_all img{
+    float:left;
+}
+#changeFirm_info {
+    float:left;
+    width:245px;
+    height:115px;
+    text-align:center;
+    background-image: url(/do_img/global/changeFaction/company_bg_center.jpg?__cv=0583811b53bcd696c5c475f779501d00);
+    font-weight: bold;
+    padding: 0 10px;
+}
+#changeFirm_info p {
+    margin-top:10px;
+}
+
+#diploForm {
+     width: 75px;
+     height: 19px;
+}
+
+#msgUserID {
+    width:155px;
+    background-color:#787878;
+    margin-top: 1px;
+    height: 17px;
+}
+.send_button_clanPic {
+    display:block;
+}
+.admin_list_first_row1 {
+    width:250px;
+    padding-left:5px;
+}

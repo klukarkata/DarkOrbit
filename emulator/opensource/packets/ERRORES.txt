@@ -1,0 +1,48 @@
+            switch(_loc_3[0])
+            {
+                case ServerCommands.ERROR:
+                {
+                    _loc_175 = int(_loc_3[1]);
+                    switch(_loc_175)
+                    {
+                        case ServerCommands.NO_HITPOINTS:
+                        {
+                            Hero.isKilled = true;
+                            if (this.xmlSocket.connected)
+                            {
+                                this.main.setScheduledDisconnect(true);
+                                this.xmlSocket.close();
+                            }
+                            this.main.getGuiManager().removeConnectionWindow();
+                            TweenMax.delayedCall(2, this.main.getGuiManager().showHeroDestroyedWindow);
+                            break;
+                        }
+                        case ServerCommands.NOT_LOGGED_IN:
+                        {
+                            this.main.setScheduledDisconnect(true);
+                            this.main.getGuiManager().removeConnectionWindow();
+                            this.main.screenManager.showSimpleMessage(BPLocale.getText("notloggedin"));
+                            break;
+                        }
+                        case ServerCommands.DOUBLE_LOGGED_IN:
+                        {
+                            this.main.setScheduledDisconnect(true);
+                            this.main.getGuiManager().removeConnectionWindow();
+                            this.main.screenManager.showSimpleMessage(BPLocale.getText("doubleloggedin"));
+                            break;
+                        }
+                        case ServerCommands.INVALID_SESSION:
+                        {
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.KICKED:
+                {
+                    break;
+                }

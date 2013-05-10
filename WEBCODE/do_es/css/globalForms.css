@@ -1,0 +1,776 @@
+/**
+ * Login Form
+ */
+
+#facebookSignupForm a.fb_link
+{
+    color: #000;
+    text-decoration:underline;
+}
+
+#loginForm_default_container,
+#loginForm_openId_container
+{
+    position: absolute;
+    top: 87px;
+    left: 48px;
+
+    font-size: 10px;
+    color: #000000;
+    background: #afafaf;
+    padding: 10px;
+}
+
+#loginForm_default_container label,
+#loginForm_openId_container label
+{
+    font-size: 10px;
+    color: #000000;
+    display:block;
+}
+
+#facebookSignupForm_signup div.label
+{
+    display:block !important;
+    width:250px;
+}
+
+#loginForm_default_loginButton_container,
+#loginForm_default_signupButton_container
+{
+    margin-top:5px;
+}
+
+#loginForm_default_showOpenId_handle
+{
+    /* START - IMPORTANT */
+    cursor: pointer;
+    display: inline-block;
+    /* END - IMPORTANT*/
+
+    background: #5f5f5f;
+    border: 1px solid #0f0f0f;
+    font-weight: bold;
+    font-size: 10px;
+    height: 18px;
+    margin-top: 20px;
+}
+
+#loginForm_default_facebookConnect_container
+{
+    margin-top: 10px;
+}
+
+#loginForm_openId_hideOpenId_handle
+{
+    background: #ff0000;
+    width: 20px;
+    height: 20px;
+}
+
+#loginForm_default_facebookConnect_username_container
+{
+    font-size: 10px;
+}
+
+#loginForm_openId_container
+{
+    display: none;
+    position: absolute;
+    left: 300px;
+    top: 100px;
+}
+
+#loginForm_default_container .facebookButton
+{
+    display: block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    float: left;
+}
+
+#loginForm_default_container .openidButton
+{
+    display: block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    float: left;
+}
+
+
+#loginForm_default_container .layout2 .facebookButton
+{
+    display: block;
+    width: 75px;
+    height: 22px;
+    cursor: pointer;
+    float: left;
+}
+
+#loginForm_default_container .layout2 .openidButton
+{
+    display: block;
+    width: 75px;
+    height: 22px;
+    cursor: pointer;
+    float: left;
+}
+
+
+/**
+  * Facebook Signup
+  */
+
+.gl_facebookIcon {
+    width: 25px;
+    height: 25px;
+    background: url(../img/globalSprite.png);
+    background-position: -25px -75px;
+}
+* html .gl_facebookIcon {
+    display: none;
+    background: url(../js/pngfix.htc);
+}
+.layout2 .gl_facebookIcon {
+    width: 75px;
+    height: 22px;
+    background: url(../img/globalSprite.png);
+    background-position: -75px -52px;
+}
+* html .layout2 .gl_facebookIcon {
+    display: none;
+    background: url(../js/pngfix.htc);
+}
+
+.gl_openidIcon {
+
+    width: 25px;
+    height: 25px;
+    background: url(../img/globalSprite.png);
+    background-position: 0px -75px;
+}
+* html .gl_openidIcon {
+    display: none;
+    background: url(../js/pngfix.htc);
+}
+.layout2 .gl_openidIcon {
+
+    width: 75px;
+    height: 22px;
+    background: url(../img/globalSprite.png);
+    background-position: 0px -52px;
+}
+* html .layout2 .gl_openidIcon {
+    display: none;
+    background: url(../js/pngfix.htc);
+}
+
+.gl_closeButton
+{
+    background: url(../img/globalSprite.png);
+    background-position: -291px -20px;
+    width: 9px;
+    height: 9px;
+    cursor: pointer;
+}
+
+.gl_overlay
+{
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 50000;
+}
+* html .gl_overlay
+{
+    position: absolute;
+    height: expression(document.body.scrollHeight > document.body.
+            offsetHeight ? document.body.scrollHeight : document.body.
+            offsetHeight + 'px');
+}
+
+.gl_overlay_background
+{
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.7;
+    -moz-opacity: 0.7;
+    filter: alpha(opacity=70);
+    z-index: 50001;
+}
+
+.facebookSignupFormBackground
+{
+    width: 299px;
+    height: 364px;
+    background: url(../img/layer_1_bg.png);
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin-left: -150px;
+    margin-top: -157px;
+    z-index: 50002;
+    padding: 0px;
+}
+* html .facebookSignupFormBackground {
+    display: none;
+    behavior: url(../img/layer_1_bg.png);
+}
+
+.facebookSignupFormContainer
+{
+    width: 299px;
+    height: 364px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin-left: -150px;
+    margin-top: -157px;
+    z-index: 50003;
+    padding: 0px;
+}
+
+
+.facebookSignupForm
+{
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    width: 273px;
+    height: 340px;
+    background: #ffffff;
+    z-index: 50004;
+}
+
+
+.facebookSignupForm .errorLayer
+{
+    position: absolute;
+    top: 39px;
+    width: 273px;
+    height: 301px;
+    background: #ffffff;
+    z-index: 50005;
+    display: none;
+}
+
+.facebookSignupForm .errorLayer .text
+{
+    position: relative;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.facebookSignupForm .errorLayer .buttonContainer
+{
+    position: relative;
+    margin-top: 20px;
+    width: 273px;
+}
+
+.facebookSignupForm .errorLayer .buttonContainer .rightButton
+{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.facebookSignupForm .errorLayer li
+{
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 18px;
+}
+
+.facebookSignupForm .errorLayer .usernames
+{
+    margin-top: 20px;
+}
+
+.facebookSignupForm .errorLayer .username
+{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    position: relative;
+    cursor: pointer;
+    font-weight: bold;
+}
+.facebookSignupForm .errorLayer .username:hover
+{
+    color: #627AAC;
+    font-weight: bold;
+}
+
+.facebookSignupForm .loadingLayer
+{
+    position: absolute;
+    top: 0px;
+    width: 261px;
+    height: 26px;
+    background: #ffffff;
+    z-index: 50005;
+    display: none;
+}
+
+.facebookSignupForm .loadingLayer .img
+{
+    position: relative;
+    left: 120px;
+    top: 7px;
+}
+
+
+.facebookSignupForm,
+.facebookSignupForm div,
+.facebookSignupForm span,
+.facebookSignupForm input
+{
+    text-align: left;
+    font-family: verdana, arial;
+    font-size: 11px;
+    font-weight: normal;
+    color: #333333;
+    padding: 0px;
+    margin: 0px;
+}
+
+.facebookSignupForm .teaser
+{
+    position: absolute;
+    font-size: 12px;
+    text-align: left;
+    left: 42px;
+    top: 8px;
+    width: 225px;
+}
+
+.facebookSignupForm .gl_facebookIcon
+{
+    position: absolute;
+    top: 3px;
+    left: 5px;
+}
+
+.facebookSignupForm .gl_closeButton
+{
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
+
+.facebookSignupForm .hspacer
+{
+    height: 34px;
+}
+
+.facebookSignupForm .explain
+{
+    text-align: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: #666666;
+}
+
+.facebookSignupForm .subContainer
+{
+    position: relative;
+    width: 262px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid #d1d1d1;
+}
+
+.facebookSignupForm .subContainer .teaser
+{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: auto;
+}
+
+.facebookSignupForm .toggleArea
+{
+    display: none;
+    height: 229px;
+}
+
+
+.facebookSignupForm .clear {
+    clear: both;
+}
+
+.facebookSignupForm .subContainer .indent
+{
+    margin-left: 10px;
+}
+
+.facebookSignupForm .subContainer .pindent
+{
+    padding-left: 10px;
+}
+
+.facebookSignupForm .subContainer .caption
+{
+    position: relative;
+    height: 19px;
+    background: #627aac;
+    padding-top: 4px;
+    padding-left: 4px;
+    cursor: pointer;
+}
+
+.facebookSignupForm .arrowDown
+{
+    background: url(../img/globalSprite.png);
+    background-position: -269px -20px;
+    width: 10px;
+    height: 5px;
+}
+
+
+.facebookSignupForm .arrowUp
+{
+    background: url(../img/globalSprite.png);
+    background-position: -280px -20px;
+    width: 10px;
+    height: 5px;
+}
+
+.facebookSignupForm .subContainer .caption .arrow
+{
+    position: absolute;
+    right: 7px;
+    top: 9px;
+}
+
+.facebookSignupForm .subContainer .captionText
+{
+    margin-left: 4px;
+    margin-top: 4px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.facebookSignupForm .subContainer .teaser
+{
+    font-size: 11px;
+    text-align: left;
+    margin-top: 10px;
+    color: #666666;
+}
+
+.facebookSignupForm .subContainer .label
+{
+    margin-top: 10px;
+    color: #333333;
+    display:block;
+    width:250px;
+}
+
+.facebookSignupForm .subContainer .inputContainer
+{
+    position: relative;
+    width: 240px;
+    height: 21px;
+    margin-top: 1px;
+    border: 1px solid #bdc7d8;
+    background: #ffffff;
+    float:left;
+}
+
+.facebookSignupForm select
+{
+    padding: 1px 1px 1px 3px;
+    border: 1px solid #bdc7d8;
+    margin-top: 1px;
+}
+
+
+/*
+* html .facebookSignupForm .subContainer .inputContainer
+{
+    width: 238px;
+}
+*/
+
+.facebookSignupForm .subContainer .inputText
+{
+    position: absolute;
+    padding: 0px;
+    margin: 0;
+    margin-top: 3px;
+    background: #ffffff;
+    border: 0 none;
+    width: 238px;
+    height: 18px;
+    font-size: 12px;
+}
+/*
+* html .facebookSignupForm .subContainer .inputText
+{
+    width: 228px;
+}
+*/
+
+.facebookSignupForm .subContainer .buttonContainer
+{
+    width: 100%;
+    position: absolute;
+    bottom: 30px;
+}
+
+.facebookSignupForm .subContainer .buttonContainer .leftButton
+{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+
+.facebookSignupForm .subContainer .buttonContainer .rightButton
+{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+/* FACEBOOK BUTTONS - START */
+
+.gl_facebookButton
+{
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.gl_facebookButtonContainer
+{
+    height: 20px;
+    border: 1px solid;
+    padding: 0px 6px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.gl_facebookButton .deny
+{
+    border-color: #afafaf;
+    background: #ffffff;
+    background-position: 0px 0px;
+}
+
+.gl_facebookButton .confirm
+{
+    border-color: #29447E #29447E #1A356E;
+    background: url(../img/globalSprite.png);
+    background-position: 0px 0px;
+}
+
+.gl_facebookButton .gl_facebookButton_input
+{
+    background: transparent;
+    border: 0 none;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    padding: 1px 0px 2px 0px;
+    overflow: visible;
+}
+
+.gl_facebookButton .confirm .gl_facebookButton_input
+{
+    color: #ffffff;
+}
+
+.gl_facebookButton .deny .gl_facebookButton_input
+{
+    color: #333333;
+}
+
+/* FACEBOOK BUTTONS - END */
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* FACEBOOK Application SignUp Connector */
+#gl_facebookApplicationSignupForm_container div.inner-container
+{
+    border:1px solid #B0B0B0;
+    background-color:#DEDEDE;
+    margin-left:50px;
+    width:624px;
+    height:624px;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container h2
+{
+    text-align:center;
+    margin-top:30px;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container div.welcome-text
+{
+    width:600px;
+    margin:auto;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container h3
+{
+    background-color:#C3C3C3;
+    border:1px solid #AFAFAF;
+    height:27px;
+    margin:27px 0 10px -10px;
+    padding:7px 0 0 22px;
+    position:relative;
+    width:550px;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container .header-text
+{
+    width:550px;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container div.new-container,
+#gl_facebookApplicationSignupForm_container div.inner-container div.existing-container
+{
+    width:600px;
+    margin:auto;
+    height:160px;
+}
+
+
+#gl_facebookApplicationSignupForm_container div.exsisting-container div.header-text
+{
+    width:550px;
+    margin:20px 0;
+}
+
+input.gl_facebookButton_submit_input
+{
+    background-color : #535353;
+    border:1px solid #9E9E9E;
+    color:#FFF;
+    padding:3px 14px;
+}
+
+input.gl_facebook_inputText,
+input.gl_facebook_inputPassword
+{
+    background-color : #FFF;
+    border:1px solid #9E9E9E;
+    color:#111;
+    padding:4px 8px 4px 4px;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container div.input-container,
+#gl_facebookApplicationSignupForm_container div.inner-container div.input-content label
+{
+    margin-bottom:10px;
+}
+
+
+#gl_facebookApplicationSignupForm_container div.inner-container div.float-row
+{
+    float:left;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container div.submit
+{
+    margin-left:10px;
+}
+
+#gl_facebookApplicationSignupForm_container div.inner-container div.input-content label
+{
+    float:left;
+    width:110px;
+    padding-top:5px;
+}
+
+#gl_facebookApplicationSignupForm_container div.error-messages-connect,
+#gl_facebookApplicationSignupForm_container div.error-messages-signup
+{
+    height:60px;
+    margin-top:16px;
+    width:550px;
+}
+
+#gl_facebookApplicationSignupForm_container div.username-suggestions
+{
+    display:none;
+    position:absolute;
+    top:236px;
+    width:550px;
+    z-index:100001;
+    border:1px solid #666;
+    background-color:#C4C4C4;
+}
+
+#gl_facebookApplicationSignupForm_container div.messages-content
+{
+    margin:0;
+}
+
+
+#gl_facebookApplicationSignupForm_container div.messages-content ul
+{
+    padding:0;
+    margin:0;
+}
+
+#gl_facebookApplicationSignupForm_container div.messages-content ul li,
+#gl_facebookApplicationSignupForm_container div.messages-content
+{
+    list-style-type:none;
+    padding:0 0 8px;
+    margin:0;
+    color:#B00;
+    font-weight:bold;
+    font-size:11px;
+}
+
+input.no-input
+{
+    font-style:italic;
+    color:#AAA;
+}
+
+input.hidden
+{
+    display:none;
+}
+
+
+select.birthday
+{
+    font-size:12px;
+    height:27px;
+    padding:1px;
+}
+
+div.mandatory-fields
+{
+    float:left;
+    width:100%;
+    font-size:10px;
+    color:#777;
+}
+/* FACEBOOK Application SignUp Connector - END */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+

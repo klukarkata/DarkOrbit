@@ -1,0 +1,1706 @@
+        public static var ATTRIBUTE_SEPERATOR:String = "|";
+        public static var LIST_SEPERATOR:String = ",";
+        public static var PARAM_1:String = "%!";
+        public static var PARAM_2:String = "%2!";
+        
+        private function onData(event:DataEvent) : void
+        {
+            var _loc_3:Array = null;
+            var _loc_4:int = 0;
+            var _loc_5:int = 0;
+            var _loc_6:int = 0;
+            var _loc_7:int = 0;
+            var _loc_8:int = 0;
+            var _loc_9:Map = null;
+            var _loc_10:Ship = null;
+            var _loc_11:BufferedShip = null;
+            var _loc_12:Number = NaN;
+            var _loc_13:int = 0;
+            var _loc_14:String = null;
+            var _loc_15:Boolean = false;
+            var _loc_16:int = 0;
+            var _loc_17:int = 0;
+            var _loc_18:String = null;
+            var _loc_19:int = 0;
+            var _loc_20:int = 0;
+            var _loc_21:Number = NaN;
+            var _loc_22:int = 0;
+            var _loc_23:Number = NaN;
+            var _loc_24:Number = NaN;
+            var _loc_25:Number = NaN;
+            var _loc_26:int = 0;
+            var _loc_27:int = 0;
+            var _loc_28:Number = NaN;
+            var _loc_29:int = 0;
+            var _loc_30:MapObject = null;
+            var _loc_31:ShipManager = null;
+            var _loc_32:int = 0;
+            var _loc_33:Number = NaN;
+            var _loc_34:String = null;
+            var _loc_35:int = 0;
+            var _loc_36:int = 0;
+            var _loc_37:SimpleWindow = null;
+            var _loc_38:String = null;
+            var _loc_39:int = 0;
+            var _loc_40:int = 0;
+            var _loc_41:String = null;
+            var _loc_42:String = null;
+            var _loc_43:int = 0;
+            var _loc_44:String = null;
+            var _loc_45:int = 0;
+            var _loc_46:String = null;
+            var _loc_47:int = 0;
+            var _loc_48:int = 0;
+            var _loc_49:int = 0;
+            var _loc_50:String = null;
+            var _loc_51:int = 0;
+            var _loc_52:String = null;
+            var _loc_53:int = 0;
+            var _loc_54:int = 0;
+            var _loc_55:Boolean = false;
+            var _loc_56:Array = null;
+            var _loc_57:ExplosionPattern = null;
+            var _loc_58:Collectable = null;
+            var _loc_59:int = 0;
+            var _loc_60:int = 0;
+            var _loc_61:int = 0;
+            var _loc_62:int = 0;
+            var _loc_63:int = 0;
+            var _loc_65:String = null;
+            var _loc_66:GuiManager = null;
+            var _loc_67:Boolean = false;
+            var _loc_68:String = null;
+            var _loc_69:String = null;
+            var _loc_70:int = 0;
+            var _loc_71:Boolean = false;
+            var _loc_72:int = 0;
+            var _loc_73:Boolean = false;
+            var _loc_74:Boolean = false;
+            var _loc_75:int = 0;
+            var _loc_76:Boolean = false;
+            var _loc_77:int = 0;
+            var _loc_78:Boolean = false;
+            var _loc_79:Boolean = false;
+            var _loc_80:int = 0;
+            var _loc_81:int = 0;
+            var _loc_82:Boolean = false;
+            var _loc_83:int = 0;
+            var _loc_84:int = 0;
+            var _loc_85:int = 0;
+            var _loc_86:RelayStation = null;
+            var _loc_87:int = 0;
+            var _loc_88:RelayStation = null;
+            var _loc_89:int = 0;
+            var _loc_90:int = 0;
+            var _loc_91:int = 0;
+            var _loc_92:Boolean = false;
+            var _loc_93:String = null;
+            var _loc_94:Sprite = null;
+            var _loc_95:int = 0;
+            var _loc_96:int = 0;
+            var _loc_97:int = 0;
+            var _loc_98:int = 0;
+            var _loc_99:TextField = null;
+            var _loc_100:int = 0;
+            var _loc_101:int = 0;
+            var _loc_102:SimpleWindow = null;
+            var _loc_103:Boolean = false;
+            var _loc_104:Boolean = false;
+            var _loc_105:Boolean = false;
+            var _loc_106:Boolean = false;
+            var _loc_107:Boolean = false;
+            var _loc_108:int = 0;
+            var _loc_109:ActionButton2 = null;
+            var _loc_110:int = 0;
+            var _loc_111:Array = null;
+            var _loc_112:int = 0;
+            var _loc_113:int = 0;
+            var _loc_114:int = 0;
+            var _loc_115:int = 0;
+            var _loc_116:int = 0;
+            var _loc_117:int = 0;
+            var _loc_118:int = 0;
+            var _loc_119:String = null;
+            var _loc_120:Array = null;
+            var _loc_121:Boolean = false;
+            var _loc_122:Station = null;
+            var _loc_123:int = 0;
+            var _loc_124:int = 0;
+            var _loc_125:Boolean = false;
+            var _loc_126:Vector.<int> = null;
+            var _loc_127:int = 0;
+            var _loc_128:int = 0;
+            var _loc_129:int = 0;
+            var _loc_130:MovieClip = null;
+            var _loc_131:String = null;
+            var _loc_132:int = 0;
+            var _loc_133:int = 0;
+            var _loc_134:int = 0;
+            var _loc_135:int = 0;
+            var _loc_136:int = 0;
+            var _loc_137:int = 0;
+            var _loc_138:int = 0;
+            var _loc_139:int = 0;
+            var _loc_140:MapObject = null;
+            var _loc_141:MapObject = null;
+            var _loc_142:Point = null;
+            var _loc_143:MinimapManager = null;
+            var _loc_144:MiniMap = null;
+            var _loc_145:int = 0;
+            var _loc_146:SimpleWindow = null;
+            var _loc_147:TopMenu = null;
+            var _loc_148:ResourcePattern = null;
+            var _loc_149:BattleRepBotTechEffect = null;
+            var _loc_150:int = 0;
+            var _loc_151:Boolean = false;
+            var _loc_152:int = 0;
+            var _loc_153:String = null;
+            var _loc_154:Array = null;
+            var _loc_155:int = 0;
+            var _loc_156:Pet = null;
+            var _loc_157:CollectablePattern = null;
+            var _loc_158:int = 0;
+            var _loc_159:int = 0;
+            var _loc_160:int = 0;
+            var _loc_161:String = null;
+            var _loc_162:String = null;
+            var _loc_163:Array = null;
+            var _loc_164:int = 0;
+            var _loc_165:int = 0;
+            var _loc_166:int = 0;
+            var _loc_167:int = 0;
+            var _loc_168:AmmoPrice = null;
+            var _loc_169:int = 0;
+            var _loc_170:String = null;
+            var _loc_171:int = 0;
+            var _loc_172:int = 0;
+            var _loc_173:int = 0;
+            var _loc_174:int = 0;
+            var _loc_175:uint = 0;
+            var _loc_2:* = String(event.data);
+            _loc_3 = _loc_2.split(ATTRIBUTE_SEPERATOR);
+            if (this._isLoggingGameServerIO)
+            {
+                _loc_68 = StringUtil.trim(_loc_2);
+                _loc_69 = _loc_68.replace(/</g, "^").replace(/\>/g, "^");
+            }
+            var _loc_64:int = 0;
+            switch(_loc_3[1])
+            {
+                case ServerCommands.PET:
+                {
+                    this.petAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.SHIP_MOVEMENT:
+                {
+                    _loc_4 = int(_loc_3[2]);
+                    _loc_5 = int(_loc_3[3]);
+                    _loc_6 = int(_loc_3[4]);
+                    _loc_70 = int(_loc_3[5]);
+                    _loc_71 = false;
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getShipManager().moveShip(_loc_4, _loc_5, _loc_6, _loc_70);
+                    }
+                    break;
+                }
+                case ServerCommands.LASER_ATTACK:
+                {
+                    _loc_7 = int(_loc_3[2]);
+                    _loc_8 = int(_loc_3[3]);
+                    _loc_72 = int(_loc_3[4]);
+                    _loc_73 = Boolean(int(_loc_3[5]));
+                    _loc_74 = Boolean(int(_loc_3[6]));
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getCombatManager().addLaserAttack(_loc_7, _loc_8, _loc_72, _loc_73, _loc_74);
+                        _loc_140 = _loc_9.getShipManager().getShip(_loc_7);
+                        if (_loc_140 != null && _loc_140.energyLeechActive)
+                        {
+                            _loc_9.getCombatManager().addLaserAttack(_loc_8, _loc_7, 7, false, false);
+                        }
+                    }
+                    if (_loc_7 == Hero.userID)
+                    {
+                        _loc_10 = _loc_9.getShipManager().getHero();
+                        if (!_loc_10.shipPattern.playLoop)
+                        {
+                            _loc_141 = _loc_9.getShipManager().getShip(_loc_8);
+                            _loc_9.getEventManager().heroLockToTarget = _loc_141;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.HERO_MOVEMENT:
+                {
+                    _loc_5 = int(_loc_3[2]);
+                    _loc_6 = int(_loc_3[3]);
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_10 = _loc_9.getShipManager().getHero();
+                        if (_loc_10 != null)
+                        {
+                            _loc_142 = _loc_9.poiManager.checkPOIZoneCollisions(new Point(_loc_10.x, _loc_10.y), new Point(_loc_5, _loc_6));
+                            if (_loc_142 != null)
+                            {
+                                _loc_5 = _loc_142.x;
+                                _loc_6 = _loc_142.y;
+                            }
+                            _loc_9.getEventManager().moveHeroToCordinates(_loc_5, _loc_6);
+                            _loc_143 = _loc_9.getMinimapManager();
+                            if (_loc_143 != null)
+                            {
+                                _loc_144 = _loc_143.getMiniMap();
+                                if (_loc_144 != null)
+                                {
+                                    _loc_144.highlightRoute(_loc_5, _loc_6);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.CREATE_SHIP:
+                {
+                    _loc_4 = int(_loc_3[2]);
+                    _loc_29 = int(_loc_3[3]);
+                    _loc_75 = int(_loc_3[4]);
+                    _loc_14 = _loc_3[5];
+                    _loc_34 = _loc_3[6];
+                    _loc_26 = _loc_3[7];
+                    _loc_27 = _loc_3[8];
+                    _loc_19 = _loc_3[9];
+                    _loc_13 = _loc_3[10];
+                    _loc_16 = _loc_3[11];
+                    _loc_76 = Boolean(int(_loc_3[12]));
+                    _loc_77 = _loc_3[13];
+                    _loc_17 = int(_loc_3[14]);
+                    _loc_78 = Boolean(int(_loc_3[16]));
+                    _loc_15 = Boolean(int(_loc_3[17]));
+                    if (_loc_29 == 84 || _loc_29 == 85)
+                    {
+                        _loc_75 = 1;
+                    }
+                    _loc_29 = this.getMappedShipType(_loc_29);
+                    if (!Settings.createOpponents)
+                    {
+                        break;
+                    }
+                    if (_loc_19 > 3)
+                    {
+                        _loc_19 = 0;
+                    }
+                    if (_loc_4 == Hero.userID)
+                    {
+                        break;
+                    }
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_31 = _loc_9.getShipManager();
+                        if (_loc_31 != null)
+                        {
+                            _loc_30 = _loc_31.createShip(_loc_29, _loc_4, _loc_26, _loc_27, 1, _loc_34, _loc_14, _loc_19, _loc_13, _loc_77, _loc_16, _loc_75, _loc_76, _loc_17, _loc_78);
+                            if (_loc_30 != null)
+                            {
+                                _loc_30.setCloak(_loc_15);
+                            }
+                            if (this._watchedShipInits[_loc_4])
+                            {
+                                this.main.getGroupManager().initMemberTarget(_loc_4);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        _loc_11 = new BufferedShip(_loc_29, _loc_4, _loc_26, _loc_27, 1, _loc_34, _loc_14, _loc_19, _loc_13, _loc_77, _loc_16, _loc_75, _loc_76, _loc_17, _loc_78, _loc_15);
+                        this.bufferedShips.push(_loc_11);
+                    }
+                    break;
+                }
+                case ServerCommands.ROCKET_ATTACK:
+                {
+                    _loc_7 = int(_loc_3[2]);
+                    _loc_8 = int(_loc_3[3]);
+                    if (_loc_3[4] == "H")
+                    {
+                        _loc_79 = true;
+                    }
+                    _loc_80 = int(_loc_3[5]);
+                    _loc_81 = int(_loc_3[6]);
+                    _loc_82 = Boolean(int(_loc_3[7]));
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getCombatManager().addRocketAttack(_loc_7, _loc_8, _loc_80, _loc_79, _loc_81, _loc_82);
+                    }
+                    break;
+                }
+                case ServerCommands.TECHS:
+                {
+                    if (this.techAssembly == null)
+                    {
+                        this.techAssembly = TechAssembly.getInstance();
+                    }
+                    this.techAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.SKILL_DESIGNS:
+                {
+                    if (this.skillsAssembly == null)
+                    {
+                        this.skillsAssembly = SkillsAssembly.getInstance();
+                    }
+                    this.skillsAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.NEW_ASSET:
+                {
+                    if (this.assetAssembly == null)
+                    {
+                        this.assetAssembly = AssetAssembly.getInstance();
+                    }
+                    this.assetAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.ASSET_INFO:
+                {
+                    _loc_9 = this.main.screenManager.map;
+                    _loc_83 = int(_loc_3[3]);
+                    _loc_84 = int(_loc_3[5]);
+                    _loc_85 = int(_loc_3[6]);
+                    _loc_86 = _loc_9.getStationManager().getAssetForID(_loc_83);
+                    _loc_86.toggleBorderClip(true);
+                    _loc_86.setDamageBarVisibility(true);
+                    _loc_86.updateHitpointBar(_loc_84, _loc_85);
+                    _loc_87 = _loc_83;
+                    if (_loc_87 == -1)
+                    {
+                        if (_loc_9 != null)
+                        {
+                            _loc_9.getShipManager().deselectSelectedShip();
+                        }
+                    }
+                    else
+                    {
+                        _loc_28 = int(0);
+                        _loc_25 = int(0);
+                        _loc_21 = _loc_84;
+                        _loc_24 = _loc_85;
+                        _loc_67 = false;
+                        if (_loc_9 != null)
+                        {
+                            _loc_30 = _loc_9.getShipManager().selectShip(_loc_87, _loc_21, _loc_24, _loc_28, _loc_25, _loc_67);
+                            if (_loc_30 != null && !_loc_30.isNPC())
+                            {
+                                this.main.getGroupManager().prepareCandidate(_loc_30);
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.ASSET_HIT:
+                {
+                    _loc_18 = _loc_3[3];
+                    _loc_21 = int(_loc_3[4]);
+                    _loc_28 = int(_loc_3[5]);
+                    _loc_20 = int(_loc_3[6]);
+                    _loc_4 = int(_loc_3[7]);
+                    _loc_64 = int(_loc_3[8]);
+                    _loc_9 = this.main.screenManager.map;
+                    if (Settings.qualityExplosion == Settings.QUALITY_HIGH)
+                    {
+                        if (_loc_9 != null)
+                        {
+                            _loc_88 = this.main.screenManager.map.getStationManager().getAssetForID(_loc_4);
+                            if (_loc_88 != null)
+                            {
+                                _loc_88.updateHitpointBar(_loc_21, 1000, true);
+                            }
+                        }
+                    }
+                    break;
+                }
+                //La batalla continua
+                case ServerCommands.TARGET_IN_RANGE://SocketManager.send(user.getNave(), "0|X");
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("fightcont"));
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getCombatManager().resumeLaserAttack(Hero.userID);
+                        _loc_9.getCombatManager().resumeLaserAttackTo(Hero.userID);
+                    }
+                    break;
+                }
+                case ServerCommands.ATTACK_INFO:
+                {
+                    _loc_89 = 1;
+                    _loc_90 = int(_loc_3[++_loc_89]);//2
+                    _loc_89 = ++_loc_89 + 1;
+                    _loc_91 = int(_loc_3[++_loc_89 + 1]);//3
+                    _loc_18 = _loc_3[++_loc_89];//4
+                    _loc_89 = ++_loc_89 + 1;
+                    _loc_21 = int(_loc_3[++_loc_89 + 1]);
+                    _loc_28 = Number(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    _loc_20 = int(_loc_3[++_loc_89 + 1]);
+                    _loc_92 = false;
+                    switch(_loc_18)
+                    {
+                        case "H":
+                        {
+                            _loc_64 = 2;
+                            _loc_92 = true;
+                            break;
+                        }
+                        case "L":
+                        case "R":
+                        case "ECI":
+                        case "SIN":
+                        {
+                        }
+                        default:
+                        {
+                            _loc_64 = 0;
+                            break;
+                            break;
+                        }
+                    }
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_30 = _loc_9.getShipManager().getShip(_loc_91);
+                        if (_loc_30 != null)
+                        {
+                            if (Settings.qualityExplosion == Settings.QUALITY_HIGH)
+                            {
+                                _loc_30.addShipDamage(_loc_18);
+                            }
+                            _loc_30.setHitpoints(_loc_21);
+                            _loc_30.setShield(_loc_28);
+                            _loc_30.updateHitpointShieldBar(true);
+                            if (!_loc_30.shipPattern.isSpaceball() && Settings.displayHitpointBubbles && _loc_20 != 0)
+                            {
+                                this.main.getGuiManager().showHitpointDelta(_loc_30, _loc_20, _loc_64, _loc_92);
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.SHOOT_MISSED_A:
+                {
+                    _loc_93 = _loc_3[2];
+                    _loc_4 = int(_loc_3[3]);
+                    if (_loc_3[4] != undefined)
+                    {
+                        _loc_64 = int(_loc_3[4]);
+                    }
+                    if (_loc_93 == "R")
+                    {
+                        break;
+                    }
+                    if (Settings.displayHitpointBubbles)
+                    {
+                        _loc_9 = this.main.screenManager.map;
+                        if (_loc_9 != null)
+                        {
+                            _loc_30 = _loc_9.getShipManager().getShip(_loc_4);
+                            if (_loc_30 != null && !_loc_30.shipPattern.isSpaceball())
+                            {
+                                this.main.getGuiManager().showHitpointDelta(_loc_30, 0, _loc_64);
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.SET_MARKER:
+                {
+                    _loc_94 = new Sprite();
+                    _loc_95 = _loc_3[2];
+                    _loc_96 = _loc_3[3];
+                    _loc_97 = 40;
+                    _loc_98 = 4;
+                    _loc_94.graphics.beginFill(8453888);
+                    _loc_94.graphics.drawRect(_loc_95 - _loc_97 / 2, _loc_96 - _loc_98 / 2, _loc_97, _loc_98);
+                    _loc_94.graphics.drawRect(_loc_95 - _loc_98 / 2, _loc_96 - _loc_97 / 2, _loc_98, _loc_97);
+                    _loc_94.graphics.endFill();
+                    _loc_99 = new TextField();
+                    _loc_99.text = _loc_95 + "/" + _loc_96;
+                    _loc_99.textColor = 16711935;
+                    _loc_99.x = _loc_95 + 22;
+                    _loc_99.y = _loc_96 - 14;
+                    _loc_94.addChild(_loc_99);
+                    this.main.screenManager.getExplosionLayer().addChild(_loc_94);
+                    break;
+                }
+                case ServerCommands.REMOVE_MARKERS:
+                {
+                    _loc_100 = this.main.screenManager.getExplosionLayer().numChildren;
+                    _loc_145 = 0;
+                    while (_loc_145 < _loc_100)
+                    {
+                        
+                        this.main.screenManager.getExplosionLayer().removeChildAt(0);
+                        _loc_145++;
+                    }
+                    break;
+                }
+                case ServerCommands.SHOOT_MISSED_T:
+                {
+                    if (_loc_3[4] != undefined)
+                    {
+                        _loc_64 = int(_loc_3[4]);
+                    }
+                    if (_loc_93 == "R")
+                    {
+                        break;
+                    }
+                    if (Settings.displayHitpointBubbles)
+                    {
+                        _loc_9 = this.main.screenManager.map;
+                        if (_loc_9 != null)
+                        {
+                            _loc_30 = _loc_9.getShipManager().getHero();
+                            if (_loc_30 != null && !_loc_30.shipPattern.isSpaceball())
+                            {
+                                this.main.getGuiManager().showHitpointDelta(_loc_30, 0, _loc_64);
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.ATTACK_STOPPED_A:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("fightcanceled"));
+                    break;
+                }
+                case ServerCommands.ATTACK_STOPPED_T:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("fightcanceledbyop"));
+                    break;
+                }
+                case ServerCommands.HERO_INIT:
+                {
+                    _loc_4 = int(_loc_3[2]);
+                    _loc_34 = _loc_3[3];
+                    _loc_32 = int(_loc_3[4]);
+                    _loc_33 = int(_loc_3[5]) * 0.97;
+                    _loc_28 = int(_loc_3[6]);
+                    _loc_25 = int(_loc_3[7]);
+                    _loc_21 = int(_loc_3[8]);
+                    _loc_24 = int(_loc_3[9]);
+                    _loc_12 = int(_loc_3[10]);
+                    _loc_23 = int(_loc_3[11]);
+                    _loc_35 = int(_loc_3[12]);
+                    _loc_36 = int(_loc_3[13]);
+                    _loc_22 = int(_loc_3[14]);
+                    _loc_19 = int(_loc_3[15]);
+                    _loc_13 = int(_loc_3[16]);
+                    Hero.maxLaserCapacity = int(_loc_3[17]);
+                    Hero.maxRocketCapacity = int(_loc_3[18]);
+                    _loc_101 = int(_loc_3[19]);
+                    Hero.premium = Boolean(int(_loc_3[20]));
+                    Hero.experiencePoints = Number(_loc_3[21]);
+                    Hero.honorPoints = Number(_loc_3[22]);
+                    Hero.level = int(_loc_3[23]);
+                    Hero.creditsAmount = Number(_loc_3[24]);
+                    Hero.uridiumAmount = Number(_loc_3[25]);
+                    Hero.jackpotAmount = Number(_loc_3[26]);
+                    _loc_16 = int(_loc_3[27]);
+                    _loc_14 = _loc_3[28];
+                    _loc_17 = int(_loc_3[29]);
+                    _loc_15 = Boolean(int(_loc_3[31]));
+                    Hero.isKilled = false;
+                    this.main.getGuiManager().removeStopoverView();
+                    _loc_32 = this.getMappedShipType(_loc_32);
+                    if (_loc_16 == 21)
+                    {
+                        Hero.admin = true;
+                    }
+                    else
+                    {
+                        Hero.admin = false;
+                    }
+                    Hero.username = _loc_34;
+                    if (StringUtil.trim(_loc_14).length > 0)
+                    {
+                        Hero.clan = _loc_14;
+                    }
+                    Hero.factionID = _loc_19;
+                    if (Settings.lastMapID != -1 && Settings.lastMapID != _loc_22)
+                    {
+                        AudioManager.playSoundEffect(6);
+                    }
+                    if (Settings.lastMapID != _loc_22)
+                    {
+                        this.isMapLoaded = false;
+                        this.main.createMap(_loc_22);
+                        Settings.lastMapID = _loc_22;
+                    }
+                    _loc_10 = this.main.screenManager.map.getShipManager().createShip(_loc_32, _loc_4, _loc_35, _loc_36, _loc_33, _loc_34, _loc_14, _loc_19, _loc_13, -1, _loc_16, _loc_101, false, _loc_17, false);
+                    if (_loc_32 == 80)
+                    {
+                        _loc_10.isCubicon = true;
+                    }
+                    if (_loc_10 == null)
+                    {
+                        return;
+                    }
+                    _loc_10.setHitpoints(_loc_21);
+                    _loc_10.setMaxHitpoints(_loc_24);
+                    _loc_10.setCargo(_loc_23 - _loc_12);
+                    _loc_10.setMaxCargo(_loc_23);
+                    _loc_10.setShieldChunk(_loc_28, _loc_25, true);
+                    if (Settings.createOpponents)
+                    {
+                        _loc_9 = this.main.screenManager.map;
+                        _loc_31 = _loc_9.getShipManager();
+                        _loc_59 = 0;
+                        while (_loc_59 < this.bufferedShips.length)
+                        {
+                            
+                            _loc_11 = this.bufferedShips[_loc_59];
+                            if (_loc_19 > 3)
+                            {
+                                _loc_19 = 0;
+                            }
+                            if (_loc_31 != null)
+                            {
+                                _loc_30 = _loc_31.createShip(_loc_11.typeID, _loc_11.userID, _loc_11.xPos, _loc_11.yPos, 1, _loc_11.username, _loc_11.clanTag, _loc_11.fractionID, _loc_11.clanID, _loc_11.clanDiplomacy, _loc_11.dailyRank, _loc_11.expansionstage, _loc_11.warnIconOnMap, _loc_11.galaxyGatesFinished, _loc_11.isNPC);
+                                _loc_30.setCloak(_loc_11.cloaked);
+                            }
+                            _loc_59++;
+                        }
+                        this.bufferedShips = [];
+                    }
+                    this.main.getGuiManager().removeConnectionWindow();
+                    this.main.screenManager.map.getEventManager().unlockControls();
+                    this.main.getGuiManager().loadChat();
+                    this.main.getGuiManager().createLogWindow();
+                    this.main.getGuiManager().addGUI();
+                    _loc_102 = this.main.getGuiManager().getWindow(SimpleWindow.WINDOW_CLASS_JACKPOTBATTLE);
+                    if (_loc_102 != null)
+                    {
+                        this.main.getGuiManager().closeWindow(this.main.getGuiManager().getWindow(SimpleWindow.WINDOW_CLASS_JACKPOTBATTLE));
+                    }
+                    this.main.getGuiManager().createWindow(SimpleWindow.WINDOW_CLASS_USER);
+                    this.main.getGuiManager().createWindow(SimpleWindow.WINDOW_CLASS_SHIP);
+                    this.main.getGuiManager().createQuestWindow();
+                    if (Settings.showInstantLog)
+                    {
+                        this.main.getGuiManager().createInstantLogView();
+                    }
+                    this.main.getGuiManager().createGlobalNotificationView();
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_LASER);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_ROCKETS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_CREDITS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_URIDIUM);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_3, SimpleElement.TYPE_JACKPOT);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_EXPERIENCE);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_HONOR);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_LEVEL);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_USER, SimpleContainer.CONTAINER_CLASS_HERO_INFO_2, SimpleElement.TYPE_JUMP_VOUCHERS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_0, SimpleElement.TYPE_HITPOINTS);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_0, SimpleElement.TYPE_SHIELD);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_0, SimpleElement.TYPE_CARGO);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_LASER);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_ROCKETS);
+                    this.main.setScheduledDisconnect(false);
+                    if (Hero.admin)
+                    {
+                        this.main.getGuiManager().createCommandLineInterface();
+                    }
+                    this.main.getGuiManager().unlockWindow(SimpleWindow.WINDOW_CLASS_LOGOUT);
+                    this.main.getGroupManager().init();
+                    this.main.getGuiManager().destroyWindow(SimpleWindow.WINDOW_CLASS_TDM);
+                    this.main.getTDMManager().cleanUp();
+                    if (Main.showCross)
+                    {
+                        this.main.getGuiManager().showCrosshair();
+                        this.main.getGuiManager().moveCrosshairs(_loc_35, _loc_36);
+                    }
+                    _loc_10.setCloak(_loc_15);
+                    this.isHeroLoaded = true;
+                    this.dispatchSpacemapLoaded();
+                    break;
+                }
+                case ServerCommands.BEACON:
+                {
+                    _loc_5 = int(_loc_3[2]);
+                    _loc_6 = int(_loc_3[3]);
+                    _loc_103 = Boolean(int(_loc_3[4]));
+                    _loc_104 = Boolean(int(_loc_3[5]));
+                    _loc_105 = Boolean(int(_loc_3[6]));
+                    _loc_106 = Boolean(int(_loc_3[7]));
+                    _loc_107 = Boolean(int(_loc_3[8]));
+                    _loc_108 = int(_loc_3[9]);
+                    Hero.setDemilitarizedZone(_loc_103, this.main);
+                    Hero.setInTradeArea(_loc_105, this.main);
+                    Hero.setInJumpArea(_loc_107);
+                    _loc_66 = this.main.getGuiManager();
+                    if (_loc_66 != null)
+                    {
+                        _loc_146 = _loc_66.getWindow(SimpleWindow.WINDOW_CLASS_LOGOUT);
+                        if (_loc_146 != null && _loc_146.isMaximizeClicked())
+                        {
+                            return;
+                        }
+                    }
+                    Settings.fastRepair = _loc_108;
+                    if (_loc_66 != null)
+                    {
+                        _loc_147 = _loc_66.getTopMenu();
+                        if (_loc_147 != null)
+                        {
+                            if (_loc_108 > 0)
+                            {
+                                _loc_147.setButtonAccess(SuperActionButton.ACTION_FASTREPAIR, true);
+                                _loc_109 = _loc_147.getButton(SuperActionButton.ACTION_FASTREPAIR);
+                                _loc_109.setCounterVisibility(true);
+                                _loc_109.setCount(_loc_108);
+                            }
+                            else
+                            {
+                                _loc_147.setButtonAccess(SuperActionButton.ACTION_FASTREPAIR, false);
+                                _loc_109 = _loc_147.getButton(SuperActionButton.ACTION_FASTREPAIR);
+                                _loc_109.setCounterVisibility(false);
+                            }
+                        }
+                    }
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_31 = _loc_9.getShipManager();
+                        _loc_10 = _loc_31.getHero();
+                        if (_loc_10 != null)
+                        {
+                            this.main.getGuiManager().showRadiationWarning(_loc_106);
+                            if (Main.showCross)
+                            {
+                                this.main.getGuiManager().moveCrosshairs(_loc_5, _loc_6);
+                            }
+                            if (_loc_104 && Hero.repairSkillId != -1)
+                            {
+                                _loc_148 = PatternManager.robotPatterns[Hero.repairSkillId];
+                                if (!this.effectsManager.doesEffectExistOn(_loc_10, EffectIDList.TECH_BATTLE_REP_BOT_EFFECT))
+                                {
+                                    _loc_149 = new BattleRepBotTechEffect(EffectIDList.TECH_BATTLE_REP_BOT_EFFECT, new EffectPattern(EffectIDList.TECH_BATTLE_REP_BOT_EFFECT, _loc_148.resKey));
+                                    this.effectsManager.addEffect(_loc_149, _loc_10, EffectsManager.NORMAL_EFFECT);
+                                }
+                            }
+                            else
+                            {
+                                this.effectsManager.removeEffectByIdFromEntity(_loc_10, EffectIDList.TECH_BATTLE_REP_BOT_EFFECT);
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.SHIP_SELECTED:
+                {
+                    _loc_110 = int(_loc_3[2]);
+                    _loc_9 = this.main.screenManager.map;
+                    _loc_111 = _loc_9.getStationManager().assets;
+                    _loc_59 = 0;
+                    while (_loc_59 < _loc_111.length)
+                    {
+                        
+                        _loc_111[_loc_59].toggleBorderClip(false);
+                        _loc_111[_loc_59].setDamageBarVisibility(false);
+                        _loc_59++;
+                    }
+                    if (_loc_110 == -1)
+                    {
+                        if (_loc_9 != null)
+                        {
+                            _loc_9.getShipManager().deselectSelectedShip();
+                        }
+                    }
+                    else
+                    {
+                        _loc_28 = int(_loc_3[4]);
+                        _loc_25 = int(_loc_3[5]);
+                        _loc_21 = int(_loc_3[6]);
+                        _loc_24 = int(_loc_3[7]);
+                        _loc_67 = Boolean(int(_loc_3[8]));
+                        if (_loc_9 != null)
+                        {
+                            _loc_30 = _loc_9.getShipManager().selectShip(_loc_110, _loc_21, _loc_24, _loc_28, _loc_25, _loc_67);
+                            if (_loc_67)
+                            {
+                                _loc_30.showShield(0);
+                            }
+                            if (!_loc_30.isNPC())
+                            {
+                                this.main.getGroupManager().prepareCandidate(_loc_30);
+                            }
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.DESTROY_SHIP:
+                {
+                    _loc_4 = int(_loc_3[2]);
+                    _loc_112 = -1;
+                    if (_loc_4 != Hero.userID)
+                    {
+                        _loc_9 = this.main.screenManager.map;
+                        if (_loc_9 != null)
+                        {
+                            if (_loc_3.length > 3)
+                            {
+                                _loc_112 = int(_loc_3[3]);
+                                _loc_30 = _loc_9.getShipManager().getShip(_loc_4);
+                                if (_loc_30 != null)
+                                {
+                                    _loc_30.explodeTypeID = _loc_112;
+                                }
+                            }
+                            this.main.screenManager.map.getShipManager().removeOpponentShip(_loc_4, true);
+                        }
+                    }
+                    else
+                    {
+                        Hero.isKilled = true;
+                        this.main.screenManager.map.getShipManager().destroyHero();
+                    }
+                    break;
+                }
+                case ServerCommands.REMOVE_SHIP:
+                {
+                    _loc_4 = int(_loc_3[2]);
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getShipManager().removeOpponentShip(_loc_4);
+                    }
+                    break;
+                }
+                case ServerCommands.REMOVE_BOX:
+                {
+                    _loc_38 = _loc_3[2];
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getCollectableManager().removeCollectable(_loc_38);
+                    }
+                    break;
+                }
+                case ServerCommands.PLAY_PORTAL_ANIMATION:
+                {
+                    this.main.setScheduledDisconnect(true);
+                    _loc_39 = int(_loc_3[2]);
+                    _loc_40 = int(_loc_3[3]);
+                    Settings.nextMapID = _loc_39;
+                    AudioManager.playSoundEffect(21);
+                    this.main.getGuiManager().lockWindow(SimpleWindow.WINDOW_CLASS_LOGOUT);
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null && _loc_9.getMapID() != _loc_39)
+                    {
+                        _loc_9.portalManager.playPortalAnimation(_loc_40);
+                        _loc_9.getDroneManager().minimizeDrones();
+                    }
+                    break;
+                }
+                case ClientCommands.SELECT:
+                {
+                    _loc_41 = _loc_3[2];
+                    switch(_loc_41)
+                    {
+                        case ClientCommands.CONFIGURATION:
+                        {
+                            _loc_54 = int(_loc_3[3]);
+                            Settings.selectedConfiguration = _loc_54;
+                            this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_CONFIGURATION);
+                            this.main.getGuiManager().updateSpacemapWindow();
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.PORTAL_JUMP:
+                {
+                    this.main.setScheduledDisconnect(true);
+                    Settings.nextMapID = int(_loc_3[2]);
+                    break;
+                }
+                case ServerCommands.PRIMARY_WEAPON_INFO:
+                {
+                    _loc_113 = 0;
+                    _loc_59 = 2;
+                    while (_loc_59 < _loc_3.length)
+                    {
+                        
+                        Hero.laserBatteryAmounts[++_loc_113] = int(_loc_3[_loc_59]);
+                        _loc_59++;
+                    }
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_LASER);
+                    this.main.getGuiManager().getMenuManager().updateLaserButtonAmounts();
+                    break;
+                }
+                case ServerCommands.SECONDARY_WEAPON_INFO:
+                {
+                    _loc_89 = 1;
+                    Hero.rocketAmounts[RocketPattern.R310] = int(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    Hero.rocketAmounts[RocketPattern.PLT_2026] = int(_loc_3[++_loc_89 + 1]);
+                    Hero.rocketAmounts[RocketPattern.PLT_2021] = int(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    Hero.rocketAmounts[RocketPattern.PLT_3030] = int(_loc_3[++_loc_89 + 1]);
+                    Hero.rocketAmounts[RocketPattern.PLD_8] = int(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    Hero.rocketAmounts[RocketPattern.DCR_250] = int(_loc_3[++_loc_89 + 1]);
+                    Hero.rocketAmounts[RocketPattern.WIZ] = int(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    Hero.explosiveAmounts[SpecialAmmunition.MINE] = int(_loc_3[++_loc_89 + 1]);
+                    Hero.explosiveAmounts[SpecialAmmunition.SMARTBOMB] = int(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    Hero.explosiveAmounts[SpecialAmmunition.INSTASHIELD] = int(_loc_3[++_loc_89 + 1]);
+                    Hero.explosiveAmounts[SpecialAmmunition.EMP] = int(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    Hero.explosiveAmounts[SpecialAmmunition.MINE_EMP] = int(_loc_3[++_loc_89 + 1]);
+                    Hero.explosiveAmounts[SpecialAmmunition.MINE_SAB] = int(_loc_3[++_loc_89]);
+                    _loc_89 = ++_loc_89 + 1;
+                    Hero.explosiveAmounts[SpecialAmmunition.MINE_DDM] = int(_loc_3[++_loc_89 + 1]);
+                    this.main.getGuiManager().updateInfoField(SimpleWindow.WINDOW_CLASS_SHIP, SimpleContainer.CONTAINER_CLASS_HERO_INFO_1, SimpleElement.TYPE_ROCKETS);
+                    this.main.getGuiManager().getMenuManager().updateRocketButtonAmounts();
+                    this.main.getGuiManager().getMenuManager().updateExplosiveButtonAmmounts();
+                    break;
+                }
+                case ServerCommands.BOX_COLLECT_RESPONSE:
+                case ServerCommands.LOG_MESSAGE:
+                {
+                    this.boxCollectAssembly.assembleBoxCollectResponse(_loc_3);
+                    break;
+                }
+                case ServerCommands.SET_ATTRIBUTE:
+                {
+                    this.attributesAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.ACHIEVEMENTS:
+                {
+                    switch(_loc_3[2])
+                    {
+                        case ServerCommands.ACHIEVEMENT_SET:
+                        {
+                            _loc_59 = 3;
+                            while (_loc_59 < _loc_3.length - 2)
+                            {
+                                
+                                _loc_150 = int(_loc_3[_loc_59]);
+                                _loc_151 = Boolean(int(_loc_3[(_loc_59 + 1)]));
+                                _loc_152 = int(_loc_3[_loc_59 + 2]);
+                                this.main.achievementManager.setAchievement(_loc_150, _loc_151, _loc_152);
+                                _loc_59 = _loc_59 + 3;
+                            }
+                            break;
+                        }
+                        case ServerCommands.ACHIEVEMENT_REMOVE:
+                        {
+                            _loc_59 = 3;
+                            while (_loc_59 < _loc_3.length)
+                            {
+                                
+                                _loc_150 = _loc_3[_loc_59];
+                                this.main.achievementManager.removeAchievement(_loc_150);
+                                _loc_59++;
+                            }
+                            break;
+                        }
+                        case ServerCommands.ACHIEVEMENT_END:
+                        {
+                            this.main.achievementManager.removeAchievementWindow();
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.GROUPSYSTEM:
+                {
+                    this.groupSystemAssembly.assembleGroupSystemEvent(_loc_3);
+                    break;
+                }
+                case ServerCommands.QUESTFM_INFO:
+                {
+                    this.questAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.OUT_OF_RANGE:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("outofrange"));
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getCombatManager().idleLaserAttack(Hero.userID, true);
+                        _loc_9.getCombatManager().idleLaserAttackTo(Hero.userID);
+                    }
+                    break;
+                }
+                case ServerCommands.ESCAPE:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("attescape"));
+                    break;
+                }
+                case ServerCommands.IN_NO_ATTACK_ZONE:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("peacearea"));
+                    break;
+                }
+                case ServerCommands.NO_AMMUNITION:
+                {
+                    _loc_44 = _loc_3[2];
+                    _loc_114 = int(_loc_3[4]);
+                    this.main.getGuiManager().noAmmunition(_loc_44, _loc_114);
+                    break;
+                }
+                case ServerCommands.AUTO_AMMUNITION_CHANGE:
+                {
+                    _loc_44 = _loc_3[2];
+                    _loc_115 = int(_loc_3[4]);
+                    this.main.getGuiManager().getMenuManager().autoAmmunitionChange(_loc_44, _loc_115);
+                    break;
+                }
+                case ServerCommands.NEW_MAP:
+                {
+                    break;
+                }
+                case ServerCommands.SET_MAP_PVP_STATUS:
+                {
+                    _loc_116 = _loc_3[2];
+                    _loc_117 = _loc_3[3];
+                    _loc_9 = this.main.screenManager.map;
+                    _loc_9.setPvpAllowed(_loc_116);
+                    _loc_9.setHomeMapFaction(_loc_117);
+                    break;
+                }
+                case ServerCommands.POI:
+                {
+                    if (this.poiAssembly == null)
+                    {
+                        this.poiAssembly = POIAssembly.getInstance();
+                    }
+                    this.poiAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.CREATE_STATION:
+                {
+                    _loc_45 = int(_loc_3[3]);
+                    _loc_118 = int(_loc_3[2]);
+                    _loc_119 = _loc_3[4];
+                    _loc_19 = int(_loc_3[5]);
+                    _loc_26 = int(_loc_3[7]);
+                    _loc_27 = int(_loc_3[8]);
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null && Settings.qualityBackground >= Settings.QUALITY_LOW)
+                    {
+                        this.main.screenManager.map.getStationManager().addSpaceStation(_loc_118, _loc_19, _loc_119, _loc_26, _loc_27);
+                    }
+                    break;
+                }
+                case ServerCommands.CHANGE_HEALTH_STATION_STATUS:
+                {
+                    _loc_9 = this.main.screenManager.map;
+                    _loc_120 = _loc_9.getStationManager().getStations();
+                    _loc_121 = Boolean(int(_loc_3[2]));
+                    _loc_59 = 0;
+                    while (_loc_59 < _loc_120.length)
+                    {
+                        
+                        if (_loc_120[_loc_59] == undefined)
+                        {
+                        }
+                        else
+                        {
+                            _loc_122 = _loc_120[_loc_59] as Station;
+                            if (_loc_122.getTypeID() == 4)
+                            {
+                                _loc_122.setHealthStationStatus(_loc_121);
+                            }
+                        }
+                        _loc_59++;
+                    }
+                    break;
+                }
+                case ServerCommands.CREATE_PORTAL:
+                {
+                    _loc_125 = true;
+                    _loc_126 = new Vector.<int>;
+                    if (_loc_3.length < 9)
+                    {
+                        _loc_123 = int(_loc_3[2]);
+                        _loc_45 = int(_loc_3[3]);
+                        _loc_26 = int(_loc_3[5]);
+                        _loc_27 = int(_loc_3[6]);
+                    }
+                    else
+                    {
+                        _loc_123 = int(_loc_3[2]);
+                        _loc_124 = int(_loc_3[3]);
+                        _loc_45 = int(_loc_3[4]);
+                        _loc_26 = int(_loc_3[5]);
+                        _loc_27 = int(_loc_3[6]);
+                        _loc_125 = Boolean(int(_loc_3[7]));
+                        _loc_153 = String(_loc_3[8]);
+                        _loc_154 = _loc_153.split(LIST_SEPERATOR);
+                        for each (_loc_155 in _loc_154)
+                        {
+                            
+                            if (_loc_155 > 0)
+                            {
+                                _loc_126.push(_loc_155);
+                            }
+                        }
+                    }
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null && Settings.createPortals)
+                    {
+                        this.main.screenManager.map.portalManager.createPortal(_loc_123, _loc_124, _loc_45, _loc_26, _loc_27, _loc_125, _loc_126);
+                    }
+                    break;
+                }
+                case ServerCommands.CREATE_MINE:
+                {
+                    _loc_38 = _loc_3[2];
+                    _loc_45 = int(_loc_3[3]);
+                    _loc_26 = int(_loc_3[4]);
+                    _loc_27 = int(_loc_3[5]);
+                    _loc_127 = int(_loc_3[6]);
+                    _loc_128 = int(_loc_3[7]);
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        if (_loc_45 >= 100 && _loc_45 <= 533)
+                        {
+                            _loc_9.getCollectableManager().createCollectable(CollectablePattern.TYPE_FIREWORKS_BOX, _loc_38, _loc_45, _loc_26, _loc_27);
+                        }
+                        else
+                        {
+                            _loc_9.getMineManager().createMine(_loc_38, _loc_45, _loc_26, _loc_27, _loc_127, _loc_128);
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.CREATE_ORE:
+                {
+                    _loc_38 = _loc_3[2];
+                    _loc_45 = int(_loc_3[3]);
+                    _loc_26 = int(_loc_3[4]);
+                    _loc_27 = int(_loc_3[5]);
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        if (_loc_45 < 10 || _loc_45 == 15)
+                        {
+                            if (!Settings.createCollectables)
+                            {
+                                break;
+                            }
+                            _loc_9.getCollectableManager().createCollectable(CollectablePattern.TYPE_ORE, _loc_38, _loc_45, _loc_26, _loc_27);
+                        }
+                        else if (_loc_45 == 10)
+                        {
+                            _loc_9.getMineManager().createMine(_loc_38, _loc_45, _loc_26, _loc_27);
+                        }
+                        else if (_loc_45 >= 100 && _loc_45 <= 533)
+                        {
+                            _loc_9.getCollectableManager().createCollectable(CollectablePattern.TYPE_FIREWORKS_BOX, _loc_38, _loc_45, _loc_26, _loc_27);
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.ORE_COLLECTED_BY_HERO:
+                {
+                    _loc_129 = int(_loc_3[2]);
+                    if (_loc_3.length > 3)
+                    {
+                        _loc_156 = this.main.screenManager.map.getShipManager().getHero().pet;
+                        _loc_157 = PatternManager.getCollectablePattern(CollectablePattern.TYPE_BOX, CollectablePattern.TYPE_BOX);
+                        _loc_158 = _loc_156.x;
+                        _loc_159 = _loc_156.y + _loc_156.getClipContainer().height * 0.5;
+                        this.main.screenManager.map.getCollectableManager().showBeam(_loc_158, _loc_159, 1000, "beam0");
+                        _loc_160 = _loc_157.getSoundID();
+                        if (_loc_160 != -1)
+                        {
+                            AudioManager.playSoundEffect(_loc_160, false, false, _loc_156.x, _loc_156.y);
+                        }
+                    }
+                    if (_loc_129 != 666)
+                    {
+                        _loc_161 = BPLocale.getText("oksammel");
+                        _loc_161 = _loc_161.replace(/%!/, InGameCatalog.instance.ore_names[_loc_129]);
+                        this.main.getGuiManager().writeToLog(_loc_161);
+                    }
+                    break;
+                }
+                case ServerCommands.CARGO_FULL:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("loadfull"));
+                    if (Settings.JS_EVENT_TRACKING_ENABLED)
+                    {
+                        if (ExternalInterface.available)
+                        {
+                            ExternalInterface.call("clientEvent", "cargoFull");
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.BOX_DISABLED:
+                {
+                    this.main.getGuiManager().writeToLog(BPLocale.getText("boxdisabled"));
+                    break;
+                }
+                case ServerCommands.REMOVE_ORE:
+                {
+                    _loc_38 = _loc_3[2];
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        if (!this.main.screenManager.map.getMineManager().removeMine(_loc_38))
+                        {
+                            this.main.screenManager.map.getCollectableManager().removeCollectable(_loc_38);
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.CREATE_BOX:
+                {
+                    _loc_38 = _loc_3[2];
+                    _loc_45 = int(_loc_3[3]);
+                    _loc_26 = int(_loc_3[4]);
+                    _loc_27 = int(_loc_3[5]);
+                    if (!Settings.createCollectables)
+                    {
+                        break;
+                    }
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        if (_loc_45 > CollectablePattern.BEACON_FRONTIER_ID)
+                        {
+                            _loc_9.getCollectableManager().createCollectable(CollectablePattern.TYPE_BEACON, _loc_38, _loc_45, _loc_26, _loc_27);
+                        }
+                        else if (_loc_3[6] != undefined)
+                        {
+                            _loc_9.getCollectableManager().createCollectable(CollectablePattern.TYPE_BOX, _loc_38, _loc_45, _loc_26, _loc_27, int(_loc_3[6]));
+                        }
+                        else
+                        {
+                            _loc_9.getCollectableManager().createCollectable(CollectablePattern.TYPE_BOX, _loc_38, _loc_45, _loc_26, _loc_27);
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.MAP_EVENT:
+                {
+                    if (this.mapEventsAssembly == null)
+                    {
+                        this.mapEventsAssembly = MapEventsAssembly.getInstance();
+                    }
+                    this.mapEventsAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.LOGOUT:
+                {
+                    _loc_130 = this.main.getGuiManager().getGlobalchat();
+                    if (_loc_130 != null)
+                    {
+                        _loc_130.cleanup();
+                    }
+                    this.main.setScheduledDisconnect(true);
+                    if (ExternalInterface.available)
+                    {
+                        ExternalInterface.call("bpCloseWindow", "");
+                    }
+                    else
+                    {
+                        System.exit(0);
+                    }
+                    break;
+                }
+                case ServerCommands.LOGOUT_CANCEL_FROM_SERVER:
+                {
+                    this.main.getGuiManager().logoutCancelFromServer();
+                    break;
+                }
+                case ServerCommands.SET_PRICES:
+                {
+                    switch(_loc_3[2])
+                    {
+                        case ServerCommands.SET_AMMO_PRICES:
+                        {
+                            _loc_59 = 3;
+                            while (_loc_59 < _loc_3.length)
+                            {
+                                
+                                _loc_162 = _loc_3[_loc_59];
+                                _loc_163 = _loc_162.split(",");
+                                _loc_50 = StringUtil.trim(_loc_163.shift());
+                                _loc_51 = _loc_163.shift();
+                                _loc_164 = 0;
+                                _loc_165 = 0;
+                                while (_loc_165 < _loc_163.length / 3)
+                                {
+                                    
+                                    _loc_166 = _loc_163[_loc_164];
+                                    _loc_167 = _loc_163[(_loc_164 + 1)];
+                                    _loc_52 = _loc_163[_loc_164 + 2];
+                                    if (_loc_50 == "b")
+                                    {
+                                        _loc_168 = new AmmoPrice(AmmoPrice.CATEGORY_LASER, _loc_51, _loc_166, _loc_167, _loc_52);
+                                    }
+                                    else if (_loc_50 == "r")
+                                    {
+                                        _loc_168 = new AmmoPrice(AmmoPrice.CATEGORY_ROCKET, _loc_51, _loc_166, _loc_167, _loc_52);
+                                    }
+                                    PatternManager.ammoPrices.push(_loc_168);
+                                    _loc_164 = _loc_164 + 3;
+                                    _loc_165++;
+                                }
+                                _loc_59++;
+                            }
+                            this.main.getGuiManager().getMenuManager().updateAmmoPrices();
+                            break;
+                        }
+                        default:
+                        {
+                            OrePattern(PatternManager.orePatterns[OrePattern.ORE_PROMETIUM]).price = int(_loc_3[2]);
+                            OrePattern(PatternManager.orePatterns[OrePattern.ORE_ENDURIUM]).price = int(_loc_3[3]);
+                            OrePattern(PatternManager.orePatterns[OrePattern.ORE_TERBIUM]).price = int(_loc_3[4]);
+                            OrePattern(PatternManager.orePatterns[OrePattern.ORE_PROMETID]).price = int(_loc_3[5]);
+                            OrePattern(PatternManager.orePatterns[OrePattern.ORE_DURANIUM]).price = int(_loc_3[6]);
+                            OrePattern(PatternManager.orePatterns[OrePattern.ORE_PROMERIUM]).price = int(_loc_3[7]);
+                            OrePattern(PatternManager.orePatterns[OrePattern.ORE_PALLADIUM]).price = int(_loc_3[8]);
+                            this.main.getGuiManager().updateTradeWindow();
+                            this.main.getGuiManager().showTradeWindow();
+                            break;
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.SET_ORE_COUNT:
+                {
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_PROMETIUM]).count = int(_loc_3[2]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_ENDURIUM]).count = int(_loc_3[3]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_TERBIUM]).count = int(_loc_3[4]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_XENOMIT]).count = int(_loc_3[5]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_PROMETID]).count = int(_loc_3[6]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_DURANIUM]).count = int(_loc_3[7]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_PROMERIUM]).count = int(_loc_3[8]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_SEPROM]).count = int(_loc_3[9]);
+                    OrePattern(PatternManager.orePatterns[OrePattern.ORE_PALLADIUM]).count = int(_loc_3[10]);
+                    this.main.getGuiManager().updateTradeWindow();
+                    this.main.getGuiManager().updateRefinementWindow();
+                    _loc_9 = this.main.screenManager.map;
+                    if (_loc_9 != null)
+                    {
+                        _loc_9.getShipManager().updateHeroCargo();
+                    }
+                    break;
+                }
+                case ServerCommands.BUY:
+                {
+                    switch(_loc_3[2])
+                    {
+                        case ServerCommands.BUY_SUCCESS:
+                        {
+                            _loc_50 = _loc_3[3];
+                            _loc_169 = int(_loc_3[4]);
+                            _loc_51 = int(_loc_3[5]);
+                            if (_loc_50 == "b")
+                            {
+                                this.main.getGuiManager().writeToLog(BPLocale.getText("bought_bat").replace("%TYPE%", _loc_169).replace("%COUNT%", BPLocale.roundInteger(_loc_51)));
+                            }
+                            else if (_loc_50 == "r")
+                            {
+                                this.main.getGuiManager().writeToLog(BPLocale.getText("bought_rok").replace("%TYPE%", _loc_169).replace("%COUNT%", BPLocale.roundInteger(_loc_51)));
+                            }
+                            break;
+                        }
+                        case ServerCommands.BUY_FAILED:
+                        {
+                            switch(_loc_3[3])
+                            {
+                                case ServerCommands.BUY_FAILED_NO_MONEY:
+                                {
+                                    _loc_52 = _loc_3[4];
+                                    if (_loc_52 == "U")
+                                    {
+                                        this.main.getGuiManager().writeToLog(BPLocale.getText("ammobuy_fail_uri"));
+                                    }
+                                    else if (_loc_52 == "C")
+                                    {
+                                        this.main.getGuiManager().writeToLog(BPLocale.getText("ammobuy_fail_cre"));
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.BUY_FAILED_NO_CARGO:
+                                {
+                                    this.main.getGuiManager().writeToLog(BPLocale.getText("ammobuy_fail_space"));
+                                    break;
+                                }
+                                default:
+                                {
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.CLIENT_SETTING:
+                {
+                    this.settingsAssembly.assembleSetting(_loc_3.splice(2));
+                    break;
+                }
+                case ServerCommands.JUMP_FAILED:
+                {
+                    _loc_65 = BPLocale.getText("jumplevelfalse").replace(/%!/, _loc_3[2]);
+                    this.main.getGuiManager().writeToLog(_loc_65);
+                    AudioManager.playSoundEffect(29);
+                    break;
+                }
+                case ServerCommands.LAB:
+                {
+                    switch(_loc_3[2])
+                    {
+                        case ServerCommands.UPDATE:
+                        {
+                            switch(_loc_3[3])
+                            {
+                                case ServerCommands.INFO:
+                                {
+                                    _loc_59 = 4;
+                                    while (_loc_59 < _loc_3.length)
+                                    {
+                                        
+                                        _loc_170 = _loc_3[_loc_59];
+                                        _loc_171 = int(_loc_3[(_loc_59 + 1)]);
+                                        _loc_172 = int(_loc_3[_loc_59 + 2]);
+                                        _loc_59 = _loc_59 + 2;
+                                        this.main.getGuiManager().refinementManager.updateItem(_loc_170, _loc_171, _loc_172);
+                                        _loc_59++;
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.GET:
+                                {
+                                    break;
+                                }
+                                default:
+                                {
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.USER_INTERFACE:
+                {
+                    this.uiAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.ROCKETLAUNCHER:
+                {
+                    this.rocketLauncherAssembly.assembleCommand(_loc_3);
+                    break;
+                }
+                case ServerCommands.SPECIAL_ENEMY:
+                {
+                    switch(_loc_3[2])
+                    {
+                        case ServerCommands.ALIENMOTHERSHIP:
+                        {
+                            _loc_9 = this.main.screenManager.map;
+                            _loc_123 = int(_loc_3[4]);
+                            _loc_173 = int(_loc_3[5]);
+                            switch(_loc_3[3])
+                            {
+                                case ServerCommands.MOVE:
+                                {
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_60 = int(_loc_3[5]);
+                                        _loc_61 = int(_loc_3[6]);
+                                        _loc_174 = int(_loc_3[7]);
+                                        _loc_9.alienMothershipManager.move(_loc_123, _loc_60, _loc_61, _loc_174);
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.CREATE:
+                                {
+                                    _loc_60 = int(_loc_3[5]);
+                                    _loc_61 = int(_loc_3[6]);
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_9.alienMothershipManager.createAlienMothership(_loc_123, _loc_60, _loc_61);
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.ROTATE:
+                                {
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_9.alienMothershipManager.rotateAlienMothership(_loc_123, _loc_173);
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.PREPARE_ATTACK:
+                                {
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_9.alienMothershipManager.prepareAttack(_loc_123, _loc_173);
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.PREPARE_BIG_ATTACK:
+                                {
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_9.alienMothershipManager.prepareBigAttack(_loc_123, _loc_173);
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.CLOAK:
+                                {
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_9.alienMothershipManager.cloak(_loc_123, _loc_173);
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.IDLE:
+                                {
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_9.alienMothershipManager.idle(_loc_123);
+                                    }
+                                    break;
+                                }
+                                case ServerCommands.KILL:
+                                {
+                                    if (_loc_9 != null)
+                                    {
+                                        _loc_9.alienMothershipManager.kill(_loc_123);
+                                    }
+                                    break;
+                                }
+                                default:
+                                {
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.TRACKING:
+                {
+                    _loc_131 = Capabilities.version;
+                    _loc_132 = int(this.main.getGuiManager().debugView.currentFPS);
+                    _loc_133 = int(this.main.getGuiManager().debugView.currentMem);
+                    _loc_134 = int(this.main.getGuiManager().debugView.averageFPS);
+                    _loc_135 = int(this.main.getGuiManager().debugView.minFPS);
+                    _loc_136 = int(this.main.getGuiManager().debugView.maxFPS);
+                    _loc_137 = int(this.main.getGuiManager().debugView.averageMem);
+                    _loc_138 = int(this.main.getGuiManager().debugView.minMem);
+                    _loc_139 = int(this.main.getGuiManager().debugView.maxMem);
+                    this.main.getGuiManager().debugView.refreshTracking();
+                    this.sendCommand(ServerCommands.TRACKING, [_loc_131, _loc_132, _loc_133, _loc_134, _loc_135, _loc_136, _loc_137, _loc_138, _loc_139]);
+                    break;
+                }
+                case ServerCommands.CHANGE_MAP:
+                {
+                    this.isHeroLoaded = false;
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            switch(_loc_3[0])
+            {
+                case ServerCommands.ERROR:
+                {
+                    _loc_175 = int(_loc_3[1]);
+                    switch(_loc_175)
+                    {
+                        case ServerCommands.NO_HITPOINTS:
+                        {
+                            Hero.isKilled = true;
+                            if (this.xmlSocket.connected)
+                            {
+                                this.main.setScheduledDisconnect(true);
+                                this.xmlSocket.close();
+                            }
+                            this.main.getGuiManager().removeConnectionWindow();
+                            TweenMax.delayedCall(2, this.main.getGuiManager().showHeroDestroyedWindow);
+                            break;
+                        }
+                        case ServerCommands.NOT_LOGGED_IN:
+                        {
+                            this.main.setScheduledDisconnect(true);
+                            this.main.getGuiManager().removeConnectionWindow();
+                            this.main.screenManager.showSimpleMessage(BPLocale.getText("notloggedin"));
+                            break;
+                        }
+                        case ServerCommands.DOUBLE_LOGGED_IN:
+                        {
+                            this.main.setScheduledDisconnect(true);
+                            this.main.getGuiManager().removeConnectionWindow();
+                            this.main.screenManager.showSimpleMessage(BPLocale.getText("doubleloggedin"));
+                            break;
+                        }
+                        case ServerCommands.INVALID_SESSION:
+                        {
+                            break;
+                        }
+                        default:
+                        {
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case ServerCommands.KICKED:
+                {
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+            return;
+        }// end function

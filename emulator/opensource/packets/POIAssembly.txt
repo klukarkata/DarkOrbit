@@ -1,0 +1,131 @@
+package net.bigpoint.darkorbit.net
+{
+    import flash.events.*;
+    import flash.utils.*;
+    import net.bigpoint.darkorbit.*;
+    import net.bigpoint.darkorbit.map.*;
+
+    public class POIAssembly extends BaseAssembly
+    {
+        private var main:Main;
+        private var map:Map;
+        private var delegateDict:Dictionary;
+        private var damageTimer:Timer;
+        private var shipID:int;
+        private static var instance:POIAssembly;
+
+        public function POIAssembly()
+        {
+            this.damageTimer = new Timer(1000 * 2);
+            if (instance)
+            {
+                throw new Error("Singleton and can only access with POIAssembly.getInstance()");
+            }
+            this.main = _main;
+            this.map = this.main.screenManager.map;
+            this.initDelegateDict();
+            return;
+        }// end function
+
+        private function initDelegateDict() : void
+        {
+            this.delegateDict = new Dictionary();
+            this.delegateDict[ServerCommands.CREATE_POI] = this.assembleCreatePOI;
+            this.delegateDict[ServerCommands.READY] = this.assemblePOIReady;
+            this.delegateDict[ServerCommands.ENTER] = this.assembleEnterPOI;
+            this.delegateDict[ServerCommands.LEAVE] = this.assembleLeavePOI;
+            return;
+        }// end function
+
+        public function assembleCommand(param1:Array) : void
+        {
+            var _loc_2:* = param1[2];
+            if (this.delegateDict[_loc_2] != null)
+            {
+                var _loc_3:* = this.delegateDict;
+                _loc_3.this.delegateDict[_loc_2](param1);
+                ;
+            }
+            return;
+        }// end function
+
+        private function assembleCreatePOI(param1:Array) : void
+        {
+            var _loc_2:* = String(param1[3]);
+            var _loc_3:* = int(param1[4]);
+            var _loc_4:* = int(param1[5]);
+            var _loc_5:* = String(param1[6]);
+            var _loc_6:Array = [];
+            var _loc_7:int = 7;
+            while (_loc_7 < param1.length)
+            {
+                
+                _loc_6.push(param1[_loc_7]);
+                _loc_7++;
+            }
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.map.poiManager.addPOIZone(_loc_2, _loc_3, _loc_5, _loc_4, _loc_6);
+            }
+            return;
+        }// end function
+
+        private function assemblePOIReady(param1:Array) : void
+        {
+            this.map = this.main.screenManager.map;
+            if (this.map != null)
+            {
+                this.map.poiManager.drawPOIZones();
+            }
+            return;
+        }// end function
+
+        private function assembleEnterPOI(param1:Array) : void
+        {
+            if (param1[3] == ServerCommands.DAMAGE)
+            {
+                this.shipID = param1[4];
+                this.damageTimer.start();
+                this.damageTimer.addEventListener(TimerEvent.TIMER, this.startDamage);
+            }
+            return;
+        }// end function
+
+        private function assembleLeavePOI(param1:Array) : void
+        {
+            if (param1[3] == ServerCommands.DAMAGE)
+            {
+                this.shipID = param1[4];
+                this.damageTimer.stop();
+                this.damageTimer.reset();
+                this.damageTimer.removeEventListener(TimerEvent.TIMER, this.startDamage);
+            }
+            return;
+        }// end function
+
+        private function startDamage(event:TimerEvent) : void
+        {
+            this.map.getShipManager().getShip(this.shipID).addShipDamage("L");
+            return;
+        }// end function
+
+        public function cleanupShieldDamage() : void
+        {
+            this.damageTimer.stop();
+            this.damageTimer.reset();
+            this.damageTimer.removeEventListener(TimerEvent.TIMER, this.startDamage);
+            return;
+        }// end function
+
+        public static function getInstance() : POIAssembly
+        {
+            if (instance == null)
+            {
+                instance = new POIAssembly;
+            }
+            return instance;
+        }// end function
+
+    }
+}

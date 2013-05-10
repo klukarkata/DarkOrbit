@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<filecollection>
+    <location path="graphics/" id="graphics"/>
+    <location path="graphics/ui/" id="graphics_ui"/>
+    <file version="1" type="swf" name="accordionBtn" location="graphics_ui" id="accordionBtn" hash="9f5eed71797b34ea546518832b14e100" debugView="false"/>
+    <file version="1" type="swf" name="loadGfx" location="graphics_ui" id="loadGfx" hash="360052ba795d4f0d30756c9598cba000" debugView="false"/>
+    <file version="1" type="swf" name="inventoryItems" location="graphics_ui" id="inventoryItems" hash="6afcff136baf0363ead05e8b2d50a00" debugView="false"/>
+    <file version="1" type="swf" name="tabBtn" location="graphics_ui" id="tabBtn" hash="82114482fd9c96f75c6549bd0cd63300" debugView="false"/>
+    <file version="1" type="swf" name="scrollComponents" location="graphics_ui" id="scrollComponents" hash="d901b9d99c577d97c2f94d79b2f39c00" debugView="false"/>
+</filecollection>

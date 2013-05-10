@@ -1,0 +1,42 @@
+#subNavTop ul {
+    width:130px;
+    margin-top:20px;
+    margin-left:45px;
+
+    /* wech damit! mgeweke 2009-02-24 background-color:#45484d; */
+}
+#subNavTop ul li {
+    width:100px;
+    height:33px;
+    text-align:left;
+    line-height:35px;
+    margin-bottom:3px;
+
+
+}
+
+
+#subNavTop ul li a:hover {
+    background-image: url(/do_img/global/bg_subnav_hover.gif);
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#subNavTop a {
+    display:block;
+    background-image: url(/do_img/global/bg_subnav_standard.gif);
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    width:100px;
+}
+
+
+.autoupdate {
+    margin-left:41px;
+}
+
+.fliessSubNav           { font-size: 11px; font-weight:bold; color: #FFFFFF; }
+.fliessSubNav a         { color: #FFFFFF; text-decoration: none;}
+.fliessSubNav a:link    { color: #FFFFFF; }
+.fliessSubNav a:visited { color: #FFFFFF; }
+.fliessSubNav a:hover   { color: #FFFFFF; }
